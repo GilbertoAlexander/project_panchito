@@ -1,0 +1,179 @@
+@extends('TEMPLATE.landing')
+
+@section('title', 'COTIZACION SERVICIOS')
+
+@section('css')
+    
+@endsection
+ 
+@section('content')
+    <section class="w-100 bg-light" style="min-height: 450px;">
+        <div class="container py-5">
+            <p class="text-primary fw-bold text-center fs-3 pt-4">¡Hola Cesar Torres Tasaico! Un gusto poder saludarte</p>
+            <p class="text-center text-dark fw-light  fs-4">2. Ahora, Por favor ingresa la informacion que te solicitamos para poder hacerte una cotización</p>
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8">
+                    <div class="card shadow border-4 mb-4 mb-lg-0 borde-top-primary" data-aos="fade-up"
+                    data-aos-duration="500" style="border-radius: 15px">
+                        <div class="card-body">
+                            <p class="text-danger fw-light text-start text-md-end mb-0">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></p>
+                            <form method="POST" action=""  enctype="multipart/form-data" autocomplete="off" >
+                                <!-- @csrf -->
+                                <p class="text-uppercase">Tipo de servicio: <span class="badge bg-primary">Alquiler</span></p>
+                                <p class="text-uppercase">Servicio Requerido: <span class="badge bg-secondary">Alquiler de Camión Grúa 22 TN</span></p>
+                                <div class="form__alquiler" hidden>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label for="empresa_id" class="form-label">Empresa solicitante<span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control fw-light" id="empresa_id" name="name_empresa" placeholder="Nombre o razón social">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="fecha_ejecucion_id" class="form-label">Fecha de ejecución<span class="text-danger">*</span></label>
+                                                <input type="date" class="form-control fw-light" id="fecha_ejecucion_id" name="fecha_ejecucion">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="horas_requeridas_id" class="form-label">Horas requeridas<span class="text-danger">*</span></label>
+                                                <input type="number" class="form-control fw-light" id="horas_requeridas_id" name="horas_requerias" min="1" value="1">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="horas_requeridas_id" class="form-label">Operador de maquinaria<span class="text-danger">*</span></label>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-5">
+                                                        <input class="form-check-input" type="radio" name="operador_maquinaria" id="no_id">
+                                                        <label class="form-check-label" for="no_id">
+                                                        Si
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check ms-2">
+                                                        <input class="form-check-input" type="radio" name="operador_maquinaria" id="si_id">
+                                                        <label class="form-check-label" for="si_id">
+                                                        No
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label for="informacion_adicional_id" class="form-label">Información adicional<span class="text-danger">*</span></label>
+                                                <textarea name="informacion_adicional" class="form-control fw-light" id="informacion_adicional_id" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form_proyectos" >
+                                    <div class="row">
+                                        <div class="col-12 col-md-8">
+                                            <div class="mb-3">
+                                                <label for="empresa_proyecto_id" class="form-label">Empresa solicitante<span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control fw-light" id="empresa_proyecto_id" name="name_empresa" placeholder="Nombre o razón social">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="fecha_ejecucion_proyecto_id" class="form-label">Fecha de ejecución<span class="text-danger">*</span></label>
+                                                <input type="date" class="form-control fw-light" id="fecha_ejecucion_proyecto_id" name="fecha_ejecucion">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3">
+                                                <label for="direccion_proyecto_id" class="form-label">Dirección<span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control fw-light" id="direccion_proyecto_id" name="direccion">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3">
+                                                <label for="ubigeo_proyecto_id" class="form-label">Departamento - Provincia - Distrito<span class="text-danger">*</span></label>
+                                                <select class="form-select" name="ubigeo_id" id="ubigeo_proyecto_id">
+                                                    <option value="" hidden selected>Seleccione</option>
+                                                    <option value="">Ica - Chincha - Grocio Prado</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label for="informacion_adicional_proyecto_id" class="form-label">Información adicional<span class="text-danger">*</span></label>
+                                                <textarea name="informacion_adicional" class="form-control fw-light" id="informacion_adicional_proyecto_id" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form_abastecimientodeagua" hidden>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label for="empresa_cisterna_id" class="form-label">Empresa solicitante<span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control fw-light" id="empresa_cisterna_id" name="name_empresa" placeholder="Nombre o razón social">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="fecha_entrega_id" class="form-label">Fecha de entrega<span class="text-danger">*</span></label>
+                                                <input type="date" class="form-control fw-light" id="fecha_entrega_id" name="fecha_ejecucion">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-md-4">
+                                            <div class="mb-3">
+                                                <label for="cantidad_requerida_id" class="form-label">Cantidad requerida<span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control fw-light" id="cantidad_requerida_id" name="cantidad_requeria" min="100" value="100">
+                                                    <span class="input-group-text small" style="font-size: 13px;" id="basic-addon1">LITROS</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3">
+                                                <label for="direccion_cisterna_id" class="form-label">Dirección<span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control fw-light" id="direccion_cisterna_id" name="direccion">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3">
+                                                <label for="ubigeo_cisterna_id" class="form-label">Departamento - Provincia - Distrito<span class="text-danger">*</span></label>
+                                                <select class="form-select" name="ubigeo_id" id="ubigeo_cisterna_id">
+                                                    <option value="" hidden selected>Seleccione</option>
+                                                    <option value="">Ica - Chincha - Grocio Prado</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary px-5 text-uppercase">Solicitar Cotización</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
+
+@section('js')
+@endsection

@@ -1,0 +1,379 @@
+:root{
+    --offcanvas-width: 240px;
+}
+
+.sidebar-nav{
+    width: var(--offcanvas-width) !important;
+    font-size: 15px !important;
+}
+
+.active-item{
+    background-color: #0048A4;
+    border-radius: 7px;
+    color: #FFFFFF !important;
+}
+
+.active-item:hover{
+    background-color: #0048A4;
+    border-radius: 7px;
+    color: #FFFFFF;
+}
+
+textarea:focus, input:focus, input[type]:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: 0 none !important;
+}
+
+.menu{
+    color: #0D0D0D;
+    transition: all ease 0.3s;
+}
+
+.menu:hover{
+    margin-left: 15px;
+    border-radius: 5px;
+    color: #0048A4;
+    transition: all ease 0.3s;
+}
+
+.img__servicio{
+    width: 100%; 
+    height: 380px;
+}
+
+.card__img__servicios{
+    height: 385px;
+}
+
+.sidebar-link{
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-link .right-icon{
+    display: inline-flex;
+    transition: all ease 0.25s;
+}
+
+.sidebar-link[aria-expanded="true"] .right-icon{
+    transform: rotate(180deg);
+}
+
+.borde-left-primary{
+    border-left-color: #0048A4;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.borde-right-primary{
+    border-left: none;
+    border-right-color: #0048A4;
+    border-top: none;
+    border-bottom: none;
+}
+
+.borde-left-secondary{
+    border-left-color: #FF9C00;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+#content{
+    overflow-y: auto;
+    height: 100vh;
+    padding-bottom: 5rem;
+}
+
+.parrafo_admin{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.parrafo2{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.borde-top-primary{
+    border-top-color: #0048A4;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+}
+
+.borde-top-secondary{
+    border-top-color: #FF9C00;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+}
+
+.borde-bottom-primary{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom-color: #0048A4;
+}
+
+.borde-bottom-secondary{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom-color: #FF9C00;
+}
+
+/* buttons-share */
+.bg-facebook{
+    background-color: #3B5998;
+}
+
+.bg-whatsapp{
+   background-color: #56CD52;
+}
+
+.bg-youtube{
+   background-color: #C4302B;
+}
+
+.bg-instagram{
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+ }
+
+
+.bg-linkedin{
+   background-color: #0E76A8;
+}
+
+.bg-twitter{
+   background-color: #00ACEE;
+}
+
+.bg-download{
+   background-color: #768070;
+}
+
+.borde-bottom-primary{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom-color: #0048A4;
+}
+
+
+.bg-facebook:hover,
+.bg-whatsapp:hover,
+.bg-youtube:hover,
+.bg-instagram:hover,
+.bg-linkedin:hover,
+.bg-twitter:hover,
+.bg-download:hover{
+   opacity: 0.8;
+}
+
+input:focus, select:focus, select, input.form-control:focus, select.form-select:focus{
+
+    outline:none !important;
+
+    outline-width: 0 !important;
+
+    box-shadow: none;
+
+    -moz-box-shadow: none;
+
+    -webkit-box-shadow: none;
+
+}
+
+.btn:focus {
+    outline: none !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+.scroll{
+    height: 500px;
+    overflow: auto;
+}
+.scroll::-webkit-scrollbar{
+    width: 7px;
+}
+
+.scroll::-webkit-scrollbar-thumb{
+    background: #FF9C00;
+    border-radius: 5px;
+}
+
+#container_images_multiple{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+figure{
+    width: 20%;
+}
+
+.img_opcional{
+    width: 100%;
+    height: 150px;
+}
+
+figcaption{
+    text-align: center;
+    font-size: 1.8vmin;
+    margin-top: 0.5vmin;
+}
+
+.bg-nav
+    {
+        background: linear-gradient(90deg, #8be27e, #0048A4);
+    }
+
+/* ----------------------- */
+@media (max-width: 992px) {
+    .scroll{
+        height: 450px;
+        overflow: auto;
+    }
+    .scroll::-webkit-scrollbar{
+        width: 7px;
+    }
+    
+    .scroll::-webkit-scrollbar-thumb{
+        background: #FF9C00;
+        border-radius: 5px;
+    }
+
+    .estado{
+        font-size: 9.5px;
+    }
+
+    .img__servicio{
+        width: 100%; 
+        height: 180px;
+    }
+
+    .card__img__servicios{
+        height: 185px;
+    }
+
+    .breadcrumb-item{
+        font-size: 12px;
+    }
+
+    .borde-right-primary{
+        border-right: none;
+    }
+}
+
+
+@media (min-width: 992px) {
+    body{
+        overflow: auto !important;
+    }
+
+    .offcanvas-backdrop::before{
+        display: none !important;
+    }
+    .sidebar-nav{
+        transform: none;
+        visibility: visible !important;
+    }
+
+    main{
+        margin-left: var(--offcanvas-width) !important;
+    }
+
+    .footer{
+        margin-left: var(--offcanvas-width) !important;
+    }
+}
+
+@media only screen and (min-width:320px) and (max-width:768px){
+    .img_opcional{
+    width: 100%;
+    height: 90px;
+    }
+
+    .portada{
+    min-height: 180px;
+    }
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+
+
+  .text-cuantica{
+    color: #0048A4;
+}
+
+.text-group{
+    color: #FF9C00;
+}
+
+.bg-azul{
+    background-color: #0048A4;
+}
+
+.text-cuantica:hover{
+    color: #0048A4;
+}
+
+
+.btn-azul{
+    background-color: #0048A4;
+}
+
+.btn .btn-azul:hover{
+    opacity: 0.8;
+}
+
+
+.imagecard{
+        border: #747474 0.5px dashed; 
+}
+
+.imagecard:hover{
+    filter:brightness(0.9);
+    cursor: pointer;
+}
+
+.iconimage{
+    font-size: 60px;
+}
+
+/*  */
+.portada{
+    width: 100%;
+    height: 100px;
+}
+
+.logo{
+    margin-top: -73px;
+    width: 115px; 
+    height:115px;
+}
+
+.logo1{
+    margin-top: -90px;
+    width: 150px; 
+    height:150px;
+} 
+
+.btn-whatsapp{
+    background-color: #56CD52;
+    color: #ffffff;
+}
