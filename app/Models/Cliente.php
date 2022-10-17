@@ -13,7 +13,7 @@ class Cliente extends Model
         'name',
         'slug',
         'imagen',
-        'estado',
+        'estado'
     ];
     
     public function getRouteKeyName()

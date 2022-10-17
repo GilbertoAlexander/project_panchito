@@ -1,75 +1,64 @@
-@extends('TEMPLATE.administrador')
-
-@section('title', 'EQUIPO')
-
-@section('css')
-@endsection
-
-@section('content')
-<!-- Encabezado -->
-<div class="row pt-5">
-    <div class="col-lg-9 pt-3" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-        <h1 class="text-primary h3 text-uppercase fw-bold mb-0">Equipo</h1>
-        <p class="text-muted">Se muestra el formulario para registrar un actualizar un miembro del equipo panchito</p>
-    </div>
-    <div class="col-lg-3 d-flex">
-       
-    </div>
-</div>
-<!-- fin encabezado -->
-{{-- contenido --}}
-<form class="form-group" method="POST" action="/admin-equipo" enctype="multipart/form-data" autocomplete="off">      
-    @csrf
-    <div class="row">
-        <div class="col-12 col-md-4">
-            <div class="card border-4 borde-top-primary shadow-sm py-2 mb-3">
-                <div class="card-body">
+<div class="modal fade" id="editequipo{{$admin_equipo->slug}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="staticBackdropLabel">Actualizacion de datos</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            {{-- contenido --}}
+            <form class="form-group" method="POST" action="/admin-equipo/{{$admin_equipo->slug}}" enctype="multipart/form-data" autocomplete="off">      
+                @csrf
+                @method('put')
+                <div class="row">
                     <span class="text-danger">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></span>
-                    <div class="pb-3">
-                        <label for="" class="form-label">Foto</label>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <div class="card text-center imagecard rounded mb-0" style="width: 145px; height: 145px">  
-                                <label for="uploadImage1" class="">
-                                    <img for="uploadImage1" id="uploadPreview1" alt="" class=" rounded" width="100%" height="140" src="/images/icon-photo.png">   
-                                </label>
+                    <div class="col-12 col-md-6">
+                        <div class="pb-3">
+                            <label for="" class="form-label">Foto</label>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="card text-center imagecard rounded mb-0" style="width: 160px; height: 160px">  
+                                    <label for="uploadImage{{$admin_equipo->id}}" class="">
+                                        <img for="uploadImage{{$admin_equipo->id}}" id="uploadPreview{{$admin_equipo->id}}" name="imagen" alt="" class=" rounded" width="100%" height="158" src="/images/equipos/{{$admin_equipo->imagen}}">   
+                                    </label>
+                                </div>
                             </div>
+                            
+                            <input id="uploadImage{{$admin_equipo->id}}" type="file" name="imagen" id="previewImage2{{$admin_equipo->id}}" data-id="{{$admin_equipo->id}}" onchange="previewImage2({{$admin_equipo->id}});" hidden/>
+                            @error('imagen')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
-                        
-                        <input id="uploadImage1" type="file" name="imagen" onchange="previewImage(1);" hidden/>
-                        @error('imagen')
-                            <small class="text-danger">{{$message}}</small>
-                        @enderror
                     </div>
-                    <div class="pb-3">
-                        <label for="titulo_id" class="form-label">Nombre<span class="text-danger">*</span></label>
-                        <input type="text" name="name" id="titulo_id" value="{{old('')}}" class="form-control form-control-sm" maxLength="100">
-                        @error('name')
-                            <small class="text-danger">{{$message}}</small>
-                        @enderror
-                    </div> 
-                        
-                    <div class="pb-3">
-                        <label for="titulo_id" class="form-label">Cargo<span class="text-danger">*</span></label>
-                        <input type="text" name="cargo" id="titulo_id" value="{{old('')}}" class="form-control form-control-sm" maxLength="100">
-                        @error('cargo')
-                            <small class="text-danger">{{$message}}</small>
-                        @enderror
-                    </div>                        
+                    <div class="col-12 col-md-6">
+                        <div class="pb-3">
+                            <label for="titulo_id" class="form-label">Nombre<span class="text-danger">*</span></label>
+                            <input type="text" name="name" id="titulo_id" value="{{$admin_equipo->name}}" class="form-control form-control-sm" maxLength="100">
+                            @error('name')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
+                        </div>  
+                        <div class="pb-3">
+                            <label for="titulo_id" class="form-label">Cargo<span class="text-danger">*</span></label>
+                            <input type="text" name="cargo" id="titulo_id" value="{{$admin_equipo->cargo}}" class="form-control form-control-sm" maxLength="100">
+                            @error('cargo')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="row pb-3 justify-content-center">
+                            <button type="submit" class="btn btn-primary w-50 my-2 my-md-0 text-white">Actualizar</button>
+                        </div> 
+                    </div>                       
                 </div>
-            </div>
-            <div class="pb-3 text-end">
-                <a href="{{url('admin-equipo')}}" class="btn btn-outline-secondary">Cancelar</a>
-                <button type="submit" class="btn btn-primary px-5 my-2 my-md-0 text-white">Actualizar</button>
-            </div>        
-        </div>
+            </form>
+            {{-- fin contenido --}}
+      </div>
     </div>
-</form>
-{{-- fin contenido --}}
-@endsection
-
-@section('js')
+  </div>
+</div>
+@section('fotoedit')
     <script>
-        function previewImage(nb) {        
+        var nb = $('#uploadImage').data("id");
+        function previewImage2(nb) {
         var reader = new FileReader();         
         reader.readAsDataURL(document.getElementById('uploadImage'+nb).files[0]);         
         reader.onload = function (e) {             

@@ -80,10 +80,10 @@
                     </li>   
                 </ul>
                 <li class="nav-item d-lg-flex ps-3 align-self-center justify-content-between d-none">
-                    <a target="_blank" class="nav-link px-2 menu-redes align-self-center" href="">
+                    <a target="_blank" class="nav-link px-2 menu-redes align-self-center" href="{{$admin_empresa->url_facebook}}">
                         <i class="bi bi-facebook"></i>
                     </a>
-                    <a target="_blank" class="nav-link px-2 menu-redes align-self-center" href="">
+                    <a target="_blank" class="nav-link px-2 menu-redes align-self-center" href="{{$admin_empresa->url_instagram}}">
                         <i class="bi bi-instagram"></i>
                     </a>
                     <a class="nav-link px-2 menu-redes align-self-center" href="{{url('admin-empresa')}}">
@@ -122,16 +122,16 @@
                     <div class="buttons__redes">
                         <div class="d-flex">
                             <div class="card btn__facebook">
-                                <a href="https://facebook.com" target="_blank" class="stretched-link"><i class="bi bi-facebook icono__redes"></i></a>
+                                <a href="{{$admin_empresa->url_facebook}}" target="_blank" class="stretched-link"><i class="bi bi-facebook icono__redes"></i></a>
                             </div>
                             <div class="card btn__instagram">
-                                <a href="https://instagram.com" target="_blank" class="stretched-link"><i class="bi bi-instagram icono__redes"></i></a>
+                                <a href="{{$admin_empresa->url_instagram}}" target="_blank" class="stretched-link"><i class="bi bi-instagram icono__redes"></i></a>
                             </div>
                             <div class="card btn__twitter">
-                                <a href="https://twitter.com" target="_blank" class="stretched-link"><i class="bi bi-twitter icono__redes"></i></a>
+                                <a href="{{$admin_empresa->url_twitter}}" target="_blank" class="stretched-link"><i class="bi bi-twitter icono__redes"></i></a>
                             </div>
                             <div class="card btn__linkedin">
-                                <a href="https://linkedin.com" target="_blank" class="stretched-link"><i class="bi bi-linkedin icono__redes"></i></a>
+                                <a href="{{$admin_empresa->url_linkedin}}" target="_blank" class="stretched-link"><i class="bi bi-linkedin icono__redes"></i></a>
                             </div>
                         </div>
                         <hr>
@@ -142,9 +142,9 @@
                 </div>
                 <div class="col-12 col-md-5 col-lg-4 mb-3 mb-md-0">
                     <h5 class="text-uppercase mb-4 fw-bold text-white small">Contáctenos</h5>
-                    <p class="text-white" align="justify"><i class="bi bi-house-door-fill me-3"></i> Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, sit.</p>
-                    <p class="text-white"><i class="bi bi-envelope-fill me-3"></i> soporte@rentalyserviciospanchito.com</p>
-                    <p class="text-white"><i class="bi bi-telephone-fill me-3"></i> 056142585 - 999102030</p>
+                    <p class="text-white" align="justify"><i class="bi bi-house-door-fill me-3"></i> {{$admin_empresa->direccion}}</p>
+                    <p class="text-white"><i class="bi bi-envelope-fill me-3"></i> {{$admin_empresa->email}}</p>
+                    <p class="text-white"><i class="bi bi-telephone-fill me-3"></i> {{$admin_empresa->telefono}} - {{$admin_empresa->celular}}</p>
                 </div>
             </div>
         </div>

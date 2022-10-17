@@ -50,6 +50,7 @@ use Illuminate\Support\Facades\Route;
 // ADMINISTRADOR
     Route::resource('admin-empresa', adminempresaController::class);
     Route::resource('admin-perfil', adminperfilController::class);
+
     Route::resource('admin-equipo', adminequipoController::class);
     Route::put('admin-equipo/estado/{admin_equipo}', [adminequipoController::class, 'estado']);
 
@@ -58,6 +59,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::resource('admin-servicios', adminserviciosController::class);
     Route::put('admin-servicios/estado/{admin_servicio}', [adminserviciosController::class, 'estado']);
+    Route::get('/images/{id}/delete', [adminserviciosController::class, 'deleteImage']);
 
     Route::resource('admin-agregados', adminagregadosController::class);
     Route::put('admin-agregados/estado/{admin_agregado}', [adminagregadosController::class, 'estado']);

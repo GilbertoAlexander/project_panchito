@@ -34,32 +34,42 @@
                     <th class="h6 small text-uppercase fw-bold text-center">Acciones</th>
                 </tr>
             </thead>
-            <!-- @php
+            @php
                 $contador = 1;
-            @endphp -->
+            @endphp
             <tbody class="text-center">
-                
+                @foreach ($agregados as $admin_agregado)
                     <tr>
-                        <td class="fw-normal align-middle">1</td>
+                        <td class="fw-normal align-middle">{{$contador}}</td>
                         <td class="fw-normal align-middle">
-                            <img src="/images/arena__fina.jpg" class="img-fluid" style="width: 40px; height: 40px;" alt="">
+                            <img src="/images/agregados/{{$admin_agregado->imagen}}" class="img-fluid" style="width: 40px; height: 40px;" alt="">
                         </td>
-                        <td class="fw-normal align-middle">Arena Fina</td>
-                        <td class="fw-normal align-middle">
-                            <span class="badge bg-success tex-uppercase">Activo</span>
+                        <td class="fw-normal align-middle">{{$admin_agregado->name}}</td>
+                        <td class="fw-light align-middle">
+                            <form method="POST" action="/admin-agregados/estado/{{$admin_agregado->slug}}" class="form-update">
+                            @csrf
+                            @method('PUT')
+                                @if($admin_agregado->estado == 'Activo')
+                                    <button type="submit" class="badge bg-success border-0">Activo</button>
+                                @else
+                                    <button type="submit" class="badge bg-danger border-0">Inactivo</button>
+                                @endif
+                            </form>
                         </td>
                         <td class="align-middle">                                        
-                            <form method="POST" action="{{-- {{ route('admin-articulos.destroy',$admin_articulo->slug) }} --}}" class="form-delete">
-                                <!-- @csrf
-                                @method('DELETE') -->
-                                <a href="" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a>
-                                <a href="" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                            <form method="POST" action="{{ route('admin-agregados.destroy',$admin_agregado->slug) }}" class="form-delete">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ url("admin-agregados/$admin_agregado->slug")}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                <a href="{{ url("admin-agregados/$admin_agregado->slug/edit")}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
                                 <button type="submit" class="btn btn-outline-primary btn-sm"><i class="bi bi-trash-fill"></i></button>        
                             </form>       
                         </td>
                     </tr>
-                   
-                
+                @php
+                    $contador++;
+                @endphp
+                @endforeach     
             </tbody>
         </table>
     </div>
@@ -77,13 +87,13 @@
         })
     </script>
     <!--sweet alert agregar-->
-    @if(session('addequipo') == 'ok')
+    @if(session('addagregado') == 'ok')
         <script>
             Swal.fire({
             icon: 'success',
             confirmButtonColor: '#0048A4',
             title: '¡Éxito!',
-            text: 'Equipo registrado correctamente',
+            text: 'Agregado registrado correctamente',
             })
         </script>
     @endif

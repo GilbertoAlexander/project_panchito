@@ -23,4 +23,12 @@ class Servicio extends Model
     {
         return 'slug';
     }
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+    public function tipo()
+    {
+        return $this->belongsTo(Tipo::class);
+    }
 }

@@ -35,31 +35,40 @@
                     <th class="h6 small text-uppercase fw-bold text-center">Acciones</th>
                 </tr>
             </thead>
-            <!-- @php
+            @php
                 $contador = 1;
-            @endphp -->
+            @endphp
             <tbody class="text-center">
-                
+                @foreach ($servicio as $admin_servicio)
                     <tr>
-                        <td class="fw-normal align-middle">1</td>
+                        <td class="fw-normal align-middle">{{$contador}}</td>
                         <td class="fw-normal align-middle">
-                            <img src="/images/ICONO 1B.png" class="img-fluid" style="width: 50px; height: 50px;" alt="">
+                            <img src="/images/{{$admin_servicio->tipo->icono}}" class="img-fluid" style="width: 50px; height: 50px;" alt="">
                         </td>
-                        <td class="fw-normal align-middle">Aquiler de volquete</td>
-                        <td class="fw-normal align-middle text-uppercase small">Alquiler</td>
-                        <td class="fw-normal align-middle">
-                            <span class="badge bg-success tex-uppercase">Activo</span>
-                        </td>
+                        <td class="fw-normal align-middle">{{$admin_servicio->name}}</td>
+                        <td class="fw-normal align-middle text-uppercase small">{{$admin_servicio->tipo->name}}</td>
+                        <td class="fw-light align-middle">
+                            <form method="POST" action="/admin-servicios/estado/{{$admin_servicio->slug}}" class="form-update">
+                            @csrf
+                            @method('PUT')
+                                @if($admin_servicio->estado == 'Activo')
+                                    <button type="submit" class="badge bg-success border-0">Activo</button>
+                                @else
+                                    <button type="submit" class="badge bg-danger border-0">Inactivo</button>
+                                @endif
+                            </form>
+                        </td>  
                         <td class="align-middle">                                        
-                            <form method="POST" action="{{-- {{ route('admin-articulos.destroy',$admin_articulo->slug) }} --}}" class="form-delete">
-                                <!-- @csrf
-                                @method('DELETE') -->
-                                <a href="" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a>
-                                <a href="" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                            <form method="POST" action="{{ route('admin-servicios.destroy',$admin_servicio->slug) }}" class="form-delete">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ url("admin-servicios/$admin_servicio->slug")}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                <a href="{{ url("admin-servicios/$admin_servicio->slug/edit")}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
                                 <button type="submit" class="btn btn-outline-primary btn-sm"><i class="bi bi-trash-fill"></i></button>        
                             </form>       
                         </td>
                     </tr>
+                @endforeach
                    
                 
             </tbody>
@@ -79,13 +88,13 @@
         })
     </script>
     <!--sweet alert agregar-->
-    @if(session('addequipo') == 'ok')
+    @if(session('addservicio') == 'ok')
         <script>
             Swal.fire({
             icon: 'success',
             confirmButtonColor: '#0048A4',
             title: '¡Éxito!',
-            text: 'Equipo registrado correctamente',
+            text: 'Servicio registrado correctamente',
             })
         </script>
     @endif

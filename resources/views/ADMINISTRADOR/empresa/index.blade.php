@@ -129,9 +129,8 @@
 
 @section('js')
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-
     <script>
-        var swiper = new Swiper(".urbanizacion-slider", {
+        var swiper = new Swiper(".portada-slider", {
         //   slidesPerView: 1,
         loop:true,
         spaceBetween: 15,

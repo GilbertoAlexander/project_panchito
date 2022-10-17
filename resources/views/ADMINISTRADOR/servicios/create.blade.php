@@ -38,9 +38,11 @@
                         <div class="col-12 col-md-4">
                             <div class="pb-3">
                                 <label for="name_id" class="form-label">Tipo<span class="text-danger">*</span></label>
-                                <select class="form-select form-select-sm" name="" id="">
+                                <select class="form-select form-select-sm" name="tipo_id" id="">
                                     <option selected hidden>Seleccione una opcion</option>
-                                    <option value="">Opción uno</option>
+                                    @foreach($tipos as $tipo)
+                                        <option value="{{$tipo->id}}">{{$tipo->name}}</option>                                        
+                                    @endforeach
                                 </select>
                                 @error('name')
                                     <small class="text-danger">{{$message}}</small>

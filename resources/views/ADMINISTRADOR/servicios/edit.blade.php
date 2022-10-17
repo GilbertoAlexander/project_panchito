@@ -18,8 +18,9 @@
 <!-- fin encabezado -->
 
 {{-- contenido --}}
-<form class="form-group" method="POST" action="/admin-servicios" enctype="multipart/form-data" autocomplete="off">      
+<form class="form-group" method="POST" action="/admin-servicios/{{$admin_servicio->slug}}" enctype="multipart/form-data" autocomplete="off">      
     @csrf
+    @method('put')
     <div class="card border-4 borde-top-primary shadow-sm mb-3">
         <div class="card-body">
             <span class="text-danger">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></span>
@@ -29,7 +30,7 @@
                         <div class="col-12 col-md-8">
                             <div class="pb-3">
                                 <label for="name_id" class="form-label">Nombre<span class="text-danger">*</span></label>
-                                <input type="text" name="name" id="name_id" value="{{old('name')}}" class="form-control form-control-sm" maxLength="100">
+                                <input type="text" name="name" id="name_id" value="{{$admin_servicio->name}}" class="form-control form-control-sm" maxLength="100">
                                 @error('name')
                                     <small class="text-danger">{{$message}}</small>
                                 @enderror
@@ -38,9 +39,11 @@
                         <div class="col-12 col-md-4">
                             <div class="pb-3">
                                 <label for="name_id" class="form-label">Tipo<span class="text-danger">*</span></label>
-                                <select class="form-select form-select-sm" name="" id="">
-                                    <option selected hidden>Seleccione una opcion</option>
-                                    <option value="">Opción uno</option>
+                                <select class="form-select form-select-sm" name="tipo_id" id="">
+                                    <option value="{{$admin_servicio->tipo_id}}" selected hidden>Seleccione una opcion</option>
+                                    @foreach ($tipos as $tipo)
+                                        <option value="{{$tipo->id}}">{{$tipo->name}}</option>                                        
+                                    @endforeach
                                 </select>
                                 @error('name')
                                     <small class="text-danger">{{$message}}</small>
@@ -51,7 +54,7 @@
 
                     <div class="pb-3">
                         <label for="descripcion_id" class="form-label">Descripcion<span class="text-danger">*</span></label>
-                        <textarea class="form-control" maxlength="2000" placeholder="Máximo 2000 caracteres" name="descripcion" id="descripcion_id" style="height: 100px">{{old('descripcion')}}</textarea>
+                        <textarea class="form-control" maxlength="2000" placeholder="Máximo 2000 caracteres" name="descripcion" id="descripcion_id" style="height: 100px">{{$admin_servicio->descripcion}}</textarea>
                         @error('descripcion')
                             <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -59,7 +62,7 @@
                     
                     <div class="pb-3">
                         <label for="contenido_id" class="form-label">Contenido<span class="text-danger">*</span></label>
-                        <textarea class="form-control ck-editor__editable" name="contenido" id="editor">{{old('contenido')}}</textarea>
+                        <textarea class="form-control ck-editor__editable" name="contenido" id="editor">{!!$admin_servicio->contenido!!}</textarea>
                         @error('contenido')
                             <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -70,7 +73,7 @@
                         <label for="" class="form-label">Imagen principal<span class="text-danger">*</span></label>
                         <div class="card text-center imagecard rounded mb-0">  
                             <label for="uploadImage1" class=" my-auto text-center">
-                                <img for="uploadImage1" id="uploadPreview1" alt="" class="py-auto" src="/images/icon-photo.png" style="width: 100%; height: auto;">   
+                                <img for="uploadImage1" id="uploadPreview1" alt="" class="py-auto" src="/images/servicios/{{$admin_servicio->imagen}}" style="width: 100%; height: auto;">   
                             </label>
                         </div>
                         <input id="uploadImage1" class="form-control-file" type="file" name="imagen" onchange="previewImage(1);" hidden/>
@@ -94,6 +97,20 @@
                             </div>
                             <div id="container_images_multiple">
 
+                            </div>
+                            <div class="row my-3">
+                                @foreach($admin_servicio->images as $image)
+                                    <div class="col-6 col-md-3 col-lg-4">
+                                        <div class="card text-center imagecard rounded bg-light mb-0" style="height: 160px">  
+                                            <label class=" my-auto text-center">
+                                                <img for="uploadImage1" id="uploadPreview1" alt="" class="py-auto rounded" style="width: 100%; height: 156px;" src="{{$image->url}}">   
+                                            </label>
+                                            <div class="card-img-overlay">
+                                                <a type="button" href="/images/{{$image->id}}/delete" class="btn btn-danger btn-sm float-end"><i class="bi bi-trash"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

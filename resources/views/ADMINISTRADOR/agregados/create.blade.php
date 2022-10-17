@@ -25,7 +25,6 @@
             <span class="text-danger">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></span>
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-9">
-                    
                     <div class="pb-3">
                         <label for="name_id" class="form-label">Nombre<span class="text-danger">*</span></label>
                         <input type="text" name="name" id="name_id" value="{{old('name')}}" class="form-control form-control-sm" maxLength="100">

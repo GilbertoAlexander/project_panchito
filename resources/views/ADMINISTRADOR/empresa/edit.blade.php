@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     
-                    <input id="uploadImage1" class="form-control-file" type="file" name="portada" onchange="previewImagePortada(1);"hidden/>
+                    <input id="uploadImage1" class="form-control-file" type="file" name="img_portada" onchange="previewImagePortada(1);"hidden/>
                     @error('portada')
                         <small class="text-danger">{{$message}}</small>
                     @enderror
