@@ -46,53 +46,19 @@
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <!-- seccion alquiler -->
                 <div class="row mb-4">
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="card mb-2 cardservice alto__cardproduct">  
-                            <div class="card-body text-center">
-                                <img src="/images/icono_alquiler.png" class="" style="width: 150px; height: auto;" alt="">
-                                <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Alquiler de Camión Grúa 22 TN</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
+                    @foreach($servicios_alquiler as $servicio)
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <div class="card mb-2 cardservice alto__cardproduct">  
+                                <div class="card-body text-center">
+                                    <img src="/images/{{$servicio->tipo->icono}}" class="" style="width: 150px; height: auto;" alt="">
+                                    <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
+                                    <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">{{$servicio->name}}</p>
+                                    <p class="fw-light mb-2 parrafo_4" align="justify">{{$servicio->descripcion}}</p>
+                                    <a href="{{url("/servicios/$servicio->slug")}}" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="card mb-2 cardservice alto__cardproduct">  
-                            <div class="card-body text-center">
-                                <img src="/images/icono_alquiler.png" class="" style="width: 150px; height: auto;" alt="">
-                                <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Alquiler de Camión Grúa 22 TN</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="card mb-2 cardservice alto__cardproduct">  
-                            <div class="card-body text-center">
-                                <img src="/images/icono_alquiler.png" class="" style="width: 150px; height: auto;" alt="">
-                                <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Alquiler de Camión Grúa 22 TN</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="card mb-2 cardservice alto__cardproduct">  
-                            <div class="card-body text-center">
-                                <img src="/images/icono_alquiler.png" class="" style="width: 150px; height: auto;" alt="">
-                                <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Alquiler de Camión Grúa 22 TN</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
                 <div class="">
@@ -165,69 +131,37 @@
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <!-- seccion proyectos -->
                 <div class="row">
+                    @foreach($servicios_proyectos as $servicio)
                     <div class="col-12 col-md-4 col-lg-3">
                         <div class="card mb-2 cardservice alto__cardproduct">  
                             <div class="card-body text-center">
-                                <img src="/images/icono_proyectos.png" class="" style="width: 150px; height: auto;" alt="">
+                                <img src="/images/{{$servicio->tipo->icono}}" class="" style="width: 150px; height: auto;" alt="">
                                 <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Excavaciones y mov. de tierra</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
+                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">{{$servicio->name}}</p>
+                                <p class="fw-light mb-2 parrafo_4" align="justify">{{$servicio->descripcion}}</p>
+                                <a href="{{url("/servicios/$servicio->slug")}}" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="card mb-2 cardservice alto__cardproduct">  
-                            <div class="card-body text-center">
-                                <img src="/images/icono_proyectos.png" class="" style="width: 150px; height: auto;" alt="">
-                                <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Excavaciones y mov. de tierra</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="card mb-2 cardservice alto__cardproduct">  
-                            <div class="card-body text-center">
-                                <img src="/images/icono_proyectos.png" class="" style="width: 150px; height: auto;" alt="">
-                                <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Excavaciones y mov. de tierra</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-4 col-lg-3">
-                        <div class="card mb-2 cardservice alto__cardproduct">  
-                            <div class="card-body text-center">
-                                <img src="/images/icono_proyectos.png" class="" style="width: 150px; height: auto;" alt="">
-                                <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Excavaciones y mov. de tierra</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                 <!-- seccion abastecimiento de agua en cisterna -->
                 <div class="row">
+                    @foreach($servicios_abastecimiento as $servicio)
                     <div class="col-12 col-md-4 col-lg-3">
                         <div class="card mb-2 cardservice alto__cardproduct">  
                             <div class="card-body text-center">
-                                <img src="/images/icono_abastecimiento_agua.png" class="" style="width: 150px; height: auto;" alt="">
+                                <img src="/images/{{$servicio->tipo->icono}}" class="" style="width: 150px; height: auto;" alt="">
                                 <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Abastecimiento de agua</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
+                                <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">{{$servicio->name}}</p>
+                                <p class="fw-light mb-2 parrafo_4" align="justify">{{$servicio->descripcion}}</p>
+                                <a href="{{url("/servicios/$servicio->slug")}}" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
           </div>

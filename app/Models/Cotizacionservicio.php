@@ -21,6 +21,7 @@ class Cotizacionservicio extends Model
         'fecha_entrega',
         'cantidad_requerida',
         'ubigeo_id',
+        'estado',
         'interesado_id',
     ];
     

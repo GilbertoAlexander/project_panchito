@@ -9,7 +9,7 @@
 @section('content')
     <section class="w-100 bg-light" style="min-height: 450px;">
         <div class="container py-5">
-            <p class="text-primary fw-bold text-center fs-3 pt-4">¡Hola Cesar Torres Tasaico! Un gusto poder saludarte</p>
+            <p class="text-primary fw-bold text-center fs-3 pt-4">¡Hola {{$interesado->name}}! Un gusto poder saludarte</p>
             <p class="text-center text-dark fw-light  fs-4">2. Ahora, Por favor ingresa la informacion que te solicitamos para poder hacerte una cotización</p>
 
             <div class="row justify-content-center">
@@ -18,8 +18,8 @@
                     data-aos-duration="500" style="border-radius: 15px">
                         <div class="card-body">
                             <p class="text-danger fw-light text-start text-md-end mb-0">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></p>
-                            <form method="POST" action=""  enctype="multipart/form-data" autocomplete="off" >
-                                <!-- @csrf -->
+                            <form method="POST" action="/agregados_cotizacion/detalle'"  enctype="multipart/form-data" autocomplete="off" >
+                                @csrf
                                 <div class="row">
                                     <div class="col-12 col-md-8">
                                         <div class="mb-3">
@@ -39,10 +39,13 @@
                                         <div class="mb-3">
                                             <label for="agregados_id" class="form-label">Agregados</label>
                                             <select class="form-select" id="agregados_id">
-                                                <option value="" hidden selected>Seleccione</option>
-                                                <option value="">Arena fina</option>
+                                                <option hidden selected>Seleccione un agregado</option>
+                                                @foreach($agregados as $agregado)
+                                                    <option value="{{$agregado->id}}">{{$agregado->name}}</option>                                                    
+                                                @endforeach
                                             </select>
                                         </div>
+                                        <input id="precio_agre">
                                     </div>
 
                                     <div class="col-6 col-md-3">
@@ -102,9 +105,11 @@
                                     <div class="col-12 col-md-6">
                                         <div class="mb-3">
                                             <label for="ubigeo_cisterna_id" class="form-label">Departamento - Provincia - Distrito<span class="text-danger">*</span></label>
-                                            <select class="form-select" name="ubigeo_id" id="ubigeo_cisterna_id">
-                                                <option value="" hidden selected>Seleccione</option>
-                                                <option value="">Ica - Chincha - Grocio Prado</option>
+                                            <select class="form-select select2" name="ubigeo_id" id="ubigeo_cisterna_id">
+                                                <option hidden selected>Seleccione una opcion</option>
+                                                @foreach($ubigeos as $ubigeo)
+                                                    <option value="{{$ubigeo->id}}">{{$ubigeo->departamento. ', '.$ubigeo->distrito. ', '.$ubigeo->provincia}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -149,4 +154,11 @@
 @endsection
 
 @section('js')
+<script>
+    $(document).ready(function(){
+        $('#btnagregar').click(function(){
+            agregar();
+        });
+    });
+</script>
 @endsection

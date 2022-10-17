@@ -68,6 +68,9 @@
                             </form>       
                         </td>
                     </tr>
+                @php
+                    $contador++;
+                @endphp
                 @endforeach
                    
                 

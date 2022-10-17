@@ -36,6 +36,9 @@
     </style>
 </head>
 <body>
+    @php
+        $admin_empresa = \App\Models\Empresa::find(1);
+    @endphp
     <nav class="navbar navbar-expand-lg navbar-light bg__menu__nav shadow-sm fixed-top py-3">
         <div class="container">
             <button class="navbar-toggler navbar-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

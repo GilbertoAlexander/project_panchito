@@ -46,19 +46,11 @@
                     <div class="float-end d-none d-md-block">
                         <div aria-label="Page navigation example">
                             <ul class="pagination pagination-sm">
-                                <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                                </li>
+                            <div aria-label="...">
+                                    <div class="row">
+                                        {{$agregados->links() }}
+                                    </div>
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -80,8 +72,8 @@
                     <div class="modal-body">
                         <h4 class="text-secondary fw-bold text-center pt-4" data-aos="fade-up"data-aos-duration="500">Te damos un presupuesto con solo unas preguntas</h4>
                         <p class="text-center text-dark  fs-5" data-aos="fade-up" data-aos-duration="500">1. ¡Hola! Somos RENTAL Y SERVICIOS PANCHITO. Cuéntanos a cerca de tu necesidad de servicio para hacer una cotización a tu medida</p>
-                        <form method="POST" action="/admin/interesados"  enctype="multipart/form-data" autocomplete="off" >
-                            <!-- @csrf -->
+                        <form method="POST" action="agregados/cotizacion"  enctype="multipart/form-data" autocomplete="off" >
+                            @csrf
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group py-1">
@@ -101,9 +93,9 @@
                                     <div class="form-group mb-3">
                                         <label for="id_servicio" class="form-label text-dark">Celular - (Whatsapp)</label>
                                         <input type="number" id="id_servicio" required name="celular" class="form-control form-control-sm rounded-0 bg-transparent text-primary border-0 border-bottom">
-                                        <!-- @error('celular')
+                                         @error('celular')
                                             <small class="text-danger">{{$message}}</small>
-                                        @enderror -->
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -117,16 +109,18 @@
             </div>
 
             <div class="row mt-3">
-                <div class="col-12 col-md-4 col-lg-3">
-                    <div class="card mb-2 cardproduct alto__cardproduct">  
-                        <img src="/images/arena__fina.jpg" class="img-fluid"  alt="">
-                        <div class="card-body text-center">
-                            <p class="mb-0 text-uppercase fw-bold text-primary">Arena Fina</p>
-                            <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Ver detalles</a>
+                @foreach($agregados as $agregado)
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="card mb-2 cardproduct alto__cardproduct">  
+                            <img src="/images/agregados/{{$agregado->imagen}}" class="img-fluid"  style="height:170px;" alt="">
+                            <div class="card-body text-center">
+                                <p class="mb-0 text-uppercase fw-bold text-primary">Arena Fina</p>
+                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
+                                <a href="#" class="btn btn-outline-primary btn-sm">Ver detalles</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

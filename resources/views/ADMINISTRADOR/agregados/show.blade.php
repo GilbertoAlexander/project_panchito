@@ -25,12 +25,25 @@
                 <div class="col-12 col-md-6 col-lg-7">
                     <div class="row">
                         <div class="col-12 col-md-12">
-                            <div class="pb-3">
-                                <label for="name_id" class="form-label">Nombre<span class="text-danger">*</span></label>
-                                <label class="form-control form-control-sm"  maxlength="2000" name="descripcion" id="descripcion_id">{{$admin_agregado->name}}</label>
-                                @error('name')
-                                    <small class="text-danger">{{$message}}</small>
-                                @enderror
+                            <div class="row">
+                                <div class="col-12 col-md-8 col-lg-8">
+                                    <div class="pb-3">
+                                        <label for="name_id" class="form-label">Nombre<span class="text-danger">*</span></label>
+                                        <label class="form-control form-control-sm"  maxlength="2000" name="descripcion" id="descripcion_id">{{$admin_agregado->name}}</label>
+                                        @error('name')
+                                            <small class="text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <div class="pb-3">
+                                        <label for="precio_id" class="form-label">Precio<span class="text-danger">*</span></label>
+                                        <label name="precio" id="precio_id" class="form-control form-control-sm" >{{$admin_agregado->precio}}</label>
+                                        @error('precio')
+                                            <small class="text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-12">

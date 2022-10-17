@@ -23,6 +23,7 @@ class CreateCotizacionagregadosTable extends Migration
             $table->string('transporte_agregado'); //SI - NO
             $table->string('informacion_adicional', 2000);
             $table->integer('total');
+            $table->string('estado');
             $table->unsignedBigInteger('ubigeo_id')->nullable();
             $table->unsignedBigInteger('interesado_id')->nullable();
             $table->foreign('ubigeo_id')->references('id')->on('ubigeos');

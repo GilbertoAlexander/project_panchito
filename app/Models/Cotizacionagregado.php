@@ -19,6 +19,7 @@ class Cotizacionagregado extends Model
         'informacion_adicional',
         'total',
         'ubigeo_id',
+        'estado',
         'interesado_id',
     ];
     

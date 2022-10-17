@@ -127,7 +127,7 @@
             data-aos-duration="1000" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{url('servicios')}}">Servicios</a></li>
-                    <li class="breadcrumb-item" aria-current="page">Alquiler de Camión Grúa 22 TN</li>
+                    <li class="breadcrumb-item" aria-current="page">{{$servicio->name}}</li>
                 </ol>
             </div>  
 
@@ -136,20 +136,13 @@
                     <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="/images/servicios/img1.jpg" />
+                                <img src="/images/servicios/{{$servicio->imagen}}" />
                             </div>
-                            <div class="swiper-slide">
-                                <img src="/images/servicios/img2.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/servicios/img3.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/servicios/img4.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/servicios/img5.jpg" />
-                            </div>
+                            @foreach($servicio->images as $image)
+                                <div class="swiper-slide">
+                                    <img src="{{$image->url}}"/>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="swiper-button-next nav__btn"></div>
                         <div class="swiper-button-prev nav__btn"></div>
@@ -157,48 +150,37 @@
                     <div thumbsSlider="" class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="/images/servicios/img1.jpg" />
+                                <img src="/images/servicios/{{$servicio->imagen}}" />
                             </div>
-                            <div class="swiper-slide">
-                                <img src="/images/servicios/img2.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/servicios/img3.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/servicios/img4.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/servicios/img5.jpg" />
-                            </div>
+                            @foreach($servicio->images as $image)
+                                <div class="swiper-slide">
+                                    <img src="{{$image->url}}"/>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-5">
-                    <p class="text-primary fw-bold small text-uppercase fs-2">Alquiler de Camión Grúa 22 TN</p>
-                    <p class="text-muted fw-light" align="justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum corporis vel, alias, labore iusto facere itaque unde sunt blanditiis sint mollitia ab officiis corrupti numquam optio porro nam reprehenderit aliquid!</p>
+                    <p class="text-primary fw-bold small text-uppercase fs-2">{{$servicio->name}}</p>
+                    <p class="text-muted fw-light" align="justify">{{$servicio->descripcion}}</p>
                     <p class="fw-light">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, necessitatibus et. Rem, suscipit ut distinctio voluptates tempora itaque illo, ex placeat deleniti quis laudantium dolor mollitia accusamus porro maiores consectetur.
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi sint odio, nihil ad nesciunt dolorum debitis autem fugit expedita numquam facilis illo sed pariatur ab quibusdam voluptate voluptatem? Laborum, odio!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam illo qui id fugiat quos repellat, quisquam, corrupti omnis obcaecati veniam et, quibusdam eos est repellendus. Ab nostrum iste odio commodi!
-
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, molestias saepe! Ducimus quam impedit, fugit molestias magnam a laborum. Adipisci cum nesciunt vitae minima eum error odit impedit repudiandae veniam!
+                        {!!$servicio->contenido!!}
                     </p>
                 </div>
                 <div class="col-12 col-md-2">
                     <p class="small text-muted text-uppercase fw-bold mt-2">Te puede interesar</p>
-                        <!-- @foreach ($servicios as $servicio) -->
-                            <a class="text-decoration-none" href="">
+                        @foreach ($servicios as $servicio)
+                            <a class="text-decoration-none" href="{{url("/servicios/$servicio->slug")}}">
                             <div class="card border-0 shadow-sm mb-3">
                                 <div class="text-center">
-                                    <img src="/images/ICONO 9B.png" class="img-fluid rounded-top" style="width: 150px; height: auto;" alt="">
+                                    <img src="/images/{{$servicio->tipo->icono}}" class="img-fluid rounded-top" style="width: 150px; height: auto;" alt="">
                                 </div>
                                 <div class="card-body">
-                                    <p class="mb-0 small text-center text-uppercase fw-bold text-secondary">Reparaciones</p>
-                                    <p class="parrafo_3 fw-light text-dark" align="justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi nostrum exercitationem corrupti eum nesciunt omnis illum saepe nobis illo doloribus amet maiores minus perferendis animi distinctio earum qui, tenetur accusamus.</p>
+                                    <p class="mb-0 small text-center text-uppercase fw-bold text-secondary">{{$servicio->name}}</p>
+                                    <p class="parrafo_3 fw-light text-dark" align="justify">{{$servicio->descripcion}}</p>
                                 </div>
                             </div></a>
-                        <!-- @endforeach -->
+                        @endforeach
                 </div>
                 <div class="col-12">
                     <div class="py-5">
@@ -209,8 +191,8 @@
                             <div class="card shadow border-4 mb-4 mb-lg-0 borde-top-primary" data-aos="fade-up"
                             data-aos-duration="500" style="border-radius: 15px">
                                 <div class="card-body">
-                                    <form method="POST" action="/admin/interesados"  enctype="multipart/form-data" autocomplete="off" >
-                                        <!-- @csrf -->
+                                    <form method="POST" action="/servicios_cotizacion"  enctype="multipart/form-data" autocomplete="off" >
+                                        @csrf
                                         <div class="row">
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group py-1">
@@ -231,9 +213,9 @@
                                                     <label for="id_servicio" class="form-label text-dark">Celular - (Whatsapp)</label>
                                                     <input type="number" id="id_servicio" required name="celular" class="form-control form-control-sm rounded-0 bg-transparent text-primary border-0 border-bottom">
                                                     <input type="hidden" id="id_servicio" name="servicio" value="{{$servicio->id}}" class="form-control form-control-sm rounded-0 bg-transparent text-primary border-0 border-bottom">
-                                                    <!-- @error('celular')
+                                                    @error('celular')
                                                         <small class="text-danger">{{$message}}</small>
-                                                    @enderror -->
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

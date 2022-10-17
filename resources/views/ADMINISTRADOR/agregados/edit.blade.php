@@ -26,15 +26,26 @@
             <span class="text-danger">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></span>
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-9">
-                    
-                    <div class="pb-3">
-                        <label for="name_id" class="form-label">Nombre<span class="text-danger">*</span></label>
-                        <input type="text" name="name" id="name_id" value="{{$admin_agregado->name}}" class="form-control form-control-sm" maxLength="100">
-                        @error('name')
-                            <small class="text-danger">{{$message}}</small>
-                        @enderror
-                    </div>
-                        
+                    <div class="row">
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <div class="pb-3">
+                                <label for="name_id" class="form-label">Nombre<span class="text-danger">*</span></label>
+                                <input type="text" name="name" id="name_id" value="{{$admin_agregado->name}}" class="form-control form-control-sm" maxLength="100">
+                                @error('name')
+                                    <small class="text-danger">{{$message}}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="pb-3">
+                                <label for="precio_id" class="form-label">Precio<span class="text-danger">*</span></label>
+                                <input type="number" name="precio" id="precio_id" value="{{$admin_agregado->precio}}" class="form-control form-control-sm" step="0.01">
+                                @error('precio')
+                                    <small class="text-danger">{{$message}}</small>
+                                @enderror
+                            </div>
+                        </div>
+                    </div> 
                     <div class="pb-3">
                         <label for="descripcion_id" class="form-label">Descripcion<span class="text-danger">*</span></label>
                         <textarea class="form-control" maxlength="2000" placeholder="Máximo 2000 caracteres" name="descripcion" id="descripcion_id" style="height: 100px">{{$admin_agregado->descripcion}}</textarea>

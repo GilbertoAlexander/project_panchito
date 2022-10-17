@@ -18,6 +18,7 @@ class CreateAgregadosTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('imagen');
+            $table->string('precio');
             $table->string('descripcion', 2000);
             $table->longText('contenido');
             $table->string('estado');

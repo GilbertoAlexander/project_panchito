@@ -3,13 +3,13 @@
 @section('title', 'COTIZACION SERVICIOS')
 
 @section('css')
-    
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
  
 @section('content')
     <section class="w-100 bg-light" style="min-height: 450px;">
         <div class="container py-5">
-            <p class="text-primary fw-bold text-center fs-3 pt-4">¡Hola Cesar Torres Tasaico! Un gusto poder saludarte</p>
+            <p class="text-primary fw-bold text-center fs-3 pt-4">¡Hola {{$interesado->name}}! Un gusto poder saludarte</p>
             <p class="text-center text-dark fw-light  fs-4">2. Ahora, Por favor ingresa la informacion que te solicitamos para poder hacerte una cotización</p>
 
             <div class="row justify-content-center">
@@ -17,12 +17,20 @@
                     <div class="card shadow border-4 mb-4 mb-lg-0 borde-top-primary" data-aos="fade-up"
                     data-aos-duration="500" style="border-radius: 15px">
                         <div class="card-body">
+                            @php
+                                $servicio = DB::table('servicios')->select('name','tipo_id')->where('id',$interesado->servicio_id)->first();
+                                $tipo_name = DB::table('tipos')->where('id',$servicio->tipo_id)->first();
+                                $interesado = DB::table('interesados')->where('name',$interesado->name)->first();
+                            @endphp
                             <p class="text-danger fw-light text-start text-md-end mb-0">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></p>
-                            <form method="POST" action=""  enctype="multipart/form-data" autocomplete="off" >
-                                <!-- @csrf -->
-                                <p class="text-uppercase">Tipo de servicio: <span class="badge bg-primary">Alquiler</span></p>
-                                <p class="text-uppercase">Servicio Requerido: <span class="badge bg-secondary">Alquiler de Camión Grúa 22 TN</span></p>
-                                <div class="form__alquiler" hidden>
+                            <form method="POST" action="/servicios_cotizacion/detalle"  enctype="multipart/form-data" autocomplete="off" >
+                                @csrf
+                                <input hidden name="interesado_id" value="{{$interesado->id}}">
+                                <input hidden name="tipo_ids" value="{{$servicio->tipo_id}}">
+                                <p class="text-uppercase">Tipo de servicio: <span class="badge bg-primary">{{$tipo_name->name}}</span></p>
+                                <p class="text-uppercase">Servicio Requerido: <span class="badge bg-secondary">{{$servicio->name}}</span></p>
+                                @if($servicio->tipo_id == '1')
+                                <div class="form__alquiler">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mb-3">
@@ -73,7 +81,8 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                @endif
+                                @if($servicio->tipo_id == '2')
                                 <div class="form_proyectos" >
                                     <div class="row">
                                         <div class="col-12 col-md-8">
@@ -100,9 +109,11 @@
                                         <div class="col-12 col-md-6">
                                             <div class="mb-3">
                                                 <label for="ubigeo_proyecto_id" class="form-label">Departamento - Provincia - Distrito<span class="text-danger">*</span></label>
-                                                <select class="form-select" name="ubigeo_id" id="ubigeo_proyecto_id">
-                                                    <option value="" hidden selected>Seleccione</option>
-                                                    <option value="">Ica - Chincha - Grocio Prado</option>
+                                                <select class="form-select select2" name="ubigeo_id" id="ubigeo_cisterna_id">
+                                                    <option hidden selected>Seleccione una opcion</option>
+                                                    @foreach($ubigeos as $ubigeo)
+                                                        <option value="{{$ubigeo->id}}">{{$ubigeo->departamento. ', '.$ubigeo->distrito. ', '.$ubigeo->provincia}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -115,8 +126,9 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form_abastecimientodeagua" hidden>
+                                @endif
+                                @if($servicio->tipo_id == '3')
+                                <div class="form_abastecimientodeagua">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="mb-3">
@@ -136,7 +148,7 @@
                                             <div class="mb-3">
                                                 <label for="cantidad_requerida_id" class="form-label">Cantidad requerida<span class="text-danger">*</span></label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control fw-light" id="cantidad_requerida_id" name="cantidad_requeria" min="100" value="100">
+                                                    <input type="number" class="form-control fw-light" id="cantidad_requerida_id" name="cantidad_requerida" min="100" value="100">
                                                     <span class="input-group-text small" style="font-size: 13px;" id="basic-addon1">LITROS</span>
                                                 </div>
                                             </div>
@@ -152,9 +164,11 @@
                                         <div class="col-12 col-md-6">
                                             <div class="mb-3">
                                                 <label for="ubigeo_cisterna_id" class="form-label">Departamento - Provincia - Distrito<span class="text-danger">*</span></label>
-                                                <select class="form-select" name="ubigeo_id" id="ubigeo_cisterna_id">
-                                                    <option value="" hidden selected>Seleccione</option>
-                                                    <option value="">Ica - Chincha - Grocio Prado</option>
+                                                <select class="form-select select2" name="ubigeo_id" id="ubigeo_cisterna_id">
+                                                    <option hidden selected>Seleccione una opcion</option>
+                                                    @foreach($ubigeos as $ubigeo)
+                                                        <option value="{{$ubigeo->id}}">{{$ubigeo->departamento. ', '.$ubigeo->distrito. ', '.$ubigeo->provincia}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -162,6 +176,7 @@
                                     
                                     </div>
                                 </div>
+                                @endif
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary px-5 text-uppercase">Solicitar Cotización</button>
@@ -176,4 +191,11 @@
 @endsection
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 @endsection

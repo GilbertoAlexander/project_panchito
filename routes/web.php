@@ -33,12 +33,21 @@ use Illuminate\Support\Facades\Route;
 // LANDING
     Route::get('/', [landingController::class, 'index']);
     Route::get('nosotros', [landingController::class, 'nosotros']);
+    
     Route::get('servicios', [landingserviciosController::class, 'index'])->name('servicios.index');
     Route::get('servicios/{servicio}', [landingserviciosController::class, 'servicio_show']);
-    Route::post('servicios/cotizacion', [landingserviciosController::class, 'servicio_cotizacion']);
+    Route::post('/servicios_cotizacion', [landingserviciosController::class, 'servicio_cotizacion']);
+    Route::get('cotizacion_detalle/servicios', [landingserviciosController::class, 'servicio_detalle'])->name('cotizacion.servicio');
+    Route::post('/servicios_cotizacion/detalle', [landingserviciosController::class, 'store_cotizacion_detalle']);
+    Route::get('confirmacion_cotizacion/{confirmacion_cotizacion}', [landingserviciosController::class, 'confirmacion_cotizacion'])->name('confirmacion.cotizacion');
+
     Route::get('agregados', [landingagregadosController::class, 'index'])->name('agregados.index');
     Route::get('agregados/{agregado}', [landingagregadosController::class, 'agregado_show']);
     Route::post('agregados/cotizacion', [landingagregadosController::class, 'agregado_cotizacion']);
+    Route::get('cotizacion_detalle/agregados', [landingagregadosController::class, 'agregado_detalle'])->name('cotizacion.agregado');
+    Route::post('/agregados_cotizacion/detalle', [landingagregadosController::class, 'store_cotizacion_detalle']);
+    Route::get('confirmacion_cotizacion/agregado/{confirmacion_cotizacion}', [landingagregadosController::class, 'confirmacion_cotizacion'])->name('confirmacion.cotizacion_agregado');
+
     Route::get('contacto', [landingController::class, 'contacto'])->name('contacto.email');
     Route::post('contacto/store', [landingController::class, 'store_email']);
 

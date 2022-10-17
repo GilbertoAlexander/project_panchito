@@ -14,6 +14,7 @@ class Agregado extends Model
         'slug',
         'descripcion',
         'contenido',
+        'precio',
         'imagen',
         'estado',
     ];

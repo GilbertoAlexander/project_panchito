@@ -49,35 +49,18 @@
                 <div class="col-12 col-md-12 col-lg-12 col-xl-9" style="min-height: 300px;">
                     <div class="swiper productos-slider px-3 py-3">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide card mb-2 cardservice alto__cardproduct">  
-                                <div class="card-body text-center">
-                                    <img src="/images/icono_abastecimiento_agua.png" class="" style="width: 150px; height: auto;" alt="">
-                                    <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                    <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Abastecimiento de agua</p>
-                                    <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                    <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
+                            @foreach ($servicios as $servicio)
+                                <div class="swiper-slide card mb-2 cardservice alto__cardproduct">  
+                                    <div class="card-body text-center">
+                                        <img src="/images/{{$servicio->tipo->icono}}" class="" style="width: 150px; height: auto;" alt="">
+                                        <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
+                                        <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">{{$servicio->name}}</p>
+                                        <p class="fw-light mb-2 parrafo_4" align="justify">{{$servicio->descripcion}}</p>
+                                        <a href="{{url("/servicios/$servicio->slug")}}" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
 
-                            <div class="swiper-slide card mb-2 cardservice alto__cardproduct">  
-                                <div class="card-body text-center">
-                                    <img src="/images/icono_alquiler.png" class="" style="width: 150px; height: auto;" alt="">
-                                    <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                    <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Alquiler de Camión Grúa 22 TN</p>
-                                    <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                    <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide card mb-2 cardservice alto__cardproduct">  
-                                <div class="card-body text-center">
-                                    <img src="/images/icono_proyectos.png" class="" style="width: 150px; height: auto;" alt="">
-                                    <!-- <i class="fa-solid fa-truck-droplet icono__servicios"></i> -->
-                                    <p class="mb-0 mt-3 text-uppercase fw-bold text-secondary">Excavaciones y mov. de tierra</p>
-                                    <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                    <a href="#" class="btn btn-outline-secondary btn-sm">Ver detalles</a>
-                                </div>
-                            </div>
                         </div>
                         
                         <div class="swiper-button-next nav__btn"></div>
@@ -100,14 +83,16 @@
                 <div class="col-12 col-md-8 col-lg-9" style="min-height: 300px;">
                     <div class="swiper productos-slider px-3 py-2">
                         <div class="swiper-wrapper">
+                            @foreach ($agregados as $agregado)
                             <div class="swiper-slide card mb-2 cardproduct alto__cardproduct">  
-                                <img src="/images/arena__fina.jpg" class="img-fluid"  alt="">
+                                <img src="/images/agregados/{{$agregado->imagen}}" class="img-fluid"  style="height:220px;" alt="">
                                 <div class="card-body text-center">
-                                    <p class="mb-0 text-uppercase fw-bold text-primary">Arena Fina</p>
-                                    <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                    <a href="#" class="btn btn-outline-primary btn-sm">Ver detalles</a>
+                                    <p class="mb-0 text-uppercase fw-bold text-primary">{{$agregado->name}}</p>
+                                    <p class="fw-light mb-2 parrafo_4" align="justify">{{$agregado->descripcion}}</p>
+                                    <a href="{{url("agregado/$agregado->slug")}}" class="btn btn-outline-primary btn-sm">Ver detalles</a>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                         
                         <div class="swiper-button-next nav__btn"></div>
@@ -148,21 +133,11 @@
 
             <div class="swiper clientes-slider px-3 py-3">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide card mb-2 cardservice">  
-                        <img src="/images/casanovedades.png" style="width: 100%; height: auto;" class="img__servicio rounded" alt="...">
-                    </div>
-                    <div class="swiper-slide card mb-2 cardservice">  
-                        <img src="/images/ciltest.png" style="width: 100%; height: auto;" class="img__servicio rounded" alt="...">
-                    </div>
-                    <div class="swiper-slide card mb-2 cardservice">  
-                        <img src="/images/getex.png" style="width: 100%; height: auto;" class="img__servicio rounded" alt="...">
-                    </div>
-                    <div class="swiper-slide card mb-2 cardservice">  
-                        <img src="/images/legiscorp.png" style="width: 100%; height: auto;" class="img__servicio rounded" alt="...">
-                    </div>
-                    <div class="swiper-slide card mb-2 cardservice">  
-                        <img src="/images/oxitesa.png" style="width: 100%; height: auto;" class="img__servicio rounded" alt="...">
-                    </div>
+                    @foreach($clientes as $cliente)
+                        <div class="swiper-slide card mb-2 cardservice">  
+                            <img src="/images/clientes/{{$cliente->imagen}}" style="width: 100%; height: 140px;" class="img__servicio rounded" alt="...">
+                        </div>
+                    @endforeach
                 </div>
                 
                 <div class="swiper-button-next nav__btn"></div>
