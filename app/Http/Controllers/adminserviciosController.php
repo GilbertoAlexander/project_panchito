@@ -68,6 +68,7 @@ class adminserviciosController extends Controller
         $servicios->descripcion = $request->input('descripcion');
         $servicios->contenido = $request->input('contenido');
         $servicios->tipo_id = $request->input('tipo_id');
+        $servicios->precio = $request->input('precio');
         $servicios->imagen = $img_servicio;
         $servicios->estado = 'Inactivo';
         $servicios->save();

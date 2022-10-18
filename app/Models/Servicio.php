@@ -16,6 +16,7 @@ class Servicio extends Model
         'contenido',
         'imagen',
         'estado',
+        'precio',
         'tipo_id'
     ];
     

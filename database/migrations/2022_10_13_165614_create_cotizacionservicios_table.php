@@ -27,6 +27,7 @@ class CreateCotizacionserviciosTable extends Migration
             $table->string('cantidad_requerida')->nullable();
             $table->string('estado');
             $table->string('costo_estimado')->nullable();
+            $table->string('costo_afectado')->nullable();
             $table->unsignedBigInteger('ubigeo_id')->nullable();
             $table->unsignedBigInteger('interesado_id')->nullable();
             $table->foreign('ubigeo_id')->references('id')->on('ubigeos');

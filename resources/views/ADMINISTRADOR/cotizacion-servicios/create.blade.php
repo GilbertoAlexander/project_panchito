@@ -31,7 +31,7 @@
                             <select id="interesado_id" class="form-select form-select-sm">
                                 <option selected hidden>Seleccione una opción</option>
                                 @foreach ($interesados as $interesado)
-                                    <option value="{{$interesado->id}}_{{$interesado->email}}_{{$interesado->celular}}_{{$interesado->servicio->tipo->id}}_{{$interesado->servicio->tipo->name}}_{{$interesado->servicio->name}}">{{$interesado->name}}</option>                                
+                                    <option value="{{$interesado->id}}_{{$interesado->email}}_{{$interesado->celular}}_{{$interesado->servicio->tipo->id}}_{{$interesado->servicio->tipo->name}}_{{$interesado->servicio->name}}_{{$interesado->servicio->precio}}">{{$interesado->name}}</option>                                
                                 @endforeach
                             </select>
                             <input hidden name="tipo_ids" id="tipo_id__">
@@ -131,14 +131,14 @@
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <label for="direccion_proyecto_id" class="form-label">Dirección<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control fw-light" id="direccion_proyecto_id" name="direccion">
+                                <input type="text" class="form-control fw-light" id="direccion_proyecto_id" name="direccion2">
                             </div>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <label for="ubigeo_proyecto_id" class="form-label">Departamento - Provincia - Distrito<span class="text-danger">*</span></label>
-                                <select class="form-select" name="ubigeo_id" id="ubigeo_proyecto_id">
+                                <select class="form-select select2" style="width:100%;" name="ubigeo_id2" id="ubigeo_proyecto_id">
                                     <option  hidden selected>Seleccione una opcion</option>
                                     @foreach($ubigeos as $ubigeo)
                                         <option value="{{$ubigeo->id}}">{{$ubigeo->departamento. ', '.$ubigeo->distrito. ', '.$ubigeo->provincia}}</option>
@@ -176,7 +176,7 @@
                             <div class="mb-3">
                                 <label for="cantidad_requerida_id" class="form-label">Cantidad requerida<span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control fw-light" id="cantidad_requerida_id" name="cantidad_requeria" value="100">
+                                    <input type="number" class="form-control fw-light" id="cantidad_requerida_id" name="cantidad_requerida" value="100">
                                     <span class="input-group-text small" style="font-size: 13px;" id="basic-addon1">LITROS</span>
                                 </div>
                             </div>
@@ -185,14 +185,14 @@
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <label for="direccion_cisterna_id" class="form-label">Dirección<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control fw-light" id="direccion_cisterna_id" name="direccion">
+                                <input type="text" class="form-control fw-light" id="direccion_cisterna_id" name="direccion3">
                             </div>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <label for="ubigeo_cisterna_id" class="form-label">Departamento - Provincia - Distrito<span class="text-danger">*</span></label>
-                                <select class="form-select" name="ubigeo_id" id="ubigeo_cisterna_id">
+                                <select class="form-select" name="ubigeo_id3" id="ubigeo_cisterna_id">
                                     <option value="" hidden selected>Seleccione</option>
                                     @foreach($ubigeos as $ubigeo)
                                         <option value="{{$ubigeo->id}}">{{$ubigeo->departamento. ', '.$ubigeo->distrito. ', '.$ubigeo->provincia}}</option>
@@ -206,7 +206,7 @@
                 </div>
 
                 <div class="row mt-3">
-                    <div class="col-12 col-md-4 mb-2">
+                    <div class="col-12 col-md-3 mb-2">
                         <label for="" class="fw-bold text-secondary fw-bold">Estado</label>
                         <select name="estado" id="estado" class="form-select form-select-sm border-2 border-secondary">
                             <option value="Por atender">Por atender</option>
@@ -214,9 +214,21 @@
                             <option value="Atendido">Atendido</option>
                         </select>
                     </div>
-                    <div class="col-12 col-md-4 mb-2">
+                    <div class="col-12 col-md-3 mb-2">
                         <label for="" class="fw-bold text-dark fw-bold">Costo estimado por el servicio</label>
-                        <input type="decimal" name="costo_estimado" class="form-control form-control-sm">
+                        <input type="decimal" name="costo_estimado" id="costo_estimado" class="form-control form-control-sm" value="">
+                    </div>
+                    <div class="col-12 col-md-3 mb-2">
+                        <label for="" class="fw-bold text-dark fw-bold">IGV(0.18)</label>
+                        <select name="igv" id="igv__" class="form-select form-select-sm border-2 border-secondary">
+                            <option hidden selected>Seleccionar una opcion</option>
+                            <option value="0.18">Aplicar impuesto</option>
+                            <option value="0">Exonerar impuesto</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3 mb-2">
+                        <label for="" class="fw-bold text-dark fw-bold">Costo con afectacion de impuesto</label>
+                        <input type="decimal" name="costo_afectado" class="form-control form-control-sm" id="costo_afectado">
                     </div>   
                 </div>
             </div>
@@ -239,6 +251,7 @@
         $(document).ready(function() {
             $('.select2').select2();
             $('.ubigeo_origen').select2();
+
         });
     </script>
     <script>
@@ -247,6 +260,7 @@
         $('#show_proyecto').hide();
         $('#show_agua').hide();
         $('#interesado_id').on('change', function(){
+            this.disabled = "disabled";
             var cliente = document.getElementById('interesado_id').value.split('_');
             if($.trim(cliente) !=''){
                 $("#interesado_ids").val(cliente[0]);
@@ -262,17 +276,38 @@
                     $('#show_alquiler').show();
                     $('#show_proyecto').hide();
                     $('#show_agua').hide();
+                    $('#costo_estimado').val(cliente[6]);
                 }
                 if(cliente[3] == 2){
                     $('#show_proyecto').show();
                     $('#show_alquiler').hide();
                     $('#show_agua').hide();
+                    $('#costo_estimado').val(cliente[6]);
                 }
                 if(cliente[3] == 3){
                     $('#show_alquiler').hide();
                     $('#show_proyecto').hide();
                     $('#show_agua').show();
+                    cantidad_requerida_id.oninput = function() {
+                        var new_costo = cantidad_requerida_id.value*cliente[6];
+                        new_costo = new_costo.toFixed(2);
+                        $('#costo_estimado').val(new_costo);
+                    };
                 }
+            } 
+        });
+
+        $('#igv__').on('click', function(){
+            var impuesto = $(this).val();
+            var impuesto_base = $("#costo_estimado").val();
+            if($.trim(impuesto) !=''){
+                if(impuesto == 0.18){
+                    var impuesto_new = parseFloat(impuesto_base*0.18)+parseFloat(impuesto_base);
+                    impuesto_new = impuesto_new.toFixed(2);
+                }else{
+                    var impuesto_new = impuesto_base;
+                }
+                $("#costo_afectado").val(impuesto_new);
             } 
         });
     });

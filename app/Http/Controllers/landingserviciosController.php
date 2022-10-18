@@ -68,6 +68,7 @@ class landingserviciosController extends Controller
             $cotizacion->horas_requeridas = $request->input('horas_requerias');
             $cotizacion->operador_maquinaria = $request->input('operador_maquinaria');
             $cotizacion->interesado_id = $request->input('interesado_id');
+            $cotizacion->costo_estimado = $request->input('costo_estimado');
             $cotizacion->estado = 'Por atender';
             $cotizacion->save();
         }
@@ -81,6 +82,7 @@ class landingserviciosController extends Controller
             $cotizacion->direccion = $request->input('direccion');
             $cotizacion->ubigeo_id = $request->input('ubigeo_id');
             $cotizacion->interesado_id = $request->input('interesado_id');
+            $cotizacion->costo_estimado = $request->input('costo_estimado');
             $cotizacion->estado = 'Por atender';
             $cotizacion->save();
         }
@@ -94,6 +96,7 @@ class landingserviciosController extends Controller
             $cotizacion->direccion = $request->input('direccion');
             $cotizacion->ubigeo_id = $request->input('ubigeo_id');
             $cotizacion->interesado_id = $request->input('interesado_id');
+            $cotizacion->costo_estimado = $request->input('costo_estimado');
             $cotizacion->estado = 'Por atender';
             $cotizacion->save();
         }

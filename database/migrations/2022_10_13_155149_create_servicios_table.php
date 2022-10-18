@@ -19,6 +19,7 @@ class CreateServiciosTable extends Migration
             $table->string('slug');
             $table->string('imagen');
             $table->string('descripcion', 2000);
+            $table->string('precio');
             $table->longText('contenido');
             $table->string('estado');
             $table->unsignedBigInteger('tipo_id');

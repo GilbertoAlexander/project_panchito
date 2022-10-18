@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-7">
                     <div class="row">
-                        <div class="col-12 col-md-8">
+                        <div class="col-12 col-md-5">
                             <div class="pb-3">
                                 <label for="name_id" class="form-label">Nombre<span class="text-danger">*</span></label>
                                 <label class="form-control form-control-sm"  maxlength="2000" name="descripcion" id="descripcion_id">{{$admin_servicio->name}}</label>
@@ -33,11 +33,20 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-md-5">
                             <div class="pb-3">
                                 <label for="name_id" class="form-label">Tipo<span class="text-danger">*</span></label>
                                 <label class="form-control form-control-sm"  maxlength="2000" name="descripcion" id="descripcion_id">{{$admin_servicio->tipo->name}}</label>
                                 @error('name')
+                                    <small class="text-danger">{{$message}}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-2">
+                            <div class="pb-3">
+                                <label for="precio_id" class="form-label">Precio<span class="text-danger">*</span></label>
+                                <label type="text" name="precio" id="precio_id" class="form-control form-control-sm" >{{$admin_servicio->precio}}</label>
+                                @error('precio')
                                     <small class="text-danger">{{$message}}</small>
                                 @enderror
                             </div>
