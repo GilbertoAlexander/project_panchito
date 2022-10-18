@@ -22,7 +22,7 @@
 
             body{
                 font-family: Cairo, sans-serif !important;
-                background-image: url({{ public_path('images/bgproductovendedor.png') }});
+                background-image: url(images/fondo_reporte.png);
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
                 background-attachment: fixed;

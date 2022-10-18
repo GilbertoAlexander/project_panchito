@@ -22,7 +22,7 @@
 
             body{
                 font-family: Cairo, sans-serif !important;
-                background-image: url({{ public_path('images/bgproductovendedor.png') }});
+                background-image: url(images/fondo_reporte.png);
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
                 background-attachment: fixed;
@@ -269,21 +269,57 @@
                 <tbody>
                     @php
                         $contador = 1;
+                        $dt_cotizacion = \App\Models\Detallecotizacionagregado::where('cotizacionagregado_id',$confirmacion_cotizacion->id)->get();
                     @endphp
-                    @foreach($variable as $key => $value)
+                    @foreach($dt_cotizacion as $dt_cotizaciones)
+                    @php
+                        $agregado = \App\Models\Agregado::where('id',$dt_cotizaciones->agregado_id)->first();
+                    @endphp
                         <tr>
                             <td class="border border-primary px-2 py-1" >
-                                <span>{{$confirmacion_cotizacion->empresa_solicitante}}</span>
+                                <span>{{$contador}}</span>
                             </td>
                             <td class="border border-start-0 border-primary px-2 py-1" >
-                                <span>{{$confirmacion_cotizacion->fecha_entrega}}</span>
+                                <span>{{$agregado->name}}</span>
                             </td>
                             <td class="border border-start-0 border-primary px-2 py-1" >
-                                <span>{{$confirmacion_cotizacion->fecha_entrega}}</span>
+                                <span>{{$dt_cotizaciones->cantidad}}</span>
                             </td>
                         </tr>
+                        @php
+                            $contador++;
+                        @endphp
                     @endforeach
                 </tbody>
+            </table>
+
+            <table class="table" style="width: 100%; font-size:14px">
+                <tr>
+                    <td class="py-2" style="width: 30%">
+                        <p class="mb-0">DIRECCIÓN:</p>
+                    </td>
+                    <td class="py-2" style="width: 70%">
+                        <span>{{$confirmacion_cotizacion->direccion}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="py-2" style="width: 30%">
+                        <p class="mb-0">D.P.D:</p>
+                    </td>
+                    <td class="py-2" style="width: 70%">
+                        <span>{{$confirmacion_cotizacion->ubigeo->departamento.' - '.$confirmacion_cotizacion->ubigeo->provincia.' - '.$confirmacion_cotizacion->ubigeo->distrito}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="py-2" style="width: 30%">
+                        <p class="mb-0">TRANSPORTE:</p>
+                    </td>
+                    <td class="py-2" style="width: 70%">
+                        <span>{{$confirmacion_cotizacion->transporte_agregado}}</span>
+                    </td>
+                </tr>
             </table>
             
 
