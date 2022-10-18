@@ -23,6 +23,7 @@ class CreateCotizacionagregadosTable extends Migration
             $table->string('transporte_agregado'); //SI - NO
             $table->string('informacion_adicional', 2000)->nullable();
             $table->string('observacion_adicional', 2000)->nullable();
+            $table->string('igv'); //SI - NO
             $table->integer('total');
             $table->string('estado');
             $table->string('costo_estimado')->nullable();

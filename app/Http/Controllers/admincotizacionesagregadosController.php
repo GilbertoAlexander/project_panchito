@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Agregado;
 use App\Models\Cotizacionagregado;
 use App\Models\Detallecotizacionagregado;
+use App\Models\Empresa;
 use App\Models\Interesado;
 use App\Models\Ubigeo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class admincotizacionesagregadosController extends Controller
 {
@@ -124,6 +126,8 @@ class admincotizacionesagregadosController extends Controller
         $admin_cotizaciones_agregado['estado'] = $request->input('estado');
         $admin_cotizaciones_agregado['costo_estimado'] = $request->input('costo_estimado');
         $admin_cotizaciones_agregado['costo_afectado'] = $request->input('costo_afectado');
+        $admin_cotizaciones_agregado['igv'] = $request->input('igv');
+        $admin_cotizaciones_agregado['observacion_adicional'] = $request->input('observacion_adicional');
         $admin_cotizaciones_agregado->save();
 
         $interesado_update = new Interesado();
@@ -147,5 +151,13 @@ class admincotizacionesagregadosController extends Controller
 
         $admin_cotizaciones_agregado->delete();
         return redirect()->back()->with('delete', 'ok');
+    }
+
+    public function getCotizacionAgregadoFinalPdf(Cotizacionagregado $admin_cotizaciones_agregado)
+    {
+        $now = Carbon::now();
+        $empresa = Empresa::find(1);
+        $pdf = PDF::loadView('ADMINISTRADOR.cotizacion-agregados.reporte_cotizacion_agregado', ['admin_cotizaciones_agregado'=>$admin_cotizaciones_agregado, 'now'=>$now, 'empresa'=>$empresa]);
+        return $pdf->stream('PANCHITO-COTIZACION-'.$admin_cotizaciones_agregado->codigo.'.pdf');
     }
 }

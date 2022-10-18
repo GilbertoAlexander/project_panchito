@@ -61,8 +61,12 @@
                                 @csrf
                                 @method('DELETE')
                                 <a href="{{url("admin-cotizaciones-servicios/$cotizacion_servicio->slug")}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a>
-                                {{-- <a href="{{route('reporte_cotizacion.pdf', $cotizacion_servicio->slug)}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a> --}}
-                                <a href="{{url("admin-cotizaciones-servicios/$cotizacion_servicio->slug/edit")}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-clipboard-check-fill"></i></a>
+                                @if($cotizacion_servicio->estado == 'Seguimiento')
+                                    <a href="" class="btn btn-outline-primary btn-sm"><i class="bi bi-clipboard-check-fill"></i></a>
+                                @else
+                                    <a href="" class="btn btn-outline-primary btn-sm disabled"><i class="bi bi-clipboard-check-fill"></i></a>
+                                @endif
+
                                 @if($cotizacion_servicio->estado !== 'Atendido')
                                     <button type="submit" class="btn btn-outline-primary btn-sm"><i class="bi bi-trash-fill"></i></button>        
                                 @else

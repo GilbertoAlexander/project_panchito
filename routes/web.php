@@ -80,6 +80,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/admin-cotizaciones-cotizaciones/cotizacion-pdf/{admin_cotizaciones_cotizacione}', [admincotizacionesserviciosController::class, 'getCotizacionPdf'])->name('reporte_cotizacion.pdf');
 
     Route::resource('admin-cotizaciones-agregados', admincotizacionesagregadosController::class);
+    Route::get('/admin-cotizaciones-agregados/cotizacion-pdf/{admin_cotizaciones_agregado}', [admincotizacionesagregadosController::class, 'getCotizacionAgregadoFinalPdf'])->name('reporte_cotizacion_agregado_final.pdf');
 
     Route::resource('admin-correos', admincorreosController::class);
 // FIN ADMINISTRADOR

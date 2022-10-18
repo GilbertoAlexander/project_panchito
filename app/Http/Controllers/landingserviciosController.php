@@ -117,6 +117,6 @@ class landingserviciosController extends Controller
         $now = Carbon::now();
         $empresa = Empresa::find(1);
         $pdf = PDF::loadView('LANDING.servicios.reporte_cotizacion_servicio', ['confirmacion_cotizacion'=>$confirmacion_cotizacion, 'now'=>$now, 'empresa'=>$empresa]);
-        return $pdf->stream('PANCHITO-COTIZACION-'.$confirmacion_cotizacion->codigo.'.pdf');
+        return $pdf->download('PANCHITO-COTIZACION-'.$confirmacion_cotizacion->codigo.'.pdf');
     }
 }

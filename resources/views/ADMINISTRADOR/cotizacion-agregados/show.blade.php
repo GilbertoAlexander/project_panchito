@@ -177,7 +177,7 @@
                                 <p class="small text-uppercase mb-0">Observacion adicional</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">{{$admin_cotizaciones_agregado->observacion_adicional}}</p>
+                                <textarea name="observacion_adicional" class="form-control" id="" rows="2">{{$admin_cotizaciones_agregado->observacion_adicional}}</textarea>
                             </div>
                         </div>
                     </div>
