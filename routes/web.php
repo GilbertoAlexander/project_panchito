@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('cotizacion_detalle/servicios', [landingserviciosController::class, 'servicio_detalle'])->name('cotizacion.servicio');
     Route::post('/servicios_cotizacion/detalle', [landingserviciosController::class, 'store_cotizacion_detalle']);
     Route::get('confirmacion_cotizacion/{confirmacion_cotizacion}', [landingserviciosController::class, 'confirmacion_cotizacion'])->name('confirmacion.cotizacion');
-
+    Route::get('/confirmacion_cotizacion/cotizacion-pdf/{confirmacion_cotizacion}', [landingserviciosController::class, 'getCotizacionServicioPdf'])->name('reporte_cotizacion_servicio.pdf'); 
     Route::get('agregados', [landingagregadosController::class, 'index'])->name('agregados.index');
     Route::get('agregados/{agregado}', [landingagregadosController::class, 'agregado_show']);
     Route::post('agregados/cotizacion', [landingagregadosController::class, 'agregado_cotizacion']);
