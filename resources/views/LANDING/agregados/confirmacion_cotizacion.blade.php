@@ -15,7 +15,7 @@
                         <p class="text-primary fw-bold text-uppercase text-center fs-3 pt-4">¡Tu cotización fue enviada!</p>
                         <p class="text-center text-dark fw-light  fs-4">Nuestro personal revisará tu solicitud y se pondrá en contacto con usted a la brevedad posible. ¡Muchas gracias!</p>
                         <div class="text-center">
-                            <a href="" class="btn btn-secondary text-white text-uppercase">
+                            <a href="{{route('reporte_cotizacion_agregado.pdf', $confirmacion_cotizacion->slug)}}" class="btn btn-secondary text-white text-uppercase">
                                 <i class="bi bi-download me-2"></i>
                                 Descargar cotización
                             </a>

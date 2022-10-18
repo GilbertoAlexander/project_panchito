@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Agregado;
 use App\Models\Cotizacionagregado;
 use App\Models\Detallecotizacionagregado;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 use App\Models\Interesado;
 use App\Models\Servicio;
 use App\Models\Ubigeo;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use PDF;
 class landingagregadosController extends Controller
 {
     public function index(Request $request)
@@ -95,5 +97,13 @@ class landingagregadosController extends Controller
     {
 
         return view('LANDING.agregados.confirmacion_cotizacion', compact('confirmacion_cotizacion'));
+    }
+
+    public function getCotizacionAgregadoPdf(Cotizacionagregado $confirmacion_cotizacion)
+    {
+        $now = Carbon::now();
+        $empresa = Empresa::find(1);
+        $pdf = PDF::loadView('LANDING.agregados.reporte_cotizacion_agregado', ['confirmacion_cotizacion'=>$confirmacion_cotizacion, 'now'=>$now, 'empresa'=>$empresa]);
+        return $pdf->stream('PANCHITO-COTIZACION-'.$confirmacion_cotizacion->codigo.'.pdf');
     }
 }

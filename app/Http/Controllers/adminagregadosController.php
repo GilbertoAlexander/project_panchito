@@ -64,6 +64,7 @@ class adminagregadosController extends Controller
         $servicios = new Agregado();
         $servicios->name = $request->input('name');
         $servicios->slug = Str::slug($request->input('name'));
+        $servicios->precio = $request->input('precio');
         $servicios->descripcion = $request->input('descripcion');
         $servicios->contenido = $request->input('contenido');
         $servicios->imagen = $img_servicio;
