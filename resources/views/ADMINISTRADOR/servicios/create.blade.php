@@ -44,7 +44,7 @@
                                         <option value="{{$tipo->id}}">{{$tipo->name}}</option>                                        
                                     @endforeach
                                 </select>
-                                @error('name')
+                                @error('tipo_id')
                                     <small class="text-danger">{{$message}}</small>
                                 @enderror
                             </div>
@@ -76,7 +76,7 @@
                             </label>
                         </div>
                         <input id="uploadImage1" class="form-control-file" type="file" name="imagen" onchange="previewImage(1);" hidden/>
-                        @error('imagen_principal')
+                        @error('imagen')
                             <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div> 

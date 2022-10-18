@@ -41,7 +41,7 @@ class adminclientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreClienteRequest $request)
     {
         // condicion para guardar el nombre de la imagen principal
         if($request->hasFile('imagen')){

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreServicioRequest extends FormRequest
+class StoreAgregadoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,20 +23,20 @@ class StoreServicioRequest extends FormRequest
      */
     public function rules()
     {
-        $admin_servicio = $this->route()->parameter('admin-servicios');
+        $admin_agregado = $this->route()->parameter('admin-agregados');
         $rules = [
             'name' => 'required|unique:servicios',
             'descripcion' => 'required|max:2000',
             'contenido' => 'required',
-            'tipo_id' => 'required',
+            'precio' => 'required',
             'imagen' => 'required|image|mimes:jpeg,png,jpg|max:3000',
         ];
-        if ($admin_servicio) {
-            $rules['name'] = 'required|unique:servicios,name,' . $admin_servicio->id;
-            $rules['descripcion'] = 'required' . $admin_servicio->id;
-            $rules['contenido'] = 'required' . $admin_servicio->id;
-            $rules['tipo_id'] = 'required' . $admin_servicio->id;
-            $rules['imagen'] = 'image|mimes:jpeg,png,jpg|max:3000,imagen,' . $admin_servicio->id;
+        if ($admin_agregado) {
+            $rules['name'] = 'required|unique:servicios,name,' . $admin_agregado->id;
+            $rules['descripcion'] = 'required' . $admin_agregado->id;
+            $rules['contenido'] = 'required' . $admin_agregado->id;
+            $rules['precio'] = 'required' . $admin_agregado->id;
+            $rules['imagen'] = 'image|mimes:jpeg,png,jpg|max:3000,imagen,' . $admin_agregado->id;
         }
 
         return $rules;
