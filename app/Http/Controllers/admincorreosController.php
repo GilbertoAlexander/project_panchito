@@ -79,8 +79,9 @@ class admincorreosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Correo $admin_correo)
     {
-        //
+        $admin_correo->delete();
+        return redirect()->route('admin-correos.index')->with('delete', 'ok');
     }
 }

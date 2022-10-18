@@ -21,13 +21,16 @@ class CreateCotizacionagregadosTable extends Migration
             $table->date('fecha_entrega');
             $table->string('direccion');
             $table->string('transporte_agregado'); //SI - NO
-            $table->string('informacion_adicional', 2000);
+            $table->string('informacion_adicional', 2000)->nullable();
+            $table->string('observacion_adicional', 2000)->nullable();
             $table->integer('total');
             $table->string('estado');
+            $table->string('costo_estimado')->nullable();
+            $table->string('costo_afectado')->nullable();
             $table->unsignedBigInteger('ubigeo_id')->nullable();
             $table->unsignedBigInteger('interesado_id')->nullable();
             $table->foreign('ubigeo_id')->references('id')->on('ubigeos');
-            $table->foreign('interesado_id')->references('id')->on('interesados');
+            $table->foreign('interesado_id')->references('id')->on('interesados')->delete('cascade');
             $table->timestamps();
         });
     }

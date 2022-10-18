@@ -20,7 +20,7 @@ class CreateDetallecotizacionagregadosTable extends Migration
             $table->integer('cantidad');
             $table->integer('precio');
             $table->foreign('agregado_id')->references('id')->on('agregados');
-            $table->foreign('cotizacionagregado_id')->references('id')->on('cotizacionagregados');
+            $table->foreign('cotizacionagregado_id')->references('id')->on('cotizacionagregados')->delete('cascade');
             $table->timestamps();
         });
     }

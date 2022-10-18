@@ -35,8 +35,8 @@
             <p class="fw-light fs-5 text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias impedit ipsum aliquam at minus sapiente autem. Ducimus, eos iure quos est, explicabo quaerat ipsam laboriosam non necessitatibus quidem, ipsa ex!</p>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-5">
-                    <form class="form-group" method="POST" action="/correos/store" autocomplete="off">
-                        <!-- @csrf -->
+                    <form class="form-group" method="POST" action="contacto/store" autocomplete="off">
+                        @csrf
                         <div class="form-group mb-3">
                             <label for="name_lastname_id" class="form-label">Nombres y Apellidos</label>
                             <input type="text" id="name_lastname_id" value="" name="name_lastname" class="form-control form-control-sm">

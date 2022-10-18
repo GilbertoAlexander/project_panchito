@@ -20,6 +20,7 @@
                             <p class="text-danger fw-light text-start text-md-end mb-0">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></p>
                             <form method="POST" action="/agregados_cotizacion/detalle"  enctype="multipart/form-data" autocomplete="off" >
                                 @csrf
+                                <input hidden name="interesado_id" value="{{$interesado->id}}">
                                 <div class="row">
                                     <div class="col-12 col-md-8">
                                         <div class="mb-3">
@@ -45,7 +46,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <input id="precio_agre">
+                                        <input hidden id="precio_agre">
                                     </div>
 
                                     <div class="col-6 col-md-3">
@@ -119,13 +120,13 @@
                                             <label for="horas_requeridas_id" class="form-label">Transporte del agregado<span class="text-danger">*</span></label>
                                             <div class="d-flex">
                                                 <div class="form-check me-5">
-                                                    <input class="form-check-input" type="radio" name="transporte_agregado" id="no_id">
+                                                    <input class="form-check-input" type="radio" value="Si" name="transporte_agregado" id="no_id">
                                                     <label class="form-check-label" for="no_id">
                                                     Si
                                                     </label>
                                                 </div>
                                                 <div class="form-check ms-2">
-                                                    <input class="form-check-input" type="radio" name="transporte_agregado" id="si_id">
+                                                    <input class="form-check-input" type="radio" value="No" name="transporte_agregado" id="si_id">
                                                     <label class="form-check-label" for="si_id">
                                                     No
                                                     </label>
@@ -169,7 +170,9 @@
     var cont = 0;
     var contador = 1;
     tproductos=0;
+    tproductos_=0;
     cantidades=[];
+    cantidades_=[];
         function agregar()
         {
             var agregados = document.getElementById("agregados_id").value.split('_');
@@ -180,13 +183,15 @@
             if (agregados!="Seleccione un agregado" && agregados!="" && cantidad>0 && cantidad!="") 
             {            
                 cantidades[cont]=Number(cantidad);
+                cantidades_[cont]=Number(cantidad)*parseFloat(precio);
                 tproductos = tproductos+cantidades[cont];
+                tproductos_ = tproductos_+cantidades_[cont];
                 var fila = '<tr class="selected" id="fila'+cont+'"><td class="align-middle fw-normal">'+contador+'</td><td class="align-middle fw-normal">'+name_agregado+'</td><td class="align-middle fw-normal">'+cantidad+'</td><input type="hidden" name="id_agregado[]" value="'+id_agregado+'"><input type="hidden" name="cantidad[]" value="'+cantidad+'"><input type="hidden" name="precio[]" value="'+precio+'"><td class="align-middle"><button class="btn btn-sm btn-danger" onclick="eliminar('+cont+');"><i class="bi bi-trash"></i></button></td></tr>';
                 cont++;
                 contador++;
                 limpiar();
                 $("#tproductos").html(+tproductos);
-                $("#total_product").val(tproductos);
+                $("#total_product").val(tproductos_);
                 $('#agregado').append(fila);
             }
             else{

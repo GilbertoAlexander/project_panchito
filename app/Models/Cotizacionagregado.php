@@ -17,14 +17,25 @@ class Cotizacionagregado extends Model
         'direccion',
         'transporte_agregado',
         'informacion_adicional',
+        'observacion_adicional',
         'total',
         'ubigeo_id',
         'estado',
+        'costo_estimado',
+        'costo_afectado',
         'interesado_id',
     ];
     
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+    public function interesado()
+    {
+        return $this->belongsTo(Interesado::class);
+    }
+    public function ubigeo()
+    {
+        return $this->belongsTo(Ubigeo::class);
     }
 }

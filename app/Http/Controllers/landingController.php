@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCorreoRequest;
 use App\Models\Agregado;
 use App\Models\Cliente;
+use App\Models\Correo;
 use App\Models\Empresa;
 use App\Models\Equipo;
 use App\Models\Servicio;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class landingController extends Controller
 {
     public function index()
@@ -28,7 +31,20 @@ class landingController extends Controller
 
     public function contacto()
     {
-        return view('LANDING.contacto');
+        $now = Carbon::now();
+        return view('LANDING.contacto', compact('now'));
+    }
+    public function store_email(StoreCorreoRequest $request)
+    {
+        $correo = new Correo();
+        $correo->name_lastname = $request->input('name_lastname');
+        $correo->email = $request->input('email');
+        $correo->asunto = $request->input('asunto');
+        $correo->slug =  Str::slug($request->input('asunto'));
+        $correo->celular = $request->input('celular');
+        $correo->mensaje = $request->input('mensaje');
+        $correo->save();
+        return redirect()->back()->with('addcorreo', 'ok');
     }
     public function avisolegal(){
         $empresa = Empresa::find(1);

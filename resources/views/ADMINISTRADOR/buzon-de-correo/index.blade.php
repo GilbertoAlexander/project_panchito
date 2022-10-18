@@ -68,6 +68,16 @@
 
 @section('js')
     <!--sweet alert actualizar-->
+    @if(session('addcorreo') == 'ok')
+    <script>
+        Swal.fire({
+        icon: 'success',
+        confirmButtonColor: '#2533AD',
+        title: '¡Éxito!',
+        text: 'Correo enviado correctamente',
+        })
+    </script>
+    @endif
     @if(session('update') == 'ok')
         <script>
             Swal.fire({

@@ -42,10 +42,7 @@ class landingagregadosController extends Controller
     }
 
     public function store_cotizacion_detalle(Request $request)
-    {
-        $date = Carbon::now();
-        $fecha = $date->format('d-m-Y');
-        
+    {        
         $now = Carbon::now();
         $cotizacion = Cotizacionagregado::orderBy('id','desc')->first();
         $nubRow =$cotizacion?$cotizacion->id+1:1;
@@ -79,6 +76,9 @@ class landingagregadosController extends Controller
         }
  
         session()->forget('interesado');
+        $interesado_update = new Interesado();
+        $array_movientos = ['interesado_id' => $request->input('interesado_id'),'estado' => 'Por atender','tipo_estado' => 'Aprobado'];
+        $interesado_update->update_estado($array_movientos);
         return redirect()->route('confirmacion.cotizacion_agregado', ['confirmacion_cotizacion' => $cotizacion->slug]);
     }
 
