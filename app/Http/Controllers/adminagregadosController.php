@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Servicio;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use App\Http\Requests\StoreServicioRequest;
+use App\Http\Requests\StoreAgregadoRequest;
 use App\Models\Agregado;
 use App\Models\Tipo;
 use App\Models\Image;
@@ -43,7 +43,7 @@ class adminagregadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAgregadoRequest $request)
     {
         if($request->hasFile('imagen')){
             $file = $request->file('imagen');
@@ -66,6 +66,7 @@ class adminagregadosController extends Controller
         $servicios->slug = Str::slug($request->input('name'));
         $servicios->descripcion = $request->input('descripcion');
         $servicios->contenido = $request->input('contenido');
+        $servicios->precio = $request->input('precio');
         $servicios->imagen = $img_servicio;
         $servicios->estado = 'Inactivo';
         $servicios->save();
@@ -73,7 +74,7 @@ class adminagregadosController extends Controller
         // guardar las imagenes opcionales
         $servicios->images()->createMany($urlimagenes);
 
-        return redirect()->route('admin-agregados.index')->with('Agregado', 'ok');
+        return redirect()->route('admin-agregados.index')->with('addagregado', 'ok');
     }
 
     /**

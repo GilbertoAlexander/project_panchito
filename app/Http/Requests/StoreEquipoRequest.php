@@ -27,12 +27,11 @@ class StoreEquipoRequest extends FormRequest
         $rules = [
             'name' => 'required|unique:equipos',
             'cargo' => 'required',
-            'email' => 'required|unique:equipos',
             'imagen' => 'required|image|mimes:jpeg,png,jpg|max:3000'
         ];
         if ($admin_equipo) {
             $rules['name'] = 'required|unique:equipos,name,' . $admin_equipo->id;
-            $rules['email'] = 'required|unique:equipos,email,' . $admin_equipo->id;
+            $rules['cargo'] = 'required' . $admin_equipo->id;
             $rules['imagen'] = 'image|mimes:jpeg,png,jpg|max:3000,imagen,' . $admin_equipo->id;
         }
 

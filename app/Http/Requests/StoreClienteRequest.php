@@ -25,7 +25,6 @@ class StoreClienteRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|unique:clientes',
-            'descripcion' => 'required|max:2000',
             'imagen' => 'required|image|mimes:jpeg,png,jpg|max:3000',
         ];
 

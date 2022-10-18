@@ -44,7 +44,7 @@ class adminserviciosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreServicioRequest $request)
     {
         if($request->hasFile('imagen')){
             $file = $request->file('imagen');
