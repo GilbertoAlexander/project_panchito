@@ -29,6 +29,7 @@ class StoreServicioRequest extends FormRequest
             'descripcion' => 'required|max:2000',
             'contenido' => 'required',
             'tipo_id' => 'required',
+            'precio' => 'required',
             'imagen' => 'required|image|mimes:jpeg,png,jpg|max:3000',
         ];
         if ($admin_servicio) {
@@ -36,6 +37,7 @@ class StoreServicioRequest extends FormRequest
             $rules['descripcion'] = 'required' . $admin_servicio->id;
             $rules['contenido'] = 'required' . $admin_servicio->id;
             $rules['tipo_id'] = 'required' . $admin_servicio->id;
+            $rules['precio'] = 'required' . $admin_servicio->id;
             $rules['imagen'] = 'image|mimes:jpeg,png,jpg|max:3000,imagen,' . $admin_servicio->id;
         }
 

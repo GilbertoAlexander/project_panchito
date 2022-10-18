@@ -23,22 +23,24 @@ class StoreCotizacionRequest extends FormRequest
      */
     public function rules()
     {
-        $admin_cotizaciones_cotizacione = $this->route()->parameter('admin_cotizaciones_cotizacione');
+        $admin_cotizaciones_agregado = $this->route()->parameter('admin-cotizaciones-agregados');
         $rules = [
-            'ubigeo_origen' => 'required',
-            'direccion_origen' => 'required',
-            'nro_inmueble_origen' => 'required',
-            'bajar_origen' => 'required',
-            'ubigeo_destino' => 'required',
-            'direccion_destino' => 'required',
-            'nro_inmueble_destino' => 'required',
-            'subir_destino' => 'required',
-            'precio_sugerido' => 'required',
-            'estado' => 'required',
-            'interesado_id' => 'required'
+            'empresa_solicitante' => 'required',
+            'fecha_entrega' => 'required',
+            'direccion' => 'required',
+            'ubigeo_id' => 'required',
+            'transporte_agregado' => 'required',
+            'informacion_adicional' => 'required',
+            'observacion_adicional' => 'required',
         ];
-        if ($admin_cotizaciones_cotizacione) {
-            $rules['nro_cotizacion'] = 'required|unique:cotizacions,nro_cotizacion,' . $admin_cotizaciones_cotizacione->id;
+        if ($admin_cotizaciones_agregado) {
+            $rules['empresa_solicitante'] = 'required' . $admin_cotizaciones_agregado->id;
+            $rules['fecha_entrega'] = 'required' . $admin_cotizaciones_agregado->id;
+            $rules['direccion'] = 'required' . $admin_cotizaciones_agregado->id;
+            $rules['ubigeo_id'] = 'required' . $admin_cotizaciones_agregado->id;
+            $rules['transporte_agregado'] = 'required' . $admin_cotizaciones_agregado->id;
+            $rules['informacion_adicional'] = 'required' . $admin_cotizaciones_agregado->id;
+            $rules['observacion_adicional'] = 'required' . $admin_cotizaciones_agregado->id;
         }
 
         return $rules;

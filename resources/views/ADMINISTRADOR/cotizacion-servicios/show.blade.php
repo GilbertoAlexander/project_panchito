@@ -227,25 +227,41 @@
                             <label for="" class="form-control fw-bold">{{$admin_cotizaciones_servicio->estado}}</label>
                         </div>
                         <div class="col-12 col-md-4 mb-2">
-                            <label for="" class="fw-bold text-dark">Costo estimado por el servicio</label>
+                            <label for="" class="fw-bold text-dark">Costo estimado por el agregado</label>
                             <label for="" class="form-control text-danger fw-bold">S/ {{$admin_cotizaciones_servicio->costo_estimado}}</label>
+                        </div>
+                        <div class="col-12 col-md-4 mb-2">
+                            <label for="" class="fw-bold text-dark">Costo con afectacion de impuesto</label>
+                            <label for="" class="form-control text-danger fw-bold">S/ {{$admin_cotizaciones_servicio->costo_afectado}}</label>
                         </div>   
                     </div>
                 @else
-                    <div class="row mt-3">
-                        <div class="col-12 col-md-4 mb-2">
-                            <label for="" class="fw-bold text-secondary fw-bold">Estado</label>
-                            <select name="estado" id="estado" class="form-select form-select-sm border-2 border-secondary">
-                                <option value="Por atender">Por atender</option>
-                                <option value="Seguimiento">Seguimiento</option>
-                                <option value="Atendido">Atendido</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-md-4 mb-2">
-                            <label for="" class="fw-bold text-dark fw-bold">Costo estimado por el servicio</label>
-                            <input type="decimal" name="precio_cotizado" class="form-control form-control-sm" value="{{$admin_cotizaciones_servicio->costo_estimado}}">
-                        </div>   
+                <div class="row mt-3">
+                    <div class="col-12 col-md-3 mb-2">
+                        <label for="" class="fw-bold text-secondary fw-bold">Estado</label>
+                        <select name="estado" id="estado" class="form-select form-select-sm border-2 border-secondary">
+                            <option value="Por atender">Por atender</option>
+                            <option value="Seguimiento">Seguimiento</option>
+                            <option value="Atendido">Atendido</option>
+                        </select>
                     </div>
+                    <div class="col-12 col-md-3 mb-2">
+                        <label for="" class="fw-bold text-dark fw-bold">Costo estimado por el agregado</label>
+                        <input type="decimal" name="costo_estimado" id="costo_estimado" class="form-control form-control-sm" value="{{$admin_cotizaciones_servicio->costo_estimado}}">
+                    </div>
+                    <div class="col-12 col-md-3 mb-2">
+                        <label for="" class="fw-bold text-dark fw-bold">IGV(0.18)</label>
+                        <select name="igv" id="igv__" class="form-select form-select-sm border-2 border-secondary">
+                            <option hidden selected>Seleccionar una opcion</option>
+                            <option value="0.18">Aplicar impuesto</option>
+                            <option value="0">Exonerar impuesto</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3 mb-2">
+                        <label for="" class="fw-bold text-dark fw-bold">Costo con afectacion de impuesto</label>
+                        <input type="decimal" name="costo_afectado" class="form-control form-control-sm" id="costo_afectado" value="{{$admin_cotizaciones_servicio->costo_afectado}}">
+                    </div>     
+                </div>
                 @endif
         </div>
     </div>
@@ -261,4 +277,21 @@
 @endsection
 
 @section('js')
+<script>
+    $(document).ready(function(){
+        $('#igv__').on('click', function(){
+                var impuesto = $(this).val();
+                var impuesto_base = $("#costo_estimado").val();
+                if($.trim(impuesto) !=''){
+                    if(impuesto == 0.18){
+                        var impuesto_new = parseFloat(impuesto_base*0.18)+parseFloat(impuesto_base);
+                        impuesto_new = impuesto_new.toFixed(2);
+                    }else{
+                        var impuesto_new = impuesto_base;
+                    }
+                    $("#costo_afectado").val(impuesto_new);
+                } 
+            });
+        });
+</script>
 @endsection

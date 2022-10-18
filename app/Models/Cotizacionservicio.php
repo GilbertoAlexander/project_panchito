@@ -23,6 +23,7 @@ class Cotizacionservicio extends Model
         'ubigeo_id',
         'estado',
         'costo_estimado',
+        'costo_afectado',
         'interesado_id',
     ];
     

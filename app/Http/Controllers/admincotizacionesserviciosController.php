@@ -64,6 +64,7 @@ class admincotizacionesserviciosController extends Controller
             $cotizacion->interesado_id = $request->input('interesado_ids');
             $cotizacion->estado = $request->input('estado');
             $cotizacion->costo_estimado = $request->input('costo_estimado');
+            $cotizacion->costo_afectado = $request->input('costo_afectado');
             $cotizacion->save();
         }
         if($request->input('tipo_ids') == 2){
@@ -73,11 +74,12 @@ class admincotizacionesserviciosController extends Controller
             $cotizacion->empresa_solicitante = $request->input('name_empresa2');
             $cotizacion->fecha_ejecucion = $request->input('fecha_ejecucion2');
             $cotizacion->informacion_adicional = $request->input('informacion_adicional2');
-            $cotizacion->direccion = $request->input('direccion');
-            $cotizacion->ubigeo_id = $request->input('ubigeo_id');
+            $cotizacion->direccion = $request->input('direccion2');
+            $cotizacion->ubigeo_id = $request->input('ubigeo_id2');
             $cotizacion->interesado_id = $request->input('interesado_ids');
             $cotizacion->estado = $request->input('estado');
             $cotizacion->costo_estimado = $request->input('costo_estimado');
+            $cotizacion->costo_afectado = $request->input('costo_afectado');
             $cotizacion->save();
         }
         if($request->input('tipo_ids') == 3){
@@ -87,11 +89,12 @@ class admincotizacionesserviciosController extends Controller
             $cotizacion->empresa_solicitante = $request->input('name_empresa3');
             $cotizacion->fecha_ejecucion = $request->input('fecha_ejecucion3');
             $cotizacion->cantidad_requerida = $request->input('cantidad_requerida');
-            $cotizacion->direccion = $request->input('direccion');
-            $cotizacion->ubigeo_id = $request->input('ubigeo_id');
+            $cotizacion->direccion = $request->input('direccion3');
+            $cotizacion->ubigeo_id = $request->input('ubigeo_id3');
             $cotizacion->interesado_id = $request->input('interesado_ids');
             $cotizacion->estado = $request->input('estado');
             $cotizacion->costo_estimado = $request->input('costo_estimado');
+            $cotizacion->costo_afectado = $request->input('costo_afectado');
             $cotizacion->save();
         }
 
@@ -129,8 +132,14 @@ class admincotizacionesserviciosController extends Controller
      */
     public function update(Request $request, Cotizacionservicio $admin_cotizaciones_servicio)
     {
+        // echo '<pre>';
+        // var_dump ($request->input('interesado_id'));
+        // echo '</pre>';
+        // die();
+
         $admin_cotizaciones_servicio['estado'] = $request->input('estado');
-        $admin_cotizaciones_servicio['costo_estimado'] = $request->input('precio_cotizado');
+        $admin_cotizaciones_agregado['costo_estimado'] = $request->input('costo_estimado');
+        $admin_cotizaciones_agregado['costo_afectado'] = $request->input('costo_afectado');
         $admin_cotizaciones_servicio->save();
 
         $interesado_update = new Interesado();

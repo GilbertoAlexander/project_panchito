@@ -10,8 +10,12 @@ use App\Models\Interesado;
 use App\Models\Ubigeo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+<<<<<<< Updated upstream
 use PDF;
 
+=======
+use App\Http\Requests\StoreCotizacionRequest;
+>>>>>>> Stashed changes
 class admincotizacionesagregadosController extends Controller
 {
     public function __construct()
@@ -48,7 +52,7 @@ class admincotizacionesagregadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCotizacionRequest $request)
     {
         $now = Carbon::now();
         $cotizacion = Cotizacionagregado::orderBy('id','desc')->first();
@@ -58,8 +62,8 @@ class admincotizacionesagregadosController extends Controller
         $cotizacion = new Cotizacionagregado();
         $cotizacion->codigo = $codigo;
         $cotizacion->slug = $codigo;
-        $cotizacion->empresa_solicitante = $request->input('name_empresa');
-        $cotizacion->fecha_entrega = $request->input('fecha_ejecucion');
+        $cotizacion->empresa_solicitante = $request->input('empresa_solicitante');
+        $cotizacion->fecha_entrega = $request->input('fecha_entrega');
         $cotizacion->informacion_adicional = $request->input('informacion_adicional');
         $cotizacion->direccion = $request->input('direccion');
         $cotizacion->transporte_agregado = $request->input('transporte_agregado');

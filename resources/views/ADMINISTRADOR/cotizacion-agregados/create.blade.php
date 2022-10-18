@@ -3,6 +3,7 @@
 @section('title', 'COTIZACIONES DE AGREGADOS')
 
 @section('css')
+
 @endsection
 
 @section('content')
@@ -44,6 +45,9 @@
                             <input hidden type="email" id="id_email" required name="email" class="form-control form-control-sm bg-white" >
                         
                     </div>
+                    @error('email')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="form-group mb-3">
@@ -51,6 +55,9 @@
                         <input type="number" id="id_celular__"  class="form-control form-control-sm bg-white" disabled>
                             <input hidden type="number" id="id_celular" required name="celular" class="form-control form-control-sm bg-white" >
                     </div>
+                    @error('celular')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
             </div>
             <hr>
@@ -62,14 +69,20 @@
                     <div class="col-12 col-md-8">
                         <div class="mb-3">
                             <label for="empresa_id" class="form-label">Empresa solicitante<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control fw-light" id="empresa_id" name="name_empresa" placeholder="Nombre o razón social">
+                            <input type="text" class="form-control fw-light" id="empresa_id" name="empresa_solicitante" placeholder="Nombre o razón social">
+                            @error('empresa_solicitante')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="col-6 col-md-4">
                         <div class="mb-3">
                             <label for="fecha_ejecucion_id" class="form-label">Fecha de entrega<span class="text-danger">*</span></label>
-                            <input type="date" class="form-control fw-light" id="fecha_ejecucion_id" name="fecha_ejecucion">
+                            <input type="date" class="form-control fw-light" id="fecha_ejecucion_id" name="fecha_entrega">
+                            @error('fecha_entrega')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
 
@@ -144,18 +157,24 @@
                         <div class="mb-3">
                             <label for="direccion_id" class="form-label">Dirección<span class="text-danger">*</span></label>
                             <input type="text" class="form-control fw-light" id="direccion_id" name="direccion">
+                            @error('direccion')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6">
                         <div class="mb-3">
                             <label for="ubigeo_cisterna_id" class="form-label">Departamento - Provincia - Distrito<span class="text-danger">*</span></label>
-                            <select class="form-select select2" name="ubigeo_id" id="ubigeo_cisterna_id">
+                            <select class="form-select select2" style="width:100%;" name="ubigeo_id" id="ubigeo_cisterna_id">
                                 <option hidden selected>Seleccione una opcion</option>
                                 @foreach($ubigeos as $ubigeo)
                                     <option value="{{$ubigeo->id}}">{{$ubigeo->departamento. ', '.$ubigeo->distrito. ', '.$ubigeo->provincia}}</option>
                                 @endforeach
                             </select>
+                            @error('ubigeo_id')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
 
@@ -176,6 +195,9 @@
                                     </label>
                                 </div>
                             </div>
+                            @error('transporte_agregado')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
@@ -235,8 +257,14 @@
 @endsection
 
 @section('js')
+
 <script>
-    $(document).ready(function(){
+        $(document).ready(function() {
+          $('.select2').select2();
+      });
+    </script>
+<script>
+    $(document).ready(function(){        
         $('#agregados_id').click(function(){
             var agregado = document.getElementById('agregados_id').value.split('_');
             $('#precio_agre').val(agregado[2]);

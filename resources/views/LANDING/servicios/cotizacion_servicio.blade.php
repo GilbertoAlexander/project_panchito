@@ -18,7 +18,7 @@
                     data-aos-duration="500" style="border-radius: 15px">
                         <div class="card-body">
                             @php
-                                $servicio = DB::table('servicios')->select('name','tipo_id')->where('id',$interesado->servicio_id)->first();
+                                $servicio = DB::table('servicios')->select('name','tipo_id','precio')->where('id',$interesado->servicio_id)->first();
                                 $tipo_name = DB::table('tipos')->where('id',$servicio->tipo_id)->first();
                                 $interesado = DB::table('interesados')->where('name',$interesado->name)->first();
                             @endphp
@@ -26,7 +26,8 @@
                             <form method="POST" action="/servicios_cotizacion/detalle"  enctype="multipart/form-data" autocomplete="off" >
                                 @csrf
                                 <input hidden name="interesado_id" value="{{$interesado->id}}">
-                                <input hidden name="tipo_ids" value="{{$servicio->tipo_id}}">
+                                <input hidden name="tipo_ids" value="{{$servicio->tipo_id}}" id="_tipo_">
+                                <input hidden value="{{$servicio->precio}}" id="_precio_">
                                 <p class="text-uppercase">Tipo de servicio: <span class="badge bg-primary">{{$tipo_name->name}}</span></p>
                                 <p class="text-uppercase">Servicio Requerido: <span class="badge bg-secondary">{{$servicio->name}}</span></p>
                                 @if($servicio->tipo_id == '1')
@@ -52,7 +53,7 @@
                                                 <input type="number" class="form-control fw-light" id="horas_requeridas_id" name="horas_requerias" min="1" value="1">
                                             </div>
                                         </div>
-
+                                        <input type="number" hidden class="form-control fw-light" id="costo_estimado" name="costo_estimado">
                                         <div class="col-12 col-md-4">
                                             <div class="mb-3">
                                                 <label for="horas_requeridas_id" class="form-label">Operador de maquinaria<span class="text-danger">*</span></label>
@@ -117,7 +118,7 @@
                                                 </select>
                                             </div>
                                         </div>
-
+                                        <input type="number" hidden class="form-control fw-light" id="costo_estimado" name="costo_estimado">
                                         <div class="col-12">
                                             <div class="mb-3">
                                                 <label for="informacion_adicional_proyecto_id" class="form-label">Información adicional<span class="text-danger">*</span></label>
@@ -148,9 +149,10 @@
                                             <div class="mb-3">
                                                 <label for="cantidad_requerida_id" class="form-label">Cantidad requerida<span class="text-danger">*</span></label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control fw-light" id="cantidad_requerida_id" name="cantidad_requerida" min="100" value="100">
+                                                    <input type="number" class="form-control fw-light" id="cantidad_requerida_id" name="cantidad_requerida" min="1" value="100">
                                                     <span class="input-group-text small" style="font-size: 13px;" id="basic-addon1">LITROS</span>
                                                 </div>
+                                                <input type="number" hidden class="form-control fw-light" id="costo_estimado" name="costo_estimado" step="0.01">
                                             </div>
                                         </div>
 
@@ -196,6 +198,18 @@
         // In your Javascript (external .js resource or <script> tag)
         $(document).ready(function() {
             $('.select2').select2();
+            
+            var serv = $('#_tipo_').val();
+            var _precio = $('#_precio_').val();
+            if(serv == 3){
+                cantidad_requerida_id.oninput = function() {
+                    var new_costo = cantidad_requerida_id.value*_precio;
+                    new_costo = new_costo.toFixed(2);
+                    $('#costo_estimado').val(new_costo);
+                };
+            }else{
+                $('#costo_estimado').val(_precio);
+            }
         });
     </script>
 @endsection

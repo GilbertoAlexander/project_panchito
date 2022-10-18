@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-9">
                     <div class="row">
-                        <div class="col-12 col-md-8">
+                        <div class="col-12 col-md-5">
                             <div class="pb-3">
                                 <label for="name_id" class="form-label">Nombre<span class="text-danger">*</span></label>
                                 <input type="text" name="name" id="name_id" value="{{old('name')}}" class="form-control form-control-sm" maxLength="100">
@@ -45,6 +45,15 @@
                                     @endforeach
                                 </select>
                                 @error('tipo_id')
+                                    <small class="text-danger">{{$message}}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="pb-3">
+                                <label for="precio_id" class="form-label">Precio<span class="text-danger">*</span></label>
+                                <input type="text" name="precio" id="precio_id" value="{{old('precio')}}" class="form-control form-control-sm" maxLength="100">
+                                @error('precio')
                                     <small class="text-danger">{{$message}}</small>
                                 @enderror
                             </div>
