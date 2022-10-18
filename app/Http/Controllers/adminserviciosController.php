@@ -12,6 +12,10 @@ use App\Models\Tipo;
 use App\Models\Image;
 class adminserviciosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

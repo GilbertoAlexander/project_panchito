@@ -34,6 +34,10 @@ class landingController extends Controller
         $now = Carbon::now();
         return view('LANDING.contacto', compact('now'));
     }
+    public function logueos()
+    {
+        return view('auth.login');
+    }
     public function store_email(StoreCorreoRequest $request)
     {
         $correo = new Correo();

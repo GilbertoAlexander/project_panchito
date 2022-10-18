@@ -72,11 +72,11 @@
                         <a class="nav-link me-3 {{ request()->is(['contacto*'])? 'active-menu' : null}} menu-item mx-0 mx-md-1 text-center text-md-start mt-3 mt-md-0" href="{{url('contacto')}}">Contacto</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center d-lg-none">
-                        <a target="_blank" class="nav-link px-2 me-2 align-self-center border rounded border-secondary text-secondary" href="">
+                        <a target="_blank" class="nav-link px-2 me-2 align-self-center border rounded border-secondary text-secondary" href="{{$admin_empresa->url_facebook}}">
                             <i class="bi bi-facebook me-2"></i>
                             Facebook
                         </a>
-                        <a target="_blank" class="nav-link px-2 ms-2 align-self-center border rounded border-secondary text-secondary" href="">
+                        <a target="_blank" class="nav-link px-2 ms-2 align-self-center border rounded border-secondary text-secondary" href="{{$admin_empresa->url_instagram}}">
                             <i class="bi bi-instagram me-2"></i>
                             Instagram
                         </a>
@@ -89,7 +89,7 @@
                     <a target="_blank" class="nav-link px-2 menu-redes align-self-center" href="{{$admin_empresa->url_instagram}}">
                         <i class="bi bi-instagram"></i>
                     </a>
-                    <a class="nav-link px-2 menu-redes align-self-center" href="{{url('admin-empresa')}}">
+                    <a class="nav-link px-2 menu-redes align-self-center" href="{{url('logueo')}}">
                         <i class="bi bi-person-circle"></i>
                     </a>
                     

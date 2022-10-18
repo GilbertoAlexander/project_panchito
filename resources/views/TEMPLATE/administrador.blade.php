@@ -25,12 +25,12 @@
                                 <div class="card border-0">
                                     <div class="row g-0">
                                       <div class="col-3">
-                                        <img src="/images/FOTO_TRABAJADOR.png" class="img-fluid rounded-3 shadow" alt="...">
+                                        <img src="/images/{{Auth()->user()->imagen}}" class="img-fluid rounded-3 shadow" alt="...">
                                       </div>
                                       <div class="col-9 d-flex">
                                         <div class="card-body my-0 py-0 align-self-center">
-                                          <p class="fw-bold small mb-0">Gilberto Alexander</p>
-                                          <p class="small fw-bold text-uppercase mb-0"><small class="text-muted">Administrador</small></p>
+                                          <p class="fw-bold small mb-0">{{Auth()->user()->name}}</p>
+                                          <p class="small fw-bold text-uppercase mb-0"><small class="text-muted">{{Auth()->user()->cargo}}</small></p>
                                         </div>
                                       </div>
                                     </div>
@@ -170,24 +170,22 @@
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="dropdownMenuButton2" style="width: 285px; font-size: 15px;">
                               <li>
                                 <p class="text-center mb-1">
-                                    <img src="/images/USER_ADMIN.png" class="rounded-circle shadow" style="width: 100px; height: 100px;" alt="">
+                                    <img src="/images/{{Auth()->user()->imagen}}" class="rounded-circle shadow" style="width: 100px; height: 100px;" alt="">
                                 </p>
-                                <p class="text-center mb-0 fw-bold">Alexandra Verónica De La Cruz Tasayco</p>
-                                <p class="text-center text-muted">alexandradelacruz@mail.com</p>
+                                <p class="text-center mb-0 fw-bold">{{Auth()->user()->name}}</p>
+                                <p class="text-center text-muted">{{Auth()->user()->email}}</p>
                               </li>
                               <li><hr class="dropdown-divider"></li>
-                              <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="bi bi-person-badge-fill me-2"></i>
-                                    Mi perfil
-                                </a>
-                            </li>
-                              <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="bi bi-box-arrow-left me-2"></i>
-                                    Cerrar Sesión
-                                </a>
-                            </li>
+                                <li >
+                                    <a class="dropdown-item py-2 mt-2 menu" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                        <i class="bi bi-box-arrow-right me-2"></i>
+                                        Cerrar Sesión
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                </li>
                               
                             </ul>
                         </div>

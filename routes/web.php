@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 // LANDING
     Route::get('/', [landingController::class, 'index']);
     Route::get('nosotros', [landingController::class, 'nosotros']);
-    
+    Route::get('logueo', [landingController::class, 'logueos']);
     Route::get('servicios', [landingserviciosController::class, 'index'])->name('servicios.index');
     Route::get('servicios/{servicio}', [landingserviciosController::class, 'servicio_show']);
     Route::post('/servicios_cotizacion', [landingserviciosController::class, 'servicio_cotizacion']);
@@ -82,3 +82,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::resource('admin-correos', admincorreosController::class);
 // FIN ADMINISTRADOR
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
