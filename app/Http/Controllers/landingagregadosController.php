@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agregado;
 use App\Models\Cotizacionagregado;
+use App\Models\Detallecotizacionagregado;
 use Illuminate\Http\Request;
 use App\Models\Interesado;
 use App\Models\Servicio;
@@ -18,7 +19,11 @@ class landingagregadosController extends Controller
         $agregados = Agregado::where('estado','Activo')->where('name','like',"%$nombre%")->paginate(8);
         return view('LANDING.agregados.index', compact('agregados'));
     }
-
+    public function agregado_show(Agregado $agregado)
+    {
+        $agregados = Agregado::where('id','!=',$agregado->id)->get();
+        return view('LANDING.agregados.show', compact('agregado','agregados'));
+    }
     public function agregado_cotizacion(Request $request)
     {
         
@@ -54,9 +59,24 @@ class landingagregadosController extends Controller
         $cotizacion->informacion_adicional = $request->input('informacion_adicional');
         $cotizacion->direccion = $request->input('direccion');
         $cotizacion->transporte_agregado = $request->input('transporte_agregado');
+        $cotizacion->total = $request->input('cantidad_total');
+        $cotizacion->ubigeo_id = $request->input('ubigeo_id');
         $cotizacion->interesado_id = $request->input('interesado_id');
         $cotizacion->estado = 'Por atender';
         $cotizacion->save();
+
+        $id_agregado = $request->input('id_agregado');
+        $cantidad = $request->input('cantidad');
+        $precio = $request->input('precio');
+
+        foreach ($id_agregado as $key => $name) {
+            $detalle = new Detallecotizacionagregado();
+            $detalle->cotizacionagregado_id = $cotizacion->id;
+            $detalle->agregado_id = $id_agregado[$key];
+            $detalle->cantidad = $cantidad[$key];
+            $detalle->precio = $precio[$key];
+            $detalle->save();
+        }
  
         session()->forget('interesado');
         return redirect()->route('confirmacion.cotizacion_agregado', ['confirmacion_cotizacion' => $cotizacion->slug]);

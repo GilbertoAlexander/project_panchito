@@ -22,11 +22,20 @@ class Cotizacionservicio extends Model
         'cantidad_requerida',
         'ubigeo_id',
         'estado',
+        'costo_estimado',
         'interesado_id',
     ];
     
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+    public function interesado()
+    {
+        return $this->belongsTo(Interesado::class);
+    }
+    public function ubigeo()
+    {
+        return $this->belongsTo(Ubigeo::class);
     }
 }

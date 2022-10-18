@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cotizacionservicio;
+use App\Models\Interesado;
+use App\Models\Ubigeo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class admincotizacionesserviciosController extends Controller
@@ -13,7 +17,8 @@ class admincotizacionesserviciosController extends Controller
      */
     public function index()
     {
-        return view('ADMINISTRADOR.cotizacion-servicios.index');
+        $cotizacion_servicios = Cotizacionservicio::all();
+        return view('ADMINISTRADOR.cotizacion-servicios.index', compact('cotizacion_servicios'));
     }
 
     /**
@@ -23,7 +28,9 @@ class admincotizacionesserviciosController extends Controller
      */
     public function create()
     {
-        return view('ADMINISTRADOR.cotizacion-servicios.create');
+        $interesados = Interesado::all()->where('cotizacion_interesada','Servicio')->where('estado','Imcompleto');
+        $ubigeos = Ubigeo::all();
+        return view('ADMINISTRADOR.cotizacion-servicios.create', compact('interesados','ubigeos'));
     }
 
     /**
@@ -34,7 +41,55 @@ class admincotizacionesserviciosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $now = Carbon::now();
+        $cotizacion = Cotizacionservicio::orderBy('id','desc')->first();
+        $nubRow =$cotizacion?$cotizacion->id+1:1;
+        $codigo = $now->format('Ymd').$nubRow.'-CO';
+        if($request->input('tipo_ids') == 1){
+            $cotizacion = new Cotizacionservicio();
+            $cotizacion->codigo = $codigo;
+            $cotizacion->slug = $codigo;
+            $cotizacion->empresa_solicitante = $request->input('name_empresa');
+            $cotizacion->fecha_ejecucion = $request->input('fecha_ejecucion');
+            $cotizacion->informacion_adicional = $request->input('informacion_adicional');
+            $cotizacion->horas_requeridas = $request->input('horas_requerias');
+            $cotizacion->operador_maquinaria = $request->input('operador_maquinaria');
+            $cotizacion->interesado_id = $request->input('interesado_ids');
+            $cotizacion->estado = $request->input('estado');
+            $cotizacion->costo_estimado = $request->input('costo_estimado');
+            $cotizacion->save();
+        }
+        if($request->input('tipo_ids') == 2){
+            $cotizacion = new Cotizacionservicio();
+            $cotizacion->codigo = $codigo;
+            $cotizacion->slug = $codigo;
+            $cotizacion->empresa_solicitante = $request->input('name_empresa2');
+            $cotizacion->fecha_ejecucion = $request->input('fecha_ejecucion2');
+            $cotizacion->informacion_adicional = $request->input('informacion_adicional2');
+            $cotizacion->direccion = $request->input('direccion');
+            $cotizacion->ubigeo_id = $request->input('ubigeo_id');
+            $cotizacion->interesado_id = $request->input('interesado_ids');
+            $cotizacion->estado = $request->input('estado');
+            $cotizacion->costo_estimado = $request->input('costo_estimado');
+            $cotizacion->save();
+        }
+        if($request->input('tipo_ids') == 3){
+            $cotizacion = new Cotizacionservicio();
+            $cotizacion->codigo = $codigo;
+            $cotizacion->slug = $codigo;
+            $cotizacion->empresa_solicitante = $request->input('name_empresa3');
+            $cotizacion->fecha_ejecucion = $request->input('fecha_ejecucion3');
+            $cotizacion->cantidad_requerida = $request->input('cantidad_requerida');
+            $cotizacion->direccion = $request->input('direccion');
+            $cotizacion->ubigeo_id = $request->input('ubigeo_id');
+            $cotizacion->interesado_id = $request->input('interesado_ids');
+            $cotizacion->estado = $request->input('estado');
+            $cotizacion->costo_estimado = $request->input('costo_estimado');
+            $cotizacion->save();
+        }
+
+        return redirect()->route('admin-cotizaciones-servicios.index')->with('addcotizacion', 'ok');
     }
 
     /**
@@ -43,9 +98,9 @@ class admincotizacionesserviciosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cotizacionservicio $admin_cotizaciones_servicio)
     {
-        //
+        return view('ADMINISTRADOR.cotizacion-servicios.show', compact('admin_cotizaciones_servicio'));
     }
 
     /**
@@ -66,9 +121,17 @@ class admincotizacionesserviciosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Cotizacionservicio $admin_cotizaciones_servicio)
     {
-        //
+        $admin_cotizaciones_servicio['estado'] = $request->input('estado');
+        $admin_cotizaciones_servicio['costo_estimado'] = $request->input('precio_cotizado');
+        $admin_cotizaciones_servicio->save();
+
+        $interesado_update = new Interesado();
+        $array_movientos = ['interesado_id' => $request->input('interesado_id'),'estado' => $request->input('estado'),'tipo_estado' => 'Aprobado'];
+        $interesado_update->update_estado($array_movientos);
+
+        return redirect()->route('admin-cotizaciones-servicios.index')->with('update', 'ok');
     }
 
     /**
@@ -77,8 +140,14 @@ class admincotizacionesserviciosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cotizacionservicio $admin_cotizaciones_servicio)
     {
-        //
+        
+        $interesado_update = new Interesado;
+        $array_movientos = ['interesado_id' => $admin_cotizaciones_servicio->interesado_id,'estado' => $admin_cotizaciones_servicio->estado,'tipo_estado' => 'Delete'];
+        $interesado_update->update_estado($array_movientos);
+
+        $admin_cotizaciones_servicio->delete();
+        return redirect()->back()->with('delete', 'ok');
     }
 }

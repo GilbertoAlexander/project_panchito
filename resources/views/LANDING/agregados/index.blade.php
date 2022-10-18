@@ -114,9 +114,9 @@
                         <div class="card mb-2 cardproduct alto__cardproduct">  
                             <img src="/images/agregados/{{$agregado->imagen}}" class="img-fluid"  style="height:170px;" alt="">
                             <div class="card-body text-center">
-                                <p class="mb-0 text-uppercase fw-bold text-primary">Arena Fina</p>
-                                <p class="fw-light mb-2 parrafo_4" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore exercitationem ipsum tempore nam? Numquam, alias laboriosam nihil quidem ducimus incidunt excepturi non et quaerat mollitia at velit voluptate. Ut, voluptate!</p>
-                                <a href="#" class="btn btn-outline-primary btn-sm">Ver detalles</a>
+                                <p class="mb-0 text-uppercase fw-bold text-primary">{{$agregado->name}}</p>
+                                <p class="fw-light mb-2 parrafo_4" align="justify">{{$agregado->descripcion}}</p>
+                                <a href="{{url("agregados/$agregado->slug")}}" class="btn btn-outline-primary btn-sm">Ver detalles</a>
                             </div>
                         </div>
                     </div>

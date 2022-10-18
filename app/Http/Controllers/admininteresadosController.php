@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Interesado;
 use Illuminate\Http\Request;
 
 class admininteresadosController extends Controller
@@ -13,7 +14,8 @@ class admininteresadosController extends Controller
      */
     public function index()
     {
-        return view('ADMINISTRADOR.interesados.index');
+        $interesados = Interesado::all();
+        return view('ADMINISTRADOR.interesados.index',compact('interesados'));
     }
 
     /**
@@ -77,8 +79,10 @@ class admininteresadosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Interesado $admin_interesado)
     {
-        //
+        // eliminar registro de productos
+        $admin_interesado->delete();
+        return redirect()->back()->with('delete', 'ok');
     }
 }

@@ -51,8 +51,6 @@ class landingserviciosController extends Controller
 
     public function store_cotizacion_detalle(Request $request)
     {
-        $date = Carbon::now();
-        $fecha = $date->format('d-m-Y');
         
         $now = Carbon::now();
         $cotizacion = Cotizacionservicio::orderBy('id','desc')->first();
@@ -99,6 +97,10 @@ class landingserviciosController extends Controller
         }
  
         session()->forget('interesado','servicio');
+        $interesado_update = new Interesado();
+        $array_movientos = ['interesado_id' => $request->input('interesado_id'),'estado' => 'Por atender','tipo_estado' => 'Aprobado'];
+        $interesado_update->update_estado($array_movientos);
+        
         return redirect()->route('confirmacion.cotizacion', ['confirmacion_cotizacion' => $cotizacion->slug]);
     }
 

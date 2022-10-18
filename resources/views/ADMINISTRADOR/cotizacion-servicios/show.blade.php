@@ -17,12 +17,14 @@
             </div>
         </div>
     <!-- fin encabezado -->
-
+    <form class="form-group" method="POST" action="/admin-cotizaciones-servicios/{{$admin_cotizaciones_servicio->slug}}" enctype="multipart/form-data" autocomplete="off">      
+    @csrf
+    @method('put')
     {{-- Contenido --}}
     <div class="card border-4 borde-top-primary shadow-sm h-100" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
         <div class="card-body">
-            {{-- <input hidden name="interesado_id" value="{{$admin_cotizaciones_cotizacione->interesado_id}}"> --}}
-                <p class="fw-bold text-uppercase">Nro de Cotización: <span class="badge bg-dark">123</span></p>
+                <input hidden name="interesado_id" value="{{$admin_cotizaciones_servicio->interesado_id}}">
+                <p class="fw-bold text-uppercase">Nro de Cotización: <span class="badge bg-dark">{{$admin_cotizaciones_servicio->codigo}}</span></p>
                 <span class="mb-0 fw-bold small text-primary text-uppercase">Información del interesado</span>
                 <div class="card-group">
                     <div class="card mb-3">
@@ -30,7 +32,7 @@
                             <p class="small text-uppercase mb-0">Nombres y Apellidos</p>
                         </div>
                         <div class="card-body py-1">
-                            <p class="fw-normal mb-0">Gilberto Alexander De La Cruz Saravia</p>
+                            <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->interesado->name}}</p>
                         </div>
                     </div>
                     <div class="card mb-3">
@@ -38,7 +40,7 @@
                             <p class="small text-uppercase mb-0">Correo electrónico</p>
                         </div>
                         <div class="card-body py-1">
-                            <p class="fw-normal mb-0">gilbertodelacruzsaravia@gmail.com</p>
+                            <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->interesado->email}}</p>
                         </div>
                     </div>
                     <div class="card mb-3">
@@ -46,74 +48,82 @@
                             <p class="small text-uppercase mb-0">Nro de Contacto</p>
                         </div>
                         <div class="card-body py-1">
-                            <p class="fw-normal mb-0">937040520</p>
+                            <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->interesado->celular}}</p>
                         </div>
                     </div>
                 </div>
 
                 <span class="mb-0 fw-bold small text-primary text-uppercase">Información de cotización</span>
                 <div class="my-2">
-                    <p class="text-uppercase">Tipo de servicio: <span class="badge bg-primary">Alquiler</span></p>
-                    <p class="text-uppercase">Servicio Requerido: <span class="badge bg-secondary">Alquiler de Camión Grúa 22 TN</span></p>
+                    <p class="text-uppercase">Tipo de servicio: <span class="badge bg-primary">{{$admin_cotizaciones_servicio->interesado->servicio->tipo->name}}</span></p>
+                    <p class="text-uppercase">Servicio Requerido: <span class="badge bg-secondary">{{$admin_cotizaciones_servicio->interesado->servicio->name}}</span></p>
                 </div>
-                <div class="form__alquiler" hidden>
-                    <div class="card-group">
-                        <div class="card mb-3">
-                            <div class="card-header py-1">
-                                <p class="small text-uppercase mb-0">Empresa solicitante</p>
-                            </div>
-                            <div class="card-body py-1">
-                                <p class="fw-normal mb-0">Mi empresa SAC</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-group">
-                        <div class="card mb-3">
-                            <div class="card-header py-1">
-                                <p class="small text-uppercase mb-0">Fecha de ejecución</p>
-                            </div>
-                            <div class="card-body py-1">
-                                <p class="fw-normal mb-0">15/10/2022</p>
+                @if($admin_cotizaciones_servicio->interesado->servicio->tipo->id == 1)
+                    <div class="form__alquiler">
+                        <div class="card-group">
+                            <div class="card mb-3">
+                                <div class="card-header py-1">
+                                    <p class="small text-uppercase mb-0">Empresa solicitante</p>
+                                </div>
+                                <div class="card-body py-1">
+                                    <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->empresa_solicitante}}</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="card mb-3">
-                            <div class="card-header py-1">
-                                <p class="small text-uppercase mb-0">Horas requeridas</p>
+                        <div class="card-group">
+                            <div class="card mb-3">
+                                <div class="card-header py-1">
+                                    <p class="small text-uppercase mb-0">Fecha de ejecución</p>
+                                </div>
+                                <div class="card-body py-1">
+                                    <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->fecha_ejecucion}}</p>
+                                </div>
                             </div>
-                            <div class="card-body py-1">
-                                <p class="fw-normal mb-0">100 HORAS</p>
+                            <div class="card mb-3">
+                                <div class="card-header py-1">
+                                    <p class="small text-uppercase mb-0">Horas requeridas</p>
+                                </div>
+                                <div class="card-body py-1">
+                                    <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->horas_requeridas}} HORAS</p>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header py-1">
+                                    <p class="small text-uppercase mb-0">Operador de maquinaria</p>
+                                </div>
+                                <div class="card-body py-1">
+                                    <p class="fw-normal mb-0">
+                                    @if($admin_cotizaciones_servicio->operador_maquinaria == 'Si')
+                                        <span class="badge bg-success">{{$admin_cotizaciones_servicio->operador_maquinaria}}</span></p>
+                                    @else
+                                        <span class="badge bg-danger">{{$admin_cotizaciones_servicio->operador_maquinaria}}</span></p>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                        <div class="card mb-3">
-                            <div class="card-header py-1">
-                                <p class="small text-uppercase mb-0">Operador de maquinaria</p>
-                            </div>
-                            <div class="card-body py-1">
-                                <p class="fw-normal mb-0"><span class="badge bg-success">SI</span></p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="card-group">
-                        <div class="card mb-3">
-                            <div class="card-header py-1">
-                                <p class="small text-uppercase mb-0">Información adicional</p>
-                            </div>
-                            <div class="card-body py-1">
-                                <p class="fw-normal mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam possimus voluptatum totam maxime nobis, voluptas nostrum sint, inventore aperiam et amet delectus sapiente suscipit repudiandae veniam, magni voluptates optio error.</p>
+                        <div class="card-group">
+                            <div class="card mb-3">
+                                <div class="card-header py-1">
+                                    <p class="small text-uppercase mb-0">Información adicional</p>
+                                </div>
+                                <div class="card-body py-1">
+                                    <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->informacion_adicional}}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>  
+                    </div>  
+                @endif
                 
-                <div class="form_proyectos" hidden>
+                @if($admin_cotizaciones_servicio->interesado->servicio->tipo->id == 2)
+                <div class="form_proyectos">
                     <div class="card-group">
                         <div class="card mb-3">
                             <div class="card-header py-1">
                                 <p class="small text-uppercase mb-0">Empresa solicitante</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">Mi empresa SAC</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->empresa_solicitante}}</p>
                             </div>
                         </div>
                     </div>
@@ -123,7 +133,7 @@
                                 <p class="small text-uppercase mb-0">Fecha de ejecución</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">15/10/2022</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->fecha_ejecucion}}</p>
                             </div>
                         </div>
                         <div class="card mb-3">
@@ -131,7 +141,7 @@
                                 <p class="small text-uppercase mb-0">Dirección</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt, possimus.</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->direccion}}</p>
                             </div>
                         </div>
                         <div class="card mb-3">
@@ -139,7 +149,7 @@
                                 <p class="small text-uppercase mb-0">departamento - provincia - distrito</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">Lima - Lima - Lima</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->ubigeo_id?$admin_cotizaciones_servicio->ubigeo->departamento.'-'.$admin_cotizaciones_servicio->ubigeo->provincia.'-'.$admin_cotizaciones_servicio->ubigeo->distrito:'No requerido'}}</p>
                             </div>
                         </div>
                     </div>
@@ -150,12 +160,14 @@
                                 <p class="small text-uppercase mb-0">Información adicional</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam possimus voluptatum totam maxime nobis, voluptas nostrum sint, inventore aperiam et amet delectus sapiente suscipit repudiandae veniam, magni voluptates optio error.</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->informacion_adicional}}</p>
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div> 
+                @endif 
 
+                @if($admin_cotizaciones_servicio->interesado->servicio->tipo->id == 3)
                 <div class="form_abastecimientodeagua">
                     <div class="card-group">
                         <div class="card mb-3">
@@ -163,7 +175,7 @@
                                 <p class="small text-uppercase mb-0">Empresa solicitante</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">Mi empresa SAC</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->empresa_solicitante}}</p>
                             </div>
                         </div>
                     </div>
@@ -173,7 +185,7 @@
                                 <p class="small text-uppercase mb-0">Fecha de entrega</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">15/10/2022</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->fecha_ejecucion}}</p>
                             </div>
                         </div>
                         <div class="card mb-3">
@@ -181,7 +193,7 @@
                                 <p class="small text-uppercase mb-0">cantidad</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">2000 LITROS</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->cantidad_requerida}} LITROS</p>
                             </div>
                         </div>
                     </div>
@@ -192,7 +204,7 @@
                                 <p class="small text-uppercase mb-0">Dirección</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt, possimus.</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->direccion}}</p>
                             </div>
                         </div>
                         <div class="card mb-3">
@@ -200,27 +212,41 @@
                                 <p class="small text-uppercase mb-0">departamento - provincia - distrito</p>
                             </div>
                             <div class="card-body py-1">
-                                <p class="fw-normal mb-0">Lima - Lima - Lima</p>
+                                <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->ubigeo_id?$admin_cotizaciones_servicio->ubigeo->departamento.'-'.$admin_cotizaciones_servicio->ubigeo->provincia.'-'.$admin_cotizaciones_servicio->ubigeo->distrito:'No requerido'}}</p>
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
+                @endif 
                 <hr>
 
-                <div class="row mt-3">
-                    <div class="col-12 col-md-4 mb-2">
-                        <label for="" class="fw-bold text-secondary fw-bold">Estado</label>
-                        <select name="estado" id="estado" class="form-select form-select-sm border-2 border-secondary">
-                            <option value="Por atender">Por atender</option>
-                            <option value="Seguimiento">Seguimiento</option>
-                            <option value="Atendido">Atendido</option>
-                        </select>
+                @if($admin_cotizaciones_servicio->estado == 'Atendido')
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-4 mb-2">
+                            <label for="" class="fw-bold text-secondary">Estado</label>
+                            <label for="" class="form-control fw-bold">{{$admin_cotizaciones_servicio->estado}}</label>
+                        </div>
+                        <div class="col-12 col-md-4 mb-2">
+                            <label for="" class="fw-bold text-dark">Costo estimado por el servicio</label>
+                            <label for="" class="form-control text-danger fw-bold">S/ {{$admin_cotizaciones_servicio->costo_estimado}}</label>
+                        </div>   
                     </div>
-                    <div class="col-12 col-md-4 mb-2">
-                        <label for="" class="fw-bold text-dark fw-bold">Costo estimado por el servicio</label>
-                        <input type="decimal" name="precio_cotizado" class="form-control form-control-sm" value="">
-                    </div>   
-                </div>
+                @else
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-4 mb-2">
+                            <label for="" class="fw-bold text-secondary fw-bold">Estado</label>
+                            <select name="estado" id="estado" class="form-select form-select-sm border-2 border-secondary">
+                                <option value="Por atender">Por atender</option>
+                                <option value="Seguimiento">Seguimiento</option>
+                                <option value="Atendido">Atendido</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-4 mb-2">
+                            <label for="" class="fw-bold text-dark fw-bold">Costo estimado por el servicio</label>
+                            <input type="decimal" name="precio_cotizado" class="form-control form-control-sm" value="{{$admin_cotizaciones_servicio->costo_estimado}}">
+                        </div>   
+                    </div>
+                @endif
         </div>
     </div>
 
@@ -228,6 +254,7 @@
         <a href="{{url('admin-cotizaciones-servicios')}}" class="btn btn-outline-secondary">Volver</a>
         <button typé="submit" class="btn btn-primary px-5">Actualizar</button>
     </div>
+    </form>
     {{-- Fin contenido --}}
 
 

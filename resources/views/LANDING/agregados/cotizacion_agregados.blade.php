@@ -18,7 +18,7 @@
                     data-aos-duration="500" style="border-radius: 15px">
                         <div class="card-body">
                             <p class="text-danger fw-light text-start text-md-end mb-0">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></p>
-                            <form method="POST" action="/agregados_cotizacion/detalle'"  enctype="multipart/form-data" autocomplete="off" >
+                            <form method="POST" action="/agregados_cotizacion/detalle"  enctype="multipart/form-data" autocomplete="off" >
                                 @csrf
                                 <div class="row">
                                     <div class="col-12 col-md-8">
@@ -41,7 +41,7 @@
                                             <select class="form-select" id="agregados_id">
                                                 <option hidden selected>Seleccione un agregado</option>
                                                 @foreach($agregados as $agregado)
-                                                    <option value="{{$agregado->id}}">{{$agregado->name}}</option>                                                    
+                                                    <option value="{{$agregado->id}}_{{$agregado->name}}_{{$agregado->precio}}">{{$agregado->name}}</option>                                                    
                                                 @endforeach
                                             </select>
                                         </div>
@@ -70,25 +70,25 @@
                                             <table class="table table-sm table-hover">
                                                 <thead class="bg-primary text-white text-center">
                                                     <th class="text-uppercase small fw-bold">
+                                                        N°
+                                                    </th>
+                                                    <th class="text-uppercase small fw-bold">
                                                         Agregado
                                                     </th>
                                                     <th class="text-uppercase small fw-bold">
                                                         Cantidad (m<sup>3</sup>)
                                                     </th>
                                                     <th class="text-uppercase small fw-bold">
-
+                                                        Accion
                                                     </th>
                                                 </thead>
-                                                <tbody>
-                                                    <tr class="text-center">
-                                                        <td class="fw-light align-middle small text-uppercase">Arena Fina</td>
-                                                        <td class="fw-light align-middle small text-uppercase">10</td>
-                                                        <td class="fw-light align-middle small text-uppercase"><button class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button></td>
-                                                    </tr>
+                                                <tbody class="text-center" id="agregado">
+                                                    
                                                 </tbody>
                                                 <tfooter class="text-center">
+                                                    <th class="text-end "></th>
                                                     <th class="text-end ">TOTAL</th>
-                                                    <th class="text-center ">10</th>
+                                                    <th class="text-center "><p class="fw-bold text-primary fs-5" id="tproductos">0</p><input type="hidden" name="cantidad_total" id="total_product"></th>
                                                     <th></th>
                                                 </tfooter>
                                             </table>
@@ -156,9 +156,58 @@
 @section('js')
 <script>
     $(document).ready(function(){
+        $('#agregados_id').click(function(){
+            var agregado = document.getElementById('agregados_id').value.split('_');
+            $('#precio_agre').val(agregado[2]);
+        });
+
         $('#btnagregar').click(function(){
             agregar();
         });
     });
+
+    var cont = 0;
+    var contador = 1;
+    tproductos=0;
+    cantidades=[];
+        function agregar()
+        {
+            var agregados = document.getElementById("agregados_id").value.split('_');
+            precio = $("#precio_agre").val();
+            id_agregado = agregados[0];
+            name_agregado = agregados[1];
+            cantidad = $("#cantidad_id").val();
+            if (agregados!="Seleccione un agregado" && agregados!="" && cantidad>0 && cantidad!="") 
+            {            
+                cantidades[cont]=Number(cantidad);
+                tproductos = tproductos+cantidades[cont];
+                var fila = '<tr class="selected" id="fila'+cont+'"><td class="align-middle fw-normal">'+contador+'</td><td class="align-middle fw-normal">'+name_agregado+'</td><td class="align-middle fw-normal">'+cantidad+'</td><input type="hidden" name="id_agregado[]" value="'+id_agregado+'"><input type="hidden" name="cantidad[]" value="'+cantidad+'"><input type="hidden" name="precio[]" value="'+precio+'"><td class="align-middle"><button class="btn btn-sm btn-danger" onclick="eliminar('+cont+');"><i class="bi bi-trash"></i></button></td></tr>';
+                cont++;
+                contador++;
+                limpiar();
+                $("#tproductos").html(+tproductos);
+                $("#total_product").val(tproductos);
+                $('#agregado').append(fila);
+            }
+            else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error al ingresar el detalle del agregado, revise los datos del detalle',
+                    })
+            }
+        }
+        function limpiar()
+        {
+            $("#cantidad_id").val("");
+            $("#precio_agre").val("");
+        }
+        function eliminar(index)
+        {
+            tproductos = tproductos-cantidades[index];
+            $("#tproductos").html(+tproductos);
+            $("#total_product").val(tproductos);
+            $("#fila" + index).remove();
+        }
 </script>
 @endsection

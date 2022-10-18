@@ -36,32 +36,46 @@
                     <th class="h6 small text-uppercase fw-bold text-center">Acciones</th>
                 </tr>
             </thead>
-            <!-- @php
+            @php
                 $contador = 1;
-            @endphp -->
+            @endphp
             <tbody class="text-center">
-                
+                @foreach($cotizacion_servicios as $cotizacion_servicio)
                     <tr>
-                        <td class="fw-light align-middle">1</td>
-                        <td class="fw-light align-middle">Gilberto Alexander</td>
-                        <td class="fw-light align-middle">Alquiler</td>
-                        <td class="fw-light align-middle">Alquiler de Camión Grúa 22 TN</td>
-                        <td class="fw-light align-middle">15 de octubre 2022</td>
+                        <td class="fw-light align-middle">{{$contador}}</td>
+                        <td class="fw-light align-middle">{{$cotizacion_servicio->interesado->name}}</td>
+                        <td class="fw-light align-middle">{{$cotizacion_servicio->interesado->cotizacion_interesada}}</td>
+                        <td class="fw-light align-middle">{{$cotizacion_servicio->interesado->servicio->tipo->name}}</td>
+                        <td class="fw-light align-middle">{{$cotizacion_servicio->fecha_ejecucion}}</td>
                         <td class="fw-light align-middle">
-                            <span class="badge bg-success tex-uppercase">Por atender</span>
+                            @if($cotizacion_servicio->estado == 'Por atender')
+                                <span class="badge bg-danger border-0">{{$cotizacion_servicio->estado}}</span>
+                            @elseif($cotizacion_servicio->estado == 'Seguimiento')
+                                <span class="badge bg-warning border-0">{{$cotizacion_servicio->estado}}</span>
+                            @else
+                                <span class="badge bg-success border-0">{{$cotizacion_servicio->estado}}</span>
+                            @endif
                         </td>
                         <td class="align-middle">                                        
-                            <form method="POST" action="{{-- {{ route('admin-articulos.destroy',$admin_articulo->slug) }} --}}" class="form-delete">
-                                <!-- @csrf
-                                @method('DELETE') -->
-                                <a href="" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a>
-                                <a href="" class="btn btn-outline-primary btn-sm"><i class="bi bi-clipboard-check-fill"></i></a>
-                                <button type="submit" class="btn btn-outline-primary btn-sm"><i class="bi bi-trash-fill"></i></button>        
+                            <form method="POST" action="{{ route('admin-cotizaciones-servicios.destroy',$cotizacion_servicio->slug) }}" class="form-delete">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{url("admin-cotizaciones-servicios/$cotizacion_servicio->slug")}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a>
+                                {{-- <a href="{{route('reporte_cotizacion.pdf', $cotizacion_servicio->slug)}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a> --}}
+                                <a href="{{url("admin-cotizaciones-servicios/$cotizacion_servicio->slug/edit")}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-clipboard-check-fill"></i></a>
+                                @if($cotizacion_servicio->estado !== 'Atendido')
+                                    <button type="submit" class="btn btn-outline-primary btn-sm"><i class="bi bi-trash-fill"></i></button>        
+                                @else
+                                    <button type="submit" disabled class="btn btn-outline-primary btn-sm"><i class="bi bi-trash-fill"></i></button>        
+                                @endif        
                             </form>       
                         </td>
                     </tr>
-                   
-                
+                    
+                @php
+                    $contador++;
+                @endphp
+                @endforeach  
             </tbody>
         </table>
     </div>
@@ -79,13 +93,13 @@
         })
     </script>
     <!--sweet alert agregar-->
-    @if(session('addequipo') == 'ok')
+    @if(session('addcotizacion') == 'ok')
         <script>
             Swal.fire({
             icon: 'success',
             confirmButtonColor: '#0048A4',
             title: '¡Éxito!',
-            text: 'Equipo registrado correctamente',
+            text: 'Cotizacion generada correctamente',
             })
         </script>
     @endif

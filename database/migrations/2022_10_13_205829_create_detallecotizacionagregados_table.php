@@ -18,6 +18,7 @@ class CreateDetallecotizacionagregadosTable extends Migration
             $table->unsignedBigInteger('cotizacionagregado_id')->nullable();
             $table->unsignedBigInteger('agregado_id')->nullable();
             $table->integer('cantidad');
+            $table->integer('precio');
             $table->foreign('agregado_id')->references('id')->on('agregados');
             $table->foreign('cotizacionagregado_id')->references('id')->on('cotizacionagregados');
             $table->timestamps();

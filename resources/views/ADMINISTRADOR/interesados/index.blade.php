@@ -33,30 +33,50 @@
                     <th class="h6 small text-uppercase fw-bold text-center">Acciones</th>
                 </tr>
             </thead>
-            <!-- @php
+            @php
                 $contador = 1;
-            @endphp -->
+            @endphp
             <tbody class="text-center">
-                
+                @foreach($interesados as $admin_interesado)
                     <tr>
-                        <td class="fw-light align-middle">1</td>
-                        <td class="fw-light align-middle">Gilberto Alexander De La Cruz Saravia</td>
-                        <td class="fw-light align-middle">gilbertodelacruzsaravia@gmail.com</td>
-                        <td class="fw-light align-middle">937040520</td>
-                        <td class="fw-light align-middle">Servicio</td>
+                        <td class="fw-light align-middle">{{$contador}}</td>
+                        <td class="fw-light align-middle">{{$admin_interesado->name}}</td>
+                        <td class="fw-light align-middle">{{$admin_interesado->email}}</td>
+                        <td class="fw-light align-middle">{{$admin_interesado->celular}}</td>
+                        <td class="fw-light align-middle">{{$admin_interesado->servicio_id?$admin_interesado->servicio->tipo->name:$admin_interesado->cotizacion_interesada}}</td>
                         <td class="fw-light align-middle">
-                            <span class="badge bg-danger tex-uppercase">Incompleto</span>
-                        </td>
+                            <form method="POST" action="/admin-equipo/estado/{{$admin_interesado->slug}}" class="form-update">
+                            @csrf
+                            @method('PUT')
+                                @if($admin_interesado->estado == 'Imcompleto')
+                                    <span class="badge bg-danger border-0">Imcompleto</span>
+                                @elseif($admin_interesado->estado =='Por atender')
+                                    <span class="badge bg-info border-0">Por atender</span>
+                                @elseif($admin_interesado->estado =='En proceso')
+                                    <span class="badge bg-warning border-0">En proceso</span>
+                                @else
+                                    <span class="badge bg-success border-0">Atendido</span>
+                                @endif
+                            </form>
+                        </td>  
                         <td class="align-middle">                                        
-                            <form method="POST" action="{{-- {{ route('admin-articulos.destroy',$admin_articulo->slug) }} --}}" class="form-delete">
-                                <!-- @csrf
-                                @method('DELETE') -->
-                                <button type="submit" class="btn btn-outline-primary btn-sm"><i class="bi bi-trash-fill"></i></button>        
-                            </form>       
+                            <div class="text-center">
+                                @if($admin_interesado->estado != 'Atendido')
+                                    <form method="POST" action="{{ route('admin-interesados.destroy',$admin_interesado->slug) }}" class="form-delete">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-primary text-white btn-sm"><i class="bi bi-trash-fill"></i></button>        
+                                    </form>
+                                @else
+                                    <button type="submit" disabled class="btn btn-primary text-white btn-sm"><i class="bi bi-trash-fill"></i></button>        
+                                @endif
+                            </div>       
                         </td>
                     </tr>
-                   
-                
+                @php
+                    $contador++;
+                @endphp
+                @endforeach
             </tbody>
         </table>
     </div>

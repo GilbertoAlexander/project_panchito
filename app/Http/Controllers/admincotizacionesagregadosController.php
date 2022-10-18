@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cotizacionagregado;
 use Illuminate\Http\Request;
 
 class admincotizacionesagregadosController extends Controller
@@ -13,7 +14,8 @@ class admincotizacionesagregadosController extends Controller
      */
     public function index()
     {
-        return view('ADMINISTRADOR.cotizacion-agregados.index');
+        $cotizacion_agregados = Cotizacionagregado::all();
+        return view('ADMINISTRADOR.cotizacion-agregados.index', compact('cotizacion_agregados'));
     }
 
     /**

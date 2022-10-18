@@ -13,6 +13,7 @@ class Detallecotizacionagregado extends Model
         'cotizacionagregado_id',
         'agregado_id',
         'cantidad',
+        'precio'
     ];
     
     public function getRouteKeyName()

@@ -76,6 +76,7 @@ use Illuminate\Support\Facades\Route;
     Route::resource('admin-interesados', admininteresadosController::class);
 
     Route::resource('admin-cotizaciones-servicios', admincotizacionesserviciosController::class);
+    Route::get('/admin-cotizaciones-cotizaciones/cotizacion-pdf/{admin_cotizaciones_cotizacione}', [admincotizacionesserviciosController::class, 'getCotizacionPdf'])->name('reporte_cotizacion.pdf');
 
     Route::resource('admin-cotizaciones-agregados', admincotizacionesagregadosController::class);
 

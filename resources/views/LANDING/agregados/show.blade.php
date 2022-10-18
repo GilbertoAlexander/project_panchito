@@ -136,17 +136,13 @@
                     <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="/images/arena__fina.jpg" />
+                                <img src="/images/agregados/{{$agregado->imagen}}" />
                             </div>
-                            <div class="swiper-slide">
-                                <img src="/images/arena__fina__2.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/arena__fina__3.jpeg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/arena__fina__4.jpg" />
-                            </div>
+                            @foreach($agregado->images as $image)
+                                <div class="swiper-slide">
+                                    <img src="{{$image->url}}"/>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="swiper-button-next nav__btn"></div>
                         <div class="swiper-button-prev nav__btn"></div>
@@ -154,45 +150,37 @@
                     <div thumbsSlider="" class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="/images/arena__fina.jpg" />
+                                <img src="/images/agregados/{{$agregado->imagen}}" />
                             </div>
-                            <div class="swiper-slide">
-                                <img src="/images/arena__fina__2.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/arena__fina__3.jpeg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/images/arena__fina__4.jpg" />
-                            </div>
+                            @foreach($agregado->images as $image)
+                                <div class="swiper-slide">
+                                    <img src="{{$image->url}}"/>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-5">
-                    <p class="text-primary fw-bold small text-uppercase fs-2">Arena Fina</p>
-                    <p class="text-muted fw-light" align="justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum corporis vel, alias, labore iusto facere itaque unde sunt blanditiis sint mollitia ab officiis corrupti numquam optio porro nam reprehenderit aliquid!</p>
+                    <p class="text-primary fw-bold small text-uppercase fs-2">{{$agregado->name}}</p>
+                    <p class="text-muted fw-light" align="justify">{{$agregado->descripcion}}</p>
                     <p class="fw-light">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, necessitatibus et. Rem, suscipit ut distinctio voluptates tempora itaque illo, ex placeat deleniti quis laudantium dolor mollitia accusamus porro maiores consectetur.
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi sint odio, nihil ad nesciunt dolorum debitis autem fugit expedita numquam facilis illo sed pariatur ab quibusdam voluptate voluptatem? Laborum, odio!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam illo qui id fugiat quos repellat, quisquam, corrupti omnis obcaecati veniam et, quibusdam eos est repellendus. Ab nostrum iste odio commodi!
-
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, molestias saepe! Ducimus quam impedit, fugit molestias magnam a laborum. Adipisci cum nesciunt vitae minima eum error odit impedit repudiandae veniam!
+                        {!!$agregado->contenido!!}
                     </p>
                 </div>
                 <div class="col-12 col-md-2">
                     <p class="small text-muted text-uppercase fw-bold mt-2">Te puede interesar</p>
-                        <!-- @foreach ($servicios as $servicio) -->
+                         @foreach ($agregados as $agregado)
                             <a class="text-decoration-none" href="">
                             <div class="card border-0 shadow-sm mb-3">
                                 <div class="text-center">
-                                    <img src="/images/arena__fina.jpg" class="img-fluid rounded-top" alt="">
+                                    <img src="/images/agregados/{{$agregado->imagen}}" class="img-fluid rounded-top" alt="">
                                 </div>
                                 <div class="card-body">
-                                    <p class="mb-0 small text-center text-uppercase fw-bold text-secondary">Arena Gruesa</p>
-                                    <p class="parrafo_3 fw-light text-dark" align="justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi nostrum exercitationem corrupti eum nesciunt omnis illum saepe nobis illo doloribus amet maiores minus perferendis animi distinctio earum qui, tenetur accusamus.</p>
+                                    <p class="mb-0 small text-center text-uppercase fw-bold text-secondary">{{$agregado->name}}</p>
+                                    <p class="parrafo_3 fw-light text-dark" align="justify">{{$agregado->descripcion}}</p>
                                 </div>
                             </div></a>
-                        <!-- @endforeach -->
+                        @endforeach
                 </div>
             </div>
         </div>

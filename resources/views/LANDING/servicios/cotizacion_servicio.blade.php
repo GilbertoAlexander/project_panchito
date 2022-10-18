@@ -58,13 +58,13 @@
                                                 <label for="horas_requeridas_id" class="form-label">Operador de maquinaria<span class="text-danger">*</span></label>
                                                 <div class="d-flex">
                                                     <div class="form-check me-5">
-                                                        <input class="form-check-input" type="radio" name="operador_maquinaria" id="no_id">
+                                                        <input class="form-check-input" type="radio" name="operador_maquinaria" value="Si" id="no_id">
                                                         <label class="form-check-label" for="no_id">
                                                         Si
                                                         </label>
                                                     </div>
                                                     <div class="form-check ms-2">
-                                                        <input class="form-check-input" type="radio" name="operador_maquinaria" id="si_id">
+                                                        <input class="form-check-input" type="radio" name="operador_maquinaria" value="No" id="si_id">
                                                         <label class="form-check-label" for="si_id">
                                                         No
                                                         </label>
