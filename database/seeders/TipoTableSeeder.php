@@ -17,19 +17,19 @@ class TipoTableSeeder extends Seeder
         $tipo = new Tipo();
         $tipo->name = "ALQUILER";
         $tipo->slug = "alquiler";
-        $tipo->icono = "icono-alquiler.png";
+        $tipo->icono = "icono_alquiler.png";
         $tipo->save();
 
         $tipo = new Tipo();
         $tipo->name = "PROYECTOS";
         $tipo->slug = "proyectos";
-        $tipo->icono = "icono-proyectos.png";
+        $tipo->icono = "icono_proyectos.png";
         $tipo->save();
 
         $tipo = new Tipo();
         $tipo->name = "ABASTECIMIENTO DE AGUA EN CISTERNA";
         $tipo->slug = "abastecimiento-de-agua-en-cisterna";
-        $tipo->icono = "icono-cisterna.png";
+        $tipo->icono = "icono_abastecimiento_agua.png";
         $tipo->save();
 
     }

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cotizacionservicio;
+use App\Models\Empresa;
 use App\Models\Interesado;
 use App\Models\Servicio;
 use App\Models\Ubigeo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use PDF;
 class landingserviciosController extends Controller
 {
     public function index()
@@ -108,5 +110,13 @@ class landingserviciosController extends Controller
     {
 
         return view('LANDING.servicios.confirmacion_cotizacion', compact('confirmacion_cotizacion'));
+    }
+
+    public function getCotizacionServicioPdf(Cotizacionservicio $confirmacion_cotizacion)
+    {
+        $now = Carbon::now();
+        $empresa = Empresa::find(1);
+        $pdf = PDF::loadView('LANDING.servicios.reporte_cotizacion_servicio', ['confirmacion_cotizacion'=>$confirmacion_cotizacion, 'now'=>$now, 'empresa'=>$empresa]);
+        return $pdf->stream('PANCHITO-COTIZACION-'.$confirmacion_cotizacion->codigo.'.pdf');
     }
 }

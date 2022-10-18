@@ -20,7 +20,7 @@ class CreateServiciosTable extends Migration
             $table->string('imagen');
             $table->string('descripcion', 2000);
             $table->longText('contenido');
-            $table->longText('estado');
+            $table->string('estado');
             $table->unsignedBigInteger('tipo_id');
             $table->foreign('tipo_id')->references('id')->on('tipos');
             $table->timestamps();
