@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/css/datatables/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="/css/datatables/select.bootstrap5.min.css">
     <link rel="stylesheet" href="/css/datatables/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
 </head>
 <body class="bg-light">
     <!-- sidebar -->      

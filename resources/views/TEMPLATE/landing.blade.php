@@ -139,7 +139,7 @@
                         </div>
                         <hr>
                         <div class="card btn__corporativo">
-                            <a href="https://google.com" target="_blank" class="stretched-link"><i class="bi bi-mailbox2 icono__redes"></i></a>
+                            <a href="https://www.rentalyserviciospanchito.com:2096/" target="_blank" class="stretched-link"><i class="bi bi-mailbox2 icono__redes"></i></a>
                         </div>
                     </div>
                 </div>

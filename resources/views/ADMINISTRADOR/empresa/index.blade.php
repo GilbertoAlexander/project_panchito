@@ -3,7 +3,6 @@
 @section('title', 'EMPRESA')
 
 @section('css')
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 @endsection
 
 @section('content')
@@ -28,7 +27,7 @@
             <div class="swiper-wrapper">
                 @foreach($admin_empresa->images as $image)  
                     <div class="swiper-slide card shadow-sm">  
-                        <img src="{{$image->url}}" class="card-img slider" alt="...">
+                        <img src="{{$image->url}}" class="card-img slider" style="height:190px;width:100%;" alt="...">
                     </div>
                 @endforeach
             </div>
