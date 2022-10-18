@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCotizacionRequest;
 use App\Models\Agregado;
 use App\Models\Cotizacionagregado;
 use App\Models\Detallecotizacionagregado;
@@ -10,12 +11,8 @@ use App\Models\Interesado;
 use App\Models\Ubigeo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-<<<<<<< Updated upstream
 use PDF;
 
-=======
-use App\Http\Requests\StoreCotizacionRequest;
->>>>>>> Stashed changes
 class admincotizacionesagregadosController extends Controller
 {
     public function __construct()
@@ -71,6 +68,7 @@ class admincotizacionesagregadosController extends Controller
         $cotizacion->ubigeo_id = $request->input('ubigeo_id');
         $cotizacion->interesado_id = $request->input('interesado_ids');
         $cotizacion->costo_estimado = $request->input('costo_estimado');
+        $cotizacion->igv = $request->input('igv');
         $cotizacion->costo_afectado = $request->input('costo_afectado');
         $cotizacion->estado = 'Por atender';
         $cotizacion->save();

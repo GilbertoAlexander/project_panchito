@@ -23,6 +23,7 @@ class Cotizacionagregado extends Model
         'estado',
         'costo_estimado',
         'costo_afectado',
+        'igv',
         'interesado_id',
     ];
     

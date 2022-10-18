@@ -27,6 +27,7 @@ class CreateCotizacionagregadosTable extends Migration
             $table->integer('total');
             $table->string('estado');
             $table->string('costo_estimado')->nullable();
+            $table->string('igv');
             $table->string('costo_afectado')->nullable();
             $table->unsignedBigInteger('ubigeo_id')->nullable();
             $table->unsignedBigInteger('interesado_id')->nullable();

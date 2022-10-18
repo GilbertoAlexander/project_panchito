@@ -170,7 +170,7 @@ class admincotizacionesserviciosController extends Controller
     {
         $now = Carbon::now();
         $empresa = Empresa::find(1);
-        $pdf = PDF::loadView('LANDING.servicios.reporte_cotizacion_servicio', ['admin_cotizaciones_servicio'=>$admin_cotizaciones_servicio, 'now'=>$now, 'empresa'=>$empresa]);
+        $pdf = PDF::loadView('ADMINISTRADOR.cotizacion-servicios.reporte_cotizacion_servicio', ['admin_cotizaciones_servicio'=>$admin_cotizaciones_servicio, 'now'=>$now, 'empresa'=>$empresa]);
         return $pdf->download('PANCHITO-COTIZACION-'.$admin_cotizaciones_servicio->codigo.'.pdf');
     }
 }

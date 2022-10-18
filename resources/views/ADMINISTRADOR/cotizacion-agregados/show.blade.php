@@ -214,7 +214,7 @@
                     <div class="col-12 col-md-3 mb-2">
                         <label for="" class="fw-bold text-dark fw-bold">IGV(0.18)</label>
                         <select name="igv" id="igv__" class="form-select form-select-sm border-2 border-secondary">
-                            <option hidden selected>Seleccionar una opcion</option>
+                            <option value="{{$admin_cotizaciones_agregado->igv}}" hidden selected>Seleccionar una opcion</option>
                             <option value="0.18">Aplicar impuesto</option>
                             <option value="0">Exonerar impuesto</option>
                         </select>
