@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cotizacionservicio;
+use App\Models\Empresa;
 use App\Models\Interesado;
 use App\Models\Ubigeo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class admincotizacionesserviciosController extends Controller
 {
@@ -153,5 +155,13 @@ class admincotizacionesserviciosController extends Controller
 
         $admin_cotizaciones_servicio->delete();
         return redirect()->back()->with('delete', 'ok');
+    }
+
+    public function getCotizacionServicioFinalPdf(Cotizacionservicio $admin_cotizaciones_servicio)
+    {
+        $now = Carbon::now();
+        $empresa = Empresa::find(1);
+        $pdf = PDF::loadView('LANDING.servicios.reporte_cotizacion_servicio', ['admin_cotizaciones_servicio'=>$admin_cotizaciones_servicio, 'now'=>$now, 'empresa'=>$empresa]);
+        return $pdf->download('PANCHITO-COTIZACION-'.$admin_cotizaciones_servicio->codigo.'.pdf');
     }
 }

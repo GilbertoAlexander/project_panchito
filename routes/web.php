@@ -13,6 +13,7 @@ use App\Http\Controllers\adminserviciosController;
 use App\Http\Controllers\landingagregadosController;
 use App\Http\Controllers\landingController;
 use App\Http\Controllers\landingserviciosController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,14 +78,14 @@ use Illuminate\Support\Facades\Route;
     Route::resource('admin-interesados', admininteresadosController::class);
 
     Route::resource('admin-cotizaciones-servicios', admincotizacionesserviciosController::class);
-    Route::get('/admin-cotizaciones-cotizaciones/cotizacion-pdf/{admin_cotizaciones_cotizacione}', [admincotizacionesserviciosController::class, 'getCotizacionPdf'])->name('reporte_cotizacion.pdf');
+    Route::get('/admin-cotizaciones-servicios/cotizacion-pdf/{admin_cotizaciones_servicio}', [admincotizacionesserviciosController::class, 'getCotizacionServicioFinalPdf'])->name('reporte_cotizacion_servicio_final.pdf');
 
     Route::resource('admin-cotizaciones-agregados', admincotizacionesagregadosController::class);
     Route::get('/admin-cotizaciones-agregados/cotizacion-pdf/{admin_cotizaciones_agregado}', [admincotizacionesagregadosController::class, 'getCotizacionAgregadoFinalPdf'])->name('reporte_cotizacion_agregado_final.pdf');
 
     Route::resource('admin-correos', admincorreosController::class);
 // FIN ADMINISTRADOR
-
+  
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
