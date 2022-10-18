@@ -26,10 +26,8 @@
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
                 background-attachment: fixed;
-                /* margin-top: 1.5cm;
-                margin-left: 1.5cm;
-                margin-right: 1.5cm;
-                margin-bottom: 1.5cm; */
+                margin-top: 3.9cm;
+                margin-bottom: 3.9cm;
             }
 
             .text-primary
@@ -53,10 +51,10 @@
             }
 
             .content{
-                margin-top: 3.9cm;
+                /* margin-top: 3.9cm; */
                 margin-left: 1.0cm;
                 margin-right: 1.0cm;
-                margin-bottom: 3.9cm;
+                /* margin-bottom: 3.9cm; */
             }
 
             header {
@@ -374,10 +372,41 @@
                     </td>
                 </tr>
             </table>
-            
 
-            <p class="fw-bold text-uppercase">Información adicional:</p>
-            <p class="">{{$admin_cotizaciones_agregado->informacion_adicional}}</p>
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td class="border-top border-primary py-3">
+                            @if($admin_cotizaciones_agregado->igv == 0.18)
+                            NOTA: Nuestra oferta de precio incluye IGV (18%).
+                            @else
+                            NOTA: Nuestra oferta de precio no incluye IGV.
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="fw-bold text-uppercase">Información adicional:</p>
+                            <p class="">{{$admin_cotizaciones_agregado->observacion_adicional}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table style="width: 100%">
+                <tr>
+                    <td style="width: 30%">
+
+                    </td>
+                    <td class="text-center" style="width: 40%">
+                        <img src="images/firma.png" style="width: 140px" alt="">
+                        <p class="border-top border-dark">Atentamente</p>
+                    </td>
+                    <td style="width: 30%">
+
+                    </td>
+                </tr>
+            </table>
         </div>
     </body>
     </html>
