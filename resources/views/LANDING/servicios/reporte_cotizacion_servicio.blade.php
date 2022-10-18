@@ -1,5 +1,12 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>PANCHITO | SOLICITUD DE COTIZACIÓN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <style>
             @page {
                  margin: 0cm 0cm;
@@ -24,11 +31,21 @@
                 margin-bottom: 1.5cm; */
             }
 
+            .text-primary
+            {
+                color: #0048A4 !important;
+            }
+
+            .text-secondary
+            {
+                color: #FF4A17 !important;
+            }
+
             .content{
-                margin-top: 1.5cm;
-                margin-left: 0.4cm;
-                margin-right: 0.4cm;
-                margin-bottom: 0.8cm;
+                margin-top: 3.9cm;
+                margin-left: 1.0cm;
+                margin-right: 1.0cm;
+                margin-bottom: 3.9cm;
             }
 
             header {
@@ -39,7 +56,7 @@
                 top: 0cm;
                 left: 0cm;
                 right: 0cm;
-                height: 3.5cm;
+                height: 3.9cm;
             }
 
             footer {
@@ -61,17 +78,14 @@
         </header>
 
         <footer>
-            {{-- Copyright &copy; <?php echo date("Y");?>  --}}
+            
         </footer>
 
-        <!-- Wrap the content of your PDF inside a main tag -->
-        <main>
-            <p style="page-break-after: always;">
-                Content Page 1
+        
+        <div class="content">
+            <p class="text-center fw-bold text-primary" style="font-size: 20px">
+                SOLICITUD DE COTIZACIÓN
             </p>
-            <p style="page-break-after: never;">
-                Content Page 2
-            </p>
-        </main>
+        </div>
     </body>
 </html>
