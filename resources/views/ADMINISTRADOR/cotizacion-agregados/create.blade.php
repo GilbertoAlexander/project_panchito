@@ -221,7 +221,7 @@
                 <div class="col-12 col-md-3 mb-2">
                     <label for="" class="fw-bold text-secondary fw-bold">Estado</label>
                     <select name="estado" id="estado" class="form-select form-select-sm border-2 border-secondary">
-                        <option value="Por atender">Por atender</option>
+                        <option value="Por atender" selected>Por atender</option>
                         <option value="Seguimiento">Seguimiento</option>
                         <option value="Atendido">Atendido</option>
                     </select>

@@ -176,7 +176,7 @@
                             <div class="mb-3">
                                 <label for="cantidad_requerida_id" class="form-label">Cantidad requerida<span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control fw-light" id="cantidad_requerida_id" name="cantidad_requerida" value="100">
+                                    <input type="number" class="form-control fw-light" id="cantidad_requerida_id" name="cantidad_requerida">
                                     <span class="input-group-text small" style="font-size: 13px;" id="basic-addon1">LITROS</span>
                                 </div>
                             </div>

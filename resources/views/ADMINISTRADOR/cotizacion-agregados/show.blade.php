@@ -202,9 +202,9 @@
                     <div class="col-12 col-md-3 mb-2">
                         <label for="" class="fw-bold text-secondary fw-bold">Estado</label>
                         <select name="estado" id="estado" class="form-select form-select-sm border-2 border-secondary">
-                            <option value="Por atender">Por atender</option>
-                            <option value="Seguimiento">Seguimiento</option>
-                            <option value="Atendido">Atendido</option>
+                            <option @if($admin_cotizaciones_agregado->estado == 'Por atender') selected @endif value="Por atender">Por atender</option>
+                            <option @if($admin_cotizaciones_agregado->estado == 'Seguimiento') selected @endif value="Seguimiento">Seguimiento</option>
+                            <option @if($admin_cotizaciones_agregado->estado == 'Atendido') selected @endif value="Atendido">Atendido</option>
                         </select>
                     </div>
                     <div class="col-12 col-md-3 mb-2">

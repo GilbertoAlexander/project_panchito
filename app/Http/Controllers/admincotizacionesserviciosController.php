@@ -67,6 +67,10 @@ class admincotizacionesserviciosController extends Controller
             $cotizacion->igv = $request->input('igv');
             $cotizacion->costo_afectado = $request->input('costo_afectado');
             $cotizacion->save();
+
+            $interesado_update = new Interesado();
+            $array_movientos = ['interesado_id' => $request->input('interesado_ids'),'estado' => $request->input('estado'),'tipo_estado' => 'Aprobado'];
+            $interesado_update->update_estado($array_movientos);
         }
         if($request->input('tipo_ids') == 2){
             $cotizacion = new Cotizacionservicio();
@@ -83,6 +87,10 @@ class admincotizacionesserviciosController extends Controller
             $cotizacion->igv = $request->input('igv');
             $cotizacion->costo_afectado = $request->input('costo_afectado');
             $cotizacion->save();
+
+            $interesado_update = new Interesado();
+            $array_movientos = ['interesado_id' => $request->input('interesado_ids'),'estado' => $request->input('estado'),'tipo_estado' => 'Aprobado'];
+            $interesado_update->update_estado($array_movientos);
         }
         if($request->input('tipo_ids') == 3){
             $cotizacion = new Cotizacionservicio();
@@ -99,6 +107,10 @@ class admincotizacionesserviciosController extends Controller
             $cotizacion->igv = $request->input('igv');
             $cotizacion->costo_afectado = $request->input('costo_afectado');
             $cotizacion->save();
+
+            $interesado_update = new Interesado();
+            $array_movientos = ['interesado_id' => $request->input('interesado_ids'),'estado' => $request->input('estado'),'tipo_estado' => 'Aprobado'];
+            $interesado_update->update_estado($array_movientos);
         }
 
         return redirect()->route('admin-cotizaciones-servicios.index')->with('addcotizacion', 'ok');

@@ -71,8 +71,12 @@ class admincotizacionesagregadosController extends Controller
         $cotizacion->costo_estimado = $request->input('costo_estimado');
         $cotizacion->igv = $request->input('igv');
         $cotizacion->costo_afectado = $request->input('costo_afectado');
-        $cotizacion->estado = 'Por atender';
+        $cotizacion->estado = $request->input('estado');
         $cotizacion->save();
+
+        $interesado_update = new Interesado();
+        $array_movientos = ['interesado_id' => $request->input('interesado_id'),'estado' => $request->input('estado'),'tipo_estado' => 'Aprobado'];
+        $interesado_update->update_estado($array_movientos);
 
         $id_agregado = $request->input('id_agregado');
         $cantidad = $request->input('cantidad');
