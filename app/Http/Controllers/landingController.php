@@ -48,6 +48,7 @@ class landingController extends Controller
         $correo->celular = $request->input('celular');
         $correo->mensaje = $request->input('mensaje');
         $correo->save();
+        
         return redirect()->back()->with('addcorreo', 'ok');
     }
     public function avisolegal(){

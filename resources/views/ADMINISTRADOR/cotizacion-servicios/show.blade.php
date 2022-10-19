@@ -268,7 +268,11 @@
 
     <div class="py-3 text-end">
         <a href="{{url('admin-cotizaciones-servicios')}}" class="btn btn-outline-secondary">Volver</a>
-        <button typé="submit" class="btn btn-primary px-5">Actualizar</button>
+        @if($admin_cotizaciones_servicio->estado == 'Atendido')
+            <button typé="submit" disabled class="btn btn-primary px-5">Actualizar</button>
+        @else
+            <button typé="submit" class="btn btn-primary px-5">Actualizar</button>
+        @endif
     </div>
     </form>
     {{-- Fin contenido --}}

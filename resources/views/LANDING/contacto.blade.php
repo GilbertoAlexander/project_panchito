@@ -83,4 +83,59 @@
 @endsection
 
 @section('js')
+<!--sweet alert actualizar-->
+    @if(session('addcorreo') == 'ok')
+    <script>
+        Swal.fire({
+        icon: 'success',
+        confirmButtonColor: '#2533AD',
+        title: '¡Éxito!',
+        text: 'Correo enviado correctamente',
+        })
+    </script>
+    @endif
+    @if(session('update') == 'ok')
+        <script>
+            Swal.fire({
+            icon: 'success',
+            confirmButtonColor: '#1C3146',
+            title: '¡Actualizado!',
+            text: 'Registro actualizado correctamente',
+            })
+        </script>
+    @endif
+
+    <!--sweet alert eliminar-->
+    @if(session('delete') == 'ok')
+        <script>
+        Swal.fire({
+            icon: 'success',
+            confirmButtonColor: '#1C3146',
+            title: '¡Eliminado!',
+            text: 'Registro eliminado correctamente',
+            })
+        </script>
+    @endif
+    <script>
+        $('.form-delete').submit(function(e){
+            e.preventDefault();
+
+            Swal.fire({
+            title: '¿Estas seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#1C3146',
+            cancelButtonColor: '#FF9C00',
+            confirmButtonText: '¡Sí, eliminar!',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                
+            this.submit();
+            }
+            })
+
+        });
+    </script>
 @endsection

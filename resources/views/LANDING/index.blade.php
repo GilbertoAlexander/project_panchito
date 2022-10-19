@@ -89,7 +89,7 @@
                                 <div class="card-body text-center">
                                     <p class="mb-0 text-uppercase fw-bold text-primary">{{$agregado->name}}</p>
                                     <p class="fw-light mb-2 parrafo_4" align="justify">{{$agregado->descripcion}}</p>
-                                    <a href="{{url("agregado/$agregado->slug")}}" class="btn btn-outline-primary btn-sm">Ver detalles</a>
+                                    <a href="{{url("agregados/$agregado->slug")}}" class="btn btn-outline-primary btn-sm">Ver detalles</a>
                                 </div>
                             </div>
                             @endforeach
@@ -157,7 +157,7 @@
                     <div class="text-center align-self-center" data-aos="fade-left" data-aos-duration="1000">
                         <p class="fw-bold fs-1 text-secondary">TRABAJEMOS JUNTOS EN SU PRÓXIMO PROYECTO</p>
                         <p class="text-dark fs-4">Un equipo de profesionales siempre estará disponible para orientarte en las decisiones de tus proyectos tecnológicos.</p>
-                        <a href="{{url('contactenos')}}" class="btn btn-primary px-5">¡VAMOS!</a>
+                        <a href="{{url('contacto')}}" class="btn btn-primary px-5">¡VAMOS!</a>
                     </div>
                 </div>
             </div>

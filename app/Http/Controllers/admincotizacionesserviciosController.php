@@ -138,8 +138,8 @@ class admincotizacionesserviciosController extends Controller
         // die();
 
         $admin_cotizaciones_servicio['estado'] = $request->input('estado');
-        $admin_cotizaciones_agregado['costo_estimado'] = $request->input('costo_estimado');
-        $admin_cotizaciones_agregado['costo_afectado'] = $request->input('costo_afectado');
+        $admin_cotizaciones_servicio['costo_estimado'] = $request->input('costo_estimado');
+        $admin_cotizaciones_servicio['costo_afectado'] = $request->input('costo_afectado');
         $admin_cotizaciones_servicio->save();
 
         $interesado_update = new Interesado();

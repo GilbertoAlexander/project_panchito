@@ -33,13 +33,13 @@
                                 <label for="" class="form-label">Foto</label>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <div class="card text-center imagecard rounded mb-0" style="width: 145px; height: 145px">  
-                                        <label for="uploadImage1" class="">
-                                            <img for="uploadImage1" id="uploadPreview1" alt="" class=" rounded" width="100%" height="140" src="/images/icon-photo.png">   
+                                        <label for="uploadImagexy" class="">
+                                            <img for="uploadImagexy" id="uploadPreviewxy" alt="" class=" rounded" width="100%" height="140" src="/images/icon-photo.png">   
                                         </label>
                                     </div>
                                 </div>
                                 
-                                <input id="uploadImage1" type="file" name="imagen" data-id="1" onchange="previewImage1(1);" hidden/>
+                                <input id="uploadImagexy" type="file" name="imagen" data-id="1" onchange="previewImage1('xy');" hidden/>
                                 @error('imagen')
                                     <small class="text-danger">{{$message}}</small>
                                 @enderror
