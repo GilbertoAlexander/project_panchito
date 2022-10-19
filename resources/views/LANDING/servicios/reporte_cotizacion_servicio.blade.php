@@ -151,7 +151,7 @@
                             <div class="info_empresa">
                                 <div class="direccion">
                                     <img src="images/icono_direccion.png" class="icono_i" alt="">
-                                    <a href="#" class="text-decoration-none">
+                                    <a href="https://www.google.com/maps/place/17%C2%B011'54.9%22S+70%C2%B056'44.7%22W/@-17.1985564,-70.94578,20.74z/data=!4m5!3m4!1s0x0:0x9fc05d3a372082b1!8m2!3d-17.1985815!4d-70.9457375?hl=es" class="text-decoration-none">
                                         <span>{{$empresa->direccion}}</span>
                                     </a>
                                 </div>

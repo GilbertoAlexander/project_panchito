@@ -61,72 +61,76 @@
                     @endforeach
                 </div>
 
-                <div class="">
-                    <p class="text-center mb-3 fs-3">TODAS NUESTRAS UNIDADES CUENTAN CON</p>
-                    <div class="row justify-content-center">
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
-                            <div class="card h-100 border-secondary shadow">
-                                <div class="card-body text-center">
-                                    <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
-                                        <img src="/images/iconos_transporte/conductor.png" style="width: 70px; height: 70px" alt="">
+                @if($servicios_alquiler->count() == 0)
+                    
+                @else
+                    <div class="">
+                        <p class="text-center mb-3 fs-3">TODAS NUESTRAS UNIDADES CUENTAN CON</p>
+                        <div class="row justify-content-center">
+                            {{-- <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
+                                <div class="card h-100 border-secondary shadow">
+                                    <div class="card-body text-center">
+                                        <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
+                                            <img src="/images/iconos_transporte/conductor.png" style="width: 70px; height: 70px" alt="">
+                                        </div>
+                                        <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Chofer capacitado</p>
                                     </div>
-                                    <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Chofer capacitado</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
-                            <div class="card h-100 border-secondary shadow">
-                                <div class="card-body text-center">
-                                    <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
-                                        <img src="/images/iconos_transporte/hoja_de_papel.png" style="width: 70px; height: 70px" alt="">
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
+                                <div class="card h-100 border-secondary shadow">
+                                    <div class="card-body text-center">
+                                        <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
+                                            <img src="/images/iconos_transporte/hoja_de_papel.png" style="width: 70px; height: 70px" alt="">
+                                        </div>
+                                        <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Soat vigente</p>
                                     </div>
-                                    <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Soat vigente</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
-                            <div class="card h-100 border-secondary shadow">
-                                <div class="card-body text-center">
-                                    <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
-                                        <img src="/images/iconos_transporte/aire_acondicionado.png" style="width: 70px; height: 70px" alt="">
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
+                                <div class="card h-100 border-secondary shadow">
+                                    <div class="card-body text-center">
+                                        <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
+                                            <img src="/images/iconos_transporte/aire_acondicionado.png" style="width: 70px; height: 70px" alt="">
+                                        </div>
+                                        <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Aire acondicionado</p>
                                     </div>
-                                    <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Aire acondicionado</p>
+                                </div>
+                            </div> --}}
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
+                                <div class="card h-100 border-secondary shadow">
+                                    <div class="card-body text-center">
+                                        <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
+                                            <img src="/images/iconos_transporte/escudo_seguro.png" style="width: 70px; height: 70px" alt="">
+                                        </div>
+                                        <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Seguridad</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
-                            <div class="card h-100 border-secondary shadow">
-                                <div class="card-body text-center">
-                                    <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
-                                        <img src="/images/iconos_transporte/escudo_seguro.png" style="width: 70px; height: 70px" alt="">
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
+                                <div class="card h-100 border-secondary shadow">
+                                    <div class="card-body text-center">
+                                        <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
+                                            <img src="/images/iconos_transporte/sctr.png" style="width: 70px; height: 70px" alt="">
+                                        </div>
+                                        <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Personal con SCTR</p>
                                     </div>
-                                    <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Seguridad</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
-                            <div class="card h-100 border-secondary shadow">
-                                <div class="card-body text-center">
-                                    <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
-                                        <img src="/images/iconos_transporte/sctr.png" style="width: 70px; height: 70px" alt="">
+                            
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
+                                <div class="card h-100 border-secondary shadow">
+                                    <div class="card-body text-center">
+                                        <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
+                                            <img src="/images/iconos_transporte/gps.png" style="width: 70px; height: 70px" alt="">
+                                        </div>
+                                        <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">GPS</p>
                                     </div>
-                                    <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Personal con SCTR</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-2 my-2 my-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
-                            <div class="card h-100 border-secondary shadow">
-                                <div class="card-body text-center">
-                                    <div class="imagen bg-primary rounded-circle mx-auto d-flex justify-content-center align-items-center" style="width: 100px; height: 100px">
-                                        <img src="/images/iconos_transporte/sctr.png" style="width: 70px; height: 70px" alt="">
-                                    </div>
-                                    <p class="fw-bold text-uppercase mb-0 mt-2" style="font-size:14px">Personal con SCTR</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <!-- seccion proyectos -->

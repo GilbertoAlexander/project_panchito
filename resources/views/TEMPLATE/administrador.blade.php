@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMINISTRADOR</title>
+    <title>PANCHITO | @yield('title')</title>
+    <link rel="icon" href="/images/icon.png">
     <link rel="stylesheet" href="/css/panchito_web.css">
     <link rel="stylesheet" href="/css/administrador.css">
     <link rel="stylesheet" href="/css/datatables/dataTables.bootstrap5.min.css">

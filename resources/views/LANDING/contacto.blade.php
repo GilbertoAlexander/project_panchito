@@ -75,7 +75,7 @@
                     </form>
                 </div>
                 <div class="col-12 col-md-6 col-lg-7">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3880.91167936823!2d-76.13471848534968!3d-13.417793790564263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91101689e5b38adf%3A0xee4951083d82d8d8!2sPlaza%20de%20Armas%20de%20Chincha!5e0!3m2!1ses-419!2spe!4v1665621216957!5m2!1ses-419!2spe" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d285.33805083984333!2d-70.94578001902148!3d-17.198556448809814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9fc05d3a372082b1!2zMTfCsDExJzU0LjkiUyA3MMKwNTYnNDQuNyJX!5e0!3m2!1ses!2spe!4v1666145541350!5m2!1ses!2spe" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

@@ -6,7 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URB. LAS PALMERAS | INICIAR SESIÓN</title>
+    <title>PANCHITO | INICIAR SESIÓN</title>
+    <link rel="icon" href="/images/icon.png">
     <link rel="stylesheet" href="/css/panchito_web.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="icon" href="/images/LOGO-MIN.png">
