@@ -17,6 +17,7 @@ class Cotizacionservicio extends Model
         'horas_requeridas',
         'operador_maquinaria',
         'informacion_adicional',
+        'observacion_adicional',
         'direccion',
         'fecha_entrega',
         'cantidad_requerida',
