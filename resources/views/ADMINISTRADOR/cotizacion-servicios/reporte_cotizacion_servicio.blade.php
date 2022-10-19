@@ -229,6 +229,15 @@
                         <span>{{$admin_cotizaciones_servicio->interesado->celular}}</span>
                     </td>
                 </tr>
+
+                <tr>
+                    <td class="py-2" style="width: 30%">
+                        <p class="mb-0">TIPO DE SERVICIO:</p>
+                    </td>
+                    <td class="py-2" style="width: 70%">
+                        <span>{{$admin_cotizaciones_servicio->interesado->servicio->tipo->name}}</span>
+                    </td>
+                </tr>
             </table>
             <p class="fw-bold text-uppercase">Información de cotización:</p>
             <table class="table mb-3" style="width: 100%; font-size:14px">
@@ -283,15 +292,19 @@
                             <p class="mb-0">{!!$admin_cotizaciones_servicio->interesado->servicio->contenido!!}</p>
                         </td>
                         <td class="border border-start-0 border-primary px-2 py-1"">
-                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1)
                                 <span>{{$admin_cotizaciones_servicio->horas_requeridas}}</span>  
+                            @elseif($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                                <span>1</span>
                             @else
                                 <span>{{$admin_cotizaciones_servicio->cantidad_requerida}}</span>  
                             @endif
                         </td>
                         <td class="border border-start-0 border-primary px-2 py-1">
-                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1)
                                 <span>HORAS</span>  
+                            @elseif($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                                <span>Unidad</span>
                             @else
                                 <span>M<sup>3</sup></span>  
                             @endif
@@ -300,8 +313,10 @@
                             <span>{{$admin_cotizaciones_servicio->interesado->servicio->precio}}</span>
                         </td>
                         <td class="border border-start-0 border-primary px-2 py-1">
-                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2) 
+                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1) 
                                 {{$admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->horas_requeridas}}
+                            @elseif($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                                <span>{{$admin_cotizaciones_servicio->interesado->servicio->precio}}</span>
                             @else
                                 {{$admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->cantidad_requerida}}
                             @endif
@@ -317,8 +332,10 @@
                             SUBTOTAL
                         </td>
                         <td class="border border-start-0 border-primary px-2 py-1">
-                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2) 
+                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1) 
                                 {{$admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->horas_requeridas}}
+                            @elseif($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                                <span>{{$admin_cotizaciones_servicio->interesado->servicio->precio}}</span>
                             @else
                                 {{$admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->cantidad_requerida}}
                             @endif
@@ -333,8 +350,10 @@
                         </td>
                         <td class="border border-start-0 border-primary px-2 py-1">
                             @if($admin_cotizaciones_servicio->igv == 0.18)
-                                @if ($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                                @if ($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1)
                                     {{($admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->horas_requeridas)*0.18}}
+                                @elseif($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                                    <span>{{$admin_cotizaciones_servicio->costo_estimado*0.18}}</span>
                                 @else
                                     {{($admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->cantidad_requerida)*0.18}}
                                 @endif

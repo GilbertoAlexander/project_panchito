@@ -207,6 +207,12 @@
                     new_costo = new_costo.toFixed(2);
                     $('#costo_estimado').val(new_costo);
                 };
+            }if(serv == 2){
+                horas_requeridas_id.oninput = function() {
+                    var new_costo = horas_requeridas_id.value*_precio;
+                    new_costo = new_costo.toFixed(2);
+                    $('#costo_estimado').val(new_costo);
+                };
             }else{
                 $('#costo_estimado').val(_precio);
             }

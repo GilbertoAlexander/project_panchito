@@ -276,6 +276,11 @@
                     $('#show_alquiler').show();
                     $('#show_proyecto').hide();
                     $('#show_agua').hide();
+                    horas_requeridas_id.oninput = function() {
+                        var new_costo = horas_requeridas_id.value*cliente[6];
+                        new_costo = new_costo.toFixed(2);
+                        $('#costo_estimado').val(new_costo);
+                    };
                     $('#costo_estimado').val(cliente[6]);
                 }
                 if(cliente[3] == 2){

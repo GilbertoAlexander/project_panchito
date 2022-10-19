@@ -29,7 +29,7 @@
         <div class="text-center">
             <p class="text-center text-white h1 fw-bold text-uppercase">Transporte y Servicios Panchito S.R.L.</p>  
             <p class="text-white text-center mb-1 d-none d-md-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla recusandae, dolorem rem excepturi autem a, culpa architecto minus facilis, esse reiciendis est laborum nisi dolor dignissimos eius corrupti in accusantium.</p>
-            <a href="#" class="btn btn-secondary text-center text-white">Conoce más de nosotros</a>
+            <a href="{{url("/nosotros")}}" class="btn btn-secondary text-center text-white">Conoce más de nosotros</a>
         </div>       
     </div>
 
