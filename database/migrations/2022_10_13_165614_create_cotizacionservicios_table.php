@@ -22,9 +22,11 @@ class CreateCotizacionserviciosTable extends Migration
             $table->string('horas_requeridas')->nullable();
             $table->string('operador_maquinaria')->nullable();
             $table->string('informacion_adicional', 2000)->nullable();
+            $table->string('observacion_adicional', 2000)->nullable();
             $table->string('direccion')->nullable();
             $table->date('fecha_entrega')->nullable();
             $table->string('cantidad_requerida')->nullable();
+            $table->string('igv')->nullable();
             $table->string('estado');
             $table->string('costo_estimado')->nullable();
             $table->string('costo_afectado')->nullable();

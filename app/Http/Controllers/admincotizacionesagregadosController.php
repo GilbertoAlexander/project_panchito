@@ -12,6 +12,8 @@ use App\Models\Ubigeo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
+use App\Http\Requests\StoreCotizacionRequest;
+
 
 class admincotizacionesagregadosController extends Controller
 {

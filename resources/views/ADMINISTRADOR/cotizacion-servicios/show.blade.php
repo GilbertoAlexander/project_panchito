@@ -111,6 +111,14 @@
                                     <p class="fw-normal mb-0">{{$admin_cotizaciones_servicio->informacion_adicional}}</p>
                                 </div>
                             </div>
+                            <div class="card mb-3">
+                                <div class="card-header py-1">
+                                    <p class="small text-uppercase mb-0">Observacion adicional</p>
+                                </div>
+                                <div class="card-body py-1">
+                                    <textarea name="observacion_adicional" class="form-control" id="" rows="2">{{$admin_cotizaciones_servicio->observacion_adicional}}</textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>  
                 @endif

@@ -138,8 +138,11 @@ class admincotizacionesserviciosController extends Controller
         // die();
 
         $admin_cotizaciones_servicio['estado'] = $request->input('estado');
-        $admin_cotizaciones_servicio['costo_estimado'] = $request->input('costo_estimado');
-        $admin_cotizaciones_servicio['costo_afectado'] = $request->input('costo_afectado');
+        $admin_cotizaciones_agregado['costo_estimado'] = $request->input('costo_estimado');
+        $admin_cotizaciones_agregado['costo_afectado'] = $request->input('costo_afectado');
+        $admin_cotizaciones_agregado['igv'] = $request->input('igv');
+        $admin_cotizaciones_agregado['observacion_adicional'] = $request->input('observacion_adicional');
+
         $admin_cotizaciones_servicio->save();
 
         $interesado_update = new Interesado();
@@ -171,6 +174,7 @@ class admincotizacionesserviciosController extends Controller
         $now = Carbon::now();
         $empresa = Empresa::find(1);
         $pdf = PDF::loadView('ADMINISTRADOR.cotizacion-servicios.reporte_cotizacion_servicio', ['admin_cotizaciones_servicio'=>$admin_cotizaciones_servicio, 'now'=>$now, 'empresa'=>$empresa]);
-        return $pdf->download('PANCHITO-COTIZACION-'.$admin_cotizaciones_servicio->codigo.'.pdf');
+        return $pdf->stream('PANCHITO-COTIZACION-'.$admin_cotizaciones_servicio->codigo.'.pdf');
+
     }
 }

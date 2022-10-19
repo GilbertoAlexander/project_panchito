@@ -40,6 +40,16 @@
                 color: #FF4A17 !important;
             }
 
+            .bg-primary
+            {
+                background-color: #0048A4 !important;
+            }
+
+            .border-primary
+            {
+                border-color: #0048A4 !important;
+            }
+
             .content{
                 /* margin-top: 3.9cm; */
                 margin-left: 1.0cm;
@@ -191,7 +201,7 @@
                 </tr>
             </table>
             <p class="text-end">{{$admin_cotizaciones_servicio->created_at->isoFormat('dddd D \d\e MMMM \d\e\l Y')}}</p>
-            <p class="fw-bold text-uppercase">Solicitante:</p>
+            <p class="fw-bold text-uppercase mb-0">Solicitante:</p>
             <table class="table" style="width: 100%; font-size:14px">
                 <tr>
                     <td class="py-2" style="width: 30%">
@@ -219,149 +229,191 @@
                         <span>{{$admin_cotizaciones_servicio->interesado->celular}}</span>
                     </td>
                 </tr>
+            </table>
+            <p class="fw-bold text-uppercase">Información de cotización:</p>
+            <table class="table mb-3" style="width: 100%; font-size:14px">
+                <thead class="bg-primary border border-primary border-bottom-0" style="color: #FFFFFF">
+                    <th class="py-1 px-2 border-end border-light">
+                        EMPRESA
+                    </th>
+                    <th class="py-1 px-2">
+                        FECHA DE ENTREGA
+                    </th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border border-primary px-2 py-1" style="width: 60%">
+                            <span>{{$admin_cotizaciones_servicio->empresa_solicitante}}</span>
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1" style="width: 40%">
+                            <span>{{$admin_cotizaciones_servicio->fecha_ejecucion}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table mb-3" style="width: 100%; font-size:14px">
+                <thead class="bg-primary border border-primary border-bottom-0" style="color: #FFFFFF">
+                    <th class="py-1 px-2 border-end border-light" style="width:5%">
+                        N°
+                    </th>
+                    <th class="py-1 px-2" style="width: 50%">
+                        DESCRIPCIÓN
+                    </th>
+                    <th class="py-1 px-2" style="width: 15%">
+                        CANT.
+                    </th>
+                    <th class="py-1 px-2" style="width: 10%">
+                        UND. MEDIDA
+                    </th>
+                    <th class="py-1 px-2" style="width: 10%">
+                        PRECIO
+                    </th>
+                    <th class="py-1 px-2" style="width: 10%">
+                        SUBTOTAL
+                    </th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border border-primary px-2 py-1">
+                            <span>1</span>
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            <span>{{$admin_cotizaciones_servicio->interesado->servicio->name}}</span>
+                            <p class="mb-0">{!!$admin_cotizaciones_servicio->interesado->servicio->contenido!!}</p>
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1"">
+                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                                <span>{{$admin_cotizaciones_servicio->horas_requeridas}}</span>  
+                            @else
+                                <span>{{$admin_cotizaciones_servicio->cantidad_requerida}}</span>  
+                            @endif
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                                <span>HORAS</span>  
+                            @else
+                                <span>M<sup>3</sup></span>  
+                            @endif
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            <span>{{$admin_cotizaciones_servicio->interesado->servicio->precio}}</span>
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2) 
+                                {{$admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->horas_requeridas}}
+                            @else
+                                {{$admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->cantidad_requerida}}
+                            @endif
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="border border-primary px-2 py-1" colspan="4">
+                            <span style="color: transparent;"></span>
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            SUBTOTAL
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2) 
+                                {{$admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->horas_requeridas}}
+                            @else
+                                {{$admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->cantidad_requerida}}
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-primary px-2 py-1" colspan="4">
+                            <span style="color: transparent;"></span>
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            I.G.V.
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            @if($admin_cotizaciones_servicio->igv == 0.18)
+                                @if ($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 1 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2)
+                                    {{($admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->horas_requeridas)*0.18}}
+                                @else
+                                    {{($admin_cotizaciones_servicio->interesado->servicio->precio*$admin_cotizaciones_servicio->cantidad_requerida)*0.18}}
+                                @endif
+                            @else
+                                0.00
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-primary px-2 py-1" colspan="4">
+                            <span style="color: transparent;"></span>
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            TOTAL
+                        </td>
+                        <td class="border border-start-0 border-primary px-2 py-1">
+                            {{$admin_cotizaciones_servicio->costo_afectado}}
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            @if($admin_cotizaciones_servicio->interesado->servicio->tipo_id == 2 || $admin_cotizaciones_servicio->interesado->servicio->tipo_id == 3)
+                <table class="table mb-3" style="width: 100%; font-size:14px">
+                    <thead class="bg-primary border border-primary border-bottom-0" style="color: #FFFFFF">
+                        <th class="py-1 px-2 border-end border-light">
+                            DIRECCIÓN
+                        </th>
+                        <th class="py-1 px-2">
+                            D.P.D
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-primary px-2 py-1" style="width: 50%">
+                                <span>{{$admin_cotizaciones_servicio->empresa_solicitante}}</span>
+                            </td>
+                            <td class="border border-start-0 border-primary px-2 py-1" style="width: 50%">
+                                <span>{{$admin_cotizaciones_servicio->ubigeo->departamento.' - '.$admin_cotizaciones_servicio->ubigeo->provincia.' - '.$admin_cotizaciones_servicio->ubigeo->distrito}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            @endif
+
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td class="border-top border-primary py-3">
+                            @if($admin_cotizaciones_servicio->igv == 0.18)
+                            NOTA: Nuestra oferta de precio incluye IGV (18%).
+                            @else
+                            NOTA: Nuestra oferta de precio no incluye IGV.
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="fw-bold text-uppercase">Información adicional:</p>
+                            <p class="">{{$admin_cotizaciones_servicio->observacion_adicional}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table style="width: 100%">
                 <tr>
-                    <td class="py-2" style="width: 30%">
-                        <p class="mb-0">SERVICIO REQUERIDO:</p>
+                    <td style="width: 30%">
+
                     </td>
-                    <td class="py-2" style="width: 70%">
-                        <span>{{$admin_cotizaciones_servicio->interesado->servicio->name}}</span>
+                    <td class="text-center" style="width: 40%">
+                        <img src="images/firma.png" style="width: 140px" alt="">
+                        <p class="border-top border-dark">Atentamente</p>
+                    </td>
+                    <td style="width: 30%">
+
                     </td>
                 </tr>
             </table>
-            @if($admin_cotizaciones_servicio->interesado->servicio->tipo->id == 1)
-                <p class="fw-bold text-uppercase">Información de cotización:</p>
-                <table class="table" style="width: 100%; font-size:14px">
-                    <tr>
-                        <td class="border border-end-0 border-primary px-2 py-2" style="width: 30%">
-                            <p class="mb-0">EMPRESA</p>
-                        </td>
-                        <td class="border border-start-0 border-primary px-2 py-2" style="width: 70%">
-                            <span>{{$admin_cotizaciones_servicio->empresa_solicitante}}</span>
-                        </td>
-                    </tr>
-                </table>
-                <table class="table" style="width: 100%; font-size:14px">
-                    <tr>
-                        <td class="ps-2 py-2 border border-end-0 border-primary" style="width: 18%">
-                            <p class="mb-0">FEC. EJECUCIÓN:</p>
-                        </td>
-                        <td class="ps-2 py-2 border border-start-0 border-primary" style="width: 15%">
-                            <span>{{$admin_cotizaciones_servicio->fecha_ejecucion}}</span>
-                        </td>
-
-                        <td class="ps-2 py-2 border border-end-0 border-primary" style="width: 18%">
-                            <p class="mb-0">H. REQUERIDAS:</p>
-                        </td>
-                        <td class="ps-2 py-2 border border-start-0 border-primary" style="width: 15%">
-                            <span>{{$admin_cotizaciones_servicio->horas_requeridas}} HORAS</span>
-                        </td>
-
-                        <td class="ps-2 py-2 border border-end-0 border-primary" style="width: 18%">
-                            <p class="mb-0">OP. MAQUINARIA:</p>
-                        </td>
-                        <td class="ps-2 py-2 border border-start-0 border-primary" style="width: 15%">
-                            <span>{{$admin_cotizaciones_servicio->operador_maquinaria}}</span>
-                        </td>
-                    </tr>
-                </table>
-
-                <p class="fw-bold text-uppercase">Descripción:</p>
-                <p class="fw-bold text-secondary mb-1 text-uppercase">{{$admin_cotizaciones_servicio->interesado->servicio->name}}</p>
-                <p class="">{!!$admin_cotizaciones_servicio->interesado->servicio->contenido!!}</p>
-
-                <p class="fw-bold text-uppercase">Información adicional:</p>
-                <p class="">{{$admin_cotizaciones_servicio->informacion_adicional}}</p>
-            @endif
-            @if($admin_cotizaciones_servicio->interesado->servicio->tipo->id == 2)
-                <p class="fw-bold text-uppercase">Información de cotización:</p>
-                <table class="table" style="width: 100%; font-size:14px">
-                    <tr>
-                        <td class="border border-end-0 border-primary px-2 py-2" style="width: 15%">
-                            <p class="mb-0">EMPRESA</p>
-                            <p class="mb-0"><span>{{$admin_cotizaciones_servicio->empresa_solicitante}}</span></p>
-                        </td>
-                        
-                        <td class="border border-end-0 border-primary px-2 py-2" style="width: 15%">
-                            <p class="mb-0">DIRECCION</p>
-                            <span>{{$admin_cotizaciones_servicio->direccion}}</span>
-                        </td>
-                        
-                        <td class="ps-2 py-2 border border-end-0 border-primary" style="width: 15%">
-                            <p class="mb-0">FEC. EJECUCIÓN:</p>
-                            <span class="">{{$admin_cotizaciones_servicio->fecha_ejecucion}}</span>
-                        </td>
-                        <td class="ps-2 py-2 border border-start-0 border-primary" style="width: 1%">
-                        </td>
-                    </tr>
-                </table>
-                <table class="table" style="width: 100%; font-size:14px">
-                    <tr>
-                        
-
-                        <td class="ps-2 py-2 border border-end-0 border-primary" style="width: 18%">
-                            <p class="mb-0">DEPARTAMENTO - PROVINCIA - DISTRITO:</p>
-                        </td>
-                        <td class="ps-2 py-2 border border-start-0 border-primary" style="width: 15%">
-                            <span>{{$admin_cotizaciones_servicio->ubigeo_id?$admin_cotizaciones_servicio->ubigeo->departamento.'-'.$admin_cotizaciones_servicio->ubigeo->provincia.'-'.$admin_cotizaciones_servicio->ubigeo->distrito:'No requerido'}}</span>
-                        </td>
-                    </tr>
-                </table>
-                <p class="fw-bold text-uppercase">Descripción:</p>
-                <p class="fw-bold text-secondary mb-1 text-uppercase">{{$admin_cotizaciones_servicio->interesado->servicio->name}}</p>
-                <p class="">{!!$admin_cotizaciones_servicio->interesado->servicio->contenido!!}</p>
-
-                <p class="fw-bold text-uppercase">Información adicional:</p>
-                <p class="">{{$admin_cotizaciones_servicio->informacion_adicional}}</p>
-            @endif
-            @if($admin_cotizaciones_servicio->interesado->servicio->tipo->id == 3)
-                <p class="fw-bold text-uppercase">Información de cotización:</p>
-                <table class="table" style="width: 100%; font-size:14px">
-                    <tr>
-                        <td class="border border-end-0 border-primary px-2 py-2" style="width: 30%">
-                            <p class="mb-0">EMPRESA</p>
-                        </td>
-                        <td class="border border-start-0 border-primary px-2 py-2" style="width: 70%">
-                            <span>{{$admin_cotizaciones_servicio->empresa_solicitante}}</span>
-                        </td>
-                    </tr>
-                </table>
-                <table class="table" style="width: 100%; font-size:14px">
-                    <tr>
-                        <td class="ps-2 py-2 border border-end-0 border-primary" style="width: 13%">
-                            <p class="mb-0">FEC. ENTREGA:</p>
-                        </td>
-                        <td class="ps-2 py-2 border border-start-0 border-primary" style="width: 10%">
-                            <span>{{$admin_cotizaciones_servicio->fecha_ejecucion}}</span>
-                        </td>
-
-                        <td class="ps-2 py-2 border border-end-0 border-primary" style="width: 18%">
-                            <p class="mb-0">CANTIDAD:</p>
-                        </td>
-                        <td class="ps-2 py-2 border border-start-0 border-primary" style="width: 15%">
-                            <span>{{$admin_cotizaciones_servicio->cantidad_requerida}} Litros</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ps-2 py-2 border border-end-0 border-primary" style="width: 13%">
-                            <p class="mb-0">DIRECCION</p>
-                        </td>
-                        <td class="ps-2 py-2 border border-start-0 border-primary" style="width: 10%">
-                            <span>{{$admin_cotizaciones_servicio->direccion}}</span>
-                        </td>
-
-                        <td class="ps-2 py-2 border border-end-0 border-primary" style="width: 18%">
-                            <p class="mb-0">DEPARTAMENTO - PROVINCIA - DISTRITO:</p>
-                        </td>
-                        <td class="ps-2 py-2 border border-start-0 border-primary" style="width: 15%">
-                            <span>{{$admin_cotizaciones_servicio->ubigeo_id?$admin_cotizaciones_servicio->ubigeo->departamento.'-'.$admin_cotizaciones_servicio->ubigeo->provincia.'-'.$admin_cotizaciones_servicio->ubigeo->distrito:'No requerido'}}</span>
-                        </td>
-                    </tr>
-                </table>
-
-                <p class="fw-bold text-uppercase">Descripción:</p>
-                <p class="fw-bold text-secondary mb-1 text-uppercase">{{$admin_cotizaciones_servicio->interesado->servicio->name}}</p>
-                <p class="">{!!$admin_cotizaciones_servicio->interesado->servicio->contenido!!}</p>
-            @endif
         </div>
     </body>
     </html>
