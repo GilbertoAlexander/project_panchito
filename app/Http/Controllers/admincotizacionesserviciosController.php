@@ -64,6 +64,7 @@ class admincotizacionesserviciosController extends Controller
             $cotizacion->interesado_id = $request->input('interesado_ids');
             $cotizacion->estado = $request->input('estado');
             $cotizacion->costo_estimado = $request->input('costo_estimado');
+            $cotizacion->igv = $request->input('igv');
             $cotizacion->costo_afectado = $request->input('costo_afectado');
             $cotizacion->save();
         }
@@ -79,6 +80,7 @@ class admincotizacionesserviciosController extends Controller
             $cotizacion->interesado_id = $request->input('interesado_ids');
             $cotizacion->estado = $request->input('estado');
             $cotizacion->costo_estimado = $request->input('costo_estimado');
+            $cotizacion->igv = $request->input('igv');
             $cotizacion->costo_afectado = $request->input('costo_afectado');
             $cotizacion->save();
         }
@@ -94,6 +96,7 @@ class admincotizacionesserviciosController extends Controller
             $cotizacion->interesado_id = $request->input('interesado_ids');
             $cotizacion->estado = $request->input('estado');
             $cotizacion->costo_estimado = $request->input('costo_estimado');
+            $cotizacion->igv = $request->input('igv');
             $cotizacion->costo_afectado = $request->input('costo_afectado');
             $cotizacion->save();
         }
@@ -138,10 +141,10 @@ class admincotizacionesserviciosController extends Controller
         // die();
 
         $admin_cotizaciones_servicio['estado'] = $request->input('estado');
-        $admin_cotizaciones_agregado['costo_estimado'] = $request->input('costo_estimado');
-        $admin_cotizaciones_agregado['costo_afectado'] = $request->input('costo_afectado');
-        $admin_cotizaciones_agregado['igv'] = $request->input('igv');
-        $admin_cotizaciones_agregado['observacion_adicional'] = $request->input('observacion_adicional');
+        $admin_cotizaciones_servicio['costo_estimado'] = $request->input('costo_estimado');
+        $admin_cotizaciones_servicio['costo_afectado'] = $request->input('costo_afectado');
+        $admin_cotizaciones_servicio['igv'] = $request->input('igv');
+        $admin_cotizaciones_servicio['observacion_adicional'] = $request->input('observacion_adicional');
 
         $admin_cotizaciones_servicio->save();
 

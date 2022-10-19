@@ -62,7 +62,7 @@
                                 @method('DELETE')
                                 <a href="{{url("admin-cotizaciones-servicios/$cotizacion_servicio->slug")}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye-fill"></i></a>
 
-                                @if($cotizacion_servicio->estado == 'Seguimiento')
+                                @if($cotizacion_servicio->estado == 'Atendido')
                                     <a href="{{route('reporte_cotizacion_servicio_final.pdf', $cotizacion_servicio->slug)}}" class="btn btn-outline-primary btn-sm"><i class="bi bi-clipboard-check-fill"></i></a>
                                 @else
                                     <a href="" class="btn btn-outline-primary btn-sm disabled"><i class="bi bi-clipboard-check-fill"></i></a>
