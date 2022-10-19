@@ -9,15 +9,11 @@
 @section('content')
     <div id="carouselExampleFade" class="carousel slide carrousel__principal carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/images/carousel-1.jpg" class="img__slider d-block w-100" alt="...">
+            @foreach($admin_empresa->images as $image)
+            <div class="carousel-item @if($loop->index==0) active @endif">
+                <img src="{{$image->url}}" class="d-block img__carrousel w-100" alt="...">
             </div>
-        <div class="carousel-item">
-            <img src="/images/carousel-2.jpg" class="img__slider d-block w-100" alt="...">
-        </div>
-            <div class="carousel-item">
-                <img src="/images/carousel-3.jpg" class="img__slider d-block w-100" alt="...">
-            </div>
+            @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

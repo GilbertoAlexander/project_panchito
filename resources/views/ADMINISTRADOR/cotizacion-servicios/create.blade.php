@@ -31,7 +31,7 @@
                             <select id="interesado_id" class="form-select form-select-sm">
                                 <option selected hidden>Seleccione una opción</option>
                                 @foreach ($interesados as $interesado)
-                                    <option value="{{$interesado->id}}_{{$interesado->email}}_{{$interesado->celular}}_{{$interesado->servicio->tipo->id}}_{{$interesado->servicio->tipo->name}}_{{$interesado->servicio->name}}_{{$interesado->servicio->precio}}">{{$interesado->name}}</option>                                
+                                    <option value="{{$interesado->id}}+{{$interesado->email}}+{{$interesado->celular}}+{{$interesado->servicio->tipo->id}}+{{$interesado->servicio->tipo->name}}+{{$interesado->servicio->name}}+{{$interesado->servicio->precio}}">{{$interesado->name}}</option>                                
                                 @endforeach
                             </select>
                             <input hidden name="tipo_ids" id="tipo_id__">
@@ -192,7 +192,7 @@
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <label for="ubigeo_cisterna_id" class="form-label">Departamento - Provincia - Distrito<span class="text-danger">*</span></label>
-                                <select class="form-select" name="ubigeo_id3" id="ubigeo_cisterna_id">
+                                <select class="form-select select2" name="ubigeo_id3" id="ubigeo_cisterna_id">
                                     <option value="" hidden selected>Seleccione</option>
                                     @foreach($ubigeos as $ubigeo)
                                         <option value="{{$ubigeo->id}}">{{$ubigeo->departamento. ', '.$ubigeo->distrito. ', '.$ubigeo->provincia}}</option>
@@ -261,7 +261,7 @@
         $('#show_agua').hide();
         $('#interesado_id').on('change', function(){
             this.disabled = "disabled";
-            var cliente = document.getElementById('interesado_id').value.split('_');
+            var cliente = document.getElementById('interesado_id').value.split('+');
             if($.trim(cliente) !=''){
                 $("#interesado_ids").val(cliente[0]);
                 $('#id_email__').val(cliente[1]);

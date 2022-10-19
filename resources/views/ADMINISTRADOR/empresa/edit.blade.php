@@ -27,7 +27,7 @@
             <div class="card-body">
                 <span class="text-danger">* <small class="text-muted py-0 my-0 text-start"> - Campos obligatorios</small></span>
                 <div class="pb-3">
-                    <label for="" class="form-label pt-2">Portada<span class="text-danger">*</span></label>
+                    <label for="" class="form-label pt-2">Portada - <span class="text-muted">Tamaño referencial (1920x642)</span><span class="text-danger">*</span></label>
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="card text-center imagecard rounded bg-light mb-0 portada" style="width: 100%; height: auto;">  
                             <label for="uploadImage1" class="">
@@ -227,7 +227,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <p class="text-muted mb-2 small text-uppercase fw-bold">Cargue más imágenes (opcional)</p> 
+                        <p class="text-muted mb-2 small text-uppercase fw-bold">Cargue más imágenes (opcional) - <span class="text-muted">Tamaño referencial (1920x1280)</span></p> 
                         <div class="card imagecardfiles" style="min-height: 200px">
                             <div class="card-body">
                                 <div class="row">
